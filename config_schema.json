@@ -49,6 +49,11 @@
         "brand": {
             "type": "object",
             "properties": {
+                "app_name": {
+                    "type": "string",
+                    "description": "Name of your website, will be displayed on the navbar and included in various metadata",
+                    "default": "My App"
+                },
                 "favicon_folder": {
                     "type": "string",
                     "description": "The static folder to reference for various favicons, see [Favicon Generator](https://www.favicon-generator.org/)",
@@ -104,6 +109,11 @@
                         }
                     }
                 },
+                "show_gen_date": {
+                    "type": "boolean",
+                    "description": "Whether to show a message in the footer stating what time and date the site was last generated",
+                    "default": true
+                },
                 "footer_links": {
                     "type": "array",
                     "description": "links to show in the footer",
@@ -136,15 +146,6 @@
                     "type": "object",
                     "description": "describes various settings for meta html tags",
                     "properties": {
-                        "title": {
-                            "type": "string",
-                            "description": "The title of the site, shown on all pages",
-                            "default": "Test App",
-                            "examples": [
-                                "My App",
-                                "Cool App"
-                            ]
-                        },
                         "description": {
                             "type": "string",
                             "description": "The description to use when linking the homepage or if no description is provided on a page",
@@ -171,6 +172,7 @@
                         "image_alt": {
                             "type": "string",
                             "description": "The alt text to put on the image when it's embedded",
+                            "default": "Logo",
                             "examples": [
                                 "Logo for my cool app"
                             ]
@@ -178,6 +180,7 @@
                         "theme_color": {
                             "type": "color",
                             "description": "See [The MDN docs on theme color](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color)",
+                            "default": "#080808",
                             "examples": [
                                 "#1a1a1a",
                                 "#4c4c4c"
@@ -186,12 +189,14 @@
                         "bg_color": {
                             "type": "color",
                             "description": "Like theme_color but for backgrounds",
+                            "default": "#ffffff",
                             "examples": [
                                 "#ffffff",
                                 "#000000"
                             ]
                         }
-                    }
+                    },
+                    "additional_properties": false
                 }
             },
             "additional_properties": false
@@ -214,18 +219,11 @@
                         "my_cool_toc.jinja2"
                     ]
                 },
-                "json_schema": {
+                "schema": {
                     "type": "string",
-                    "description": "Override the template used for json schema rendering",
+                    "description": "Override the template used for schema rendering",
                     "examples": [
-                        "my_cool_schema_page_JSON.jinja2"
-                    ]
-                },
-                "xml_schema": {
-                    "type": "string",
-                    "description": "Override the template used for xml schema rendering",
-                    "examples": [
-                        "my_cool_schema_page_XML.jinja2"
+                        "my_cool_schema_page.jinja2"
                     ]
                 }
             },
