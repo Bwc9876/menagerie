@@ -66,6 +66,8 @@ def setup_settings(config_path: Path):
         config = load(config_path)
         validate(config, schema)
         Settings.__dict__.update(config)
+    except FileNotFoundError:
+        Logger.log_error(f"Can't find config file: `{config_path.as_posix()}`")
     except JSONDecodeError as e:
         Logger.log_error(f"Error parsing config: {e}")
     except ValidationError as e:
