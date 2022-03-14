@@ -25,6 +25,10 @@ class Logger:
     }
 
     @classmethod
+    def update_level_from_string(level_str: str) -> None:
+        cls.update_level(['debug', 'info', 'warning', 'critical'].index(level_str.lower()))
+
+    @classmethod
     def update_level(cls, new_level: LogType) -> None:
         cls.__level = new_level
 
