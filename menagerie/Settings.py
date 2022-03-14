@@ -8,6 +8,12 @@ from jsonschema.exceptions import ValidationError
 from utils.logger import Logger
 
 
+__all__ = (
+    'Settings',
+    'setup_settings'
+)
+
+
 class Settings:
     """
         Settings for this site, see the config schema for info on what everything does

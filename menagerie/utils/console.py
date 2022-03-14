@@ -8,7 +8,7 @@ from enum import IntEnum
 from dataclasses import dataclass
 
 
-__all__ = [
+__all__ = (
     'ConsoleColorMode',
     'COLOR_MODE',
     'ConsoleTextStyle',
@@ -16,7 +16,7 @@ __all__ = [
     'color_text',
     'reset_format',
     'progressbar'
-]
+)
 
 
 class ConsoleColorMode(IntEnum):

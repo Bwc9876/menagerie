@@ -5,6 +5,10 @@ from Items.Managers.PageManager import PageManager
 from Settings import setup_settings
 from utils.logger import Logger
 
+__all__ = (
+    'main'
+)
+
 managers = (PageManager,)
 
 def main(*argv):

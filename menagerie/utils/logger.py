@@ -3,6 +3,12 @@ from enum import IntEnum
 from utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
 
 
+__all__ = (
+    'LogType',
+    'Logger'
+)
+
+
 class LogType(IntEnum):
     """
         A type of log message
