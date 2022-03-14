@@ -9,9 +9,17 @@ from utils.logger import Logger
 
 
 class Settings:
-    base_url: str = None
+    """
+        Settings for this site, see the config schema for info on what everything does
+    """
+
+    def __new__(cls, *args, **kwargs):
+        print("Settings is a static class!")
+        return None
+
+    base_url: str = ""
     log_level: str = 'info',
-    themes = {
+    themes: dict[str, str] = {
         'bootstrap': "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
         'highlight_js': "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css"
     },
@@ -31,34 +39,37 @@ class Settings:
             'bg_color': "#ffffff"
         }
     },
-    templates = {
+    templates: dict[str, str | None] = {
         'base': None,
         'table_of_contents': None,
         'schema': None
     },
-    styles = {
+    styles: dict[str, str | None] = {
         'base': None,
         'schema': None
     }
-    default_toc = True
-    folders = {
+    default_toc: bool = True
+    folders: dict[str, str | Path] = {
         'out': "out/",
         'content': 'content/',
         'pages': 'pages/',
         'static': 'static/'
     }
-    minify = {
+    minify: dict[str, bool] = {
         'html': True,
         'css': True,
         'js': True,
         'xml': True
     }
 
-    
-
 
 def setup_settings(config_path: Path):
+    """
+        Loads settings from a given config file and validates it against the config schema
 
+        :param config_path: The path to the config file to load
+        :type config_path: Path 
+    """
 
     schema = load(Path('config_schema.json'))
 
@@ -73,5 +84,3 @@ def setup_settings(config_path: Path):
         Logger.log_error(f"Error parsing config: {e}")
     except ValidationError as e:
         Logger.log_error(f"Invalid config: {e.message}")
-
-    

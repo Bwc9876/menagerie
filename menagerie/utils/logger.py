@@ -4,6 +4,15 @@ from utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
 
 
 class LogType(IntEnum):
+    """
+        A type of log message
+
+        :cvar debug: Message useful while debugging, but obnoxious everywhere else
+        :cvar info: Info for the user
+        :cvar warning: A possible mistake the user made
+        :cvar critical: Something that prevents the site from being generated
+    """
+
     debug = 0
     info = 1
     warning = 2
@@ -11,6 +20,12 @@ class LogType(IntEnum):
 
 
 class Logger:
+    """
+        Handles logging messages to the console
+
+        :cvar __level: The current log level
+        :cvar __log_styles: The `ConsoleTextStyle` to use for each log type
+    """
 
     def __new__(cls, *args, **kwargs):
         print("Logger is a static class!")
@@ -34,6 +49,15 @@ class Logger:
 
     @classmethod
     def log(cls, message: str, log_type: LogType) -> None:
+        """
+            Logs a message to the console if the passed type is above the current level
+
+            :param message: Message to print
+            :type message: str
+            :param log_type: The type of message to log
+            :type log_typa: LogType
+        """
+
         # TODO: Log to file eventually
         if int(log_type) >= int(cls.__level):
             cls.__print(message, log_type)
@@ -56,6 +80,10 @@ class Logger:
             
     @classmethod
     def force_log(cls, message: str, log_type: LogType):
+        """
+            Similar to `log()`, but doesn't check against `__level`
+        """
+
         cls.__print(message, log_type)
 
     @classmethod
