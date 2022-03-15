@@ -2,6 +2,7 @@ from abc import ABC
 from pathlib import Path
 
 from Settings import Settings
+from menagerie.utils.logger import Logger
 
 
 __all__ = ('AbstractItem',)
@@ -27,14 +28,16 @@ class AbstractItem(ABC):
         self.manager = manager
         self.in_path = path.relative_to(self.manager.root_dir)
         self.out_path = Path(Settings.out_dir, self.manager.root_dir, Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir))).with_suffix(f'.{self.out_extension}')
-        with self.get_path_to_open().open(mode='rb' if self.byte_mode else 'r') as file:
-            self.content = file.read()
 
     def get_path_to_open(self) -> Path:
         return Path(Settings.content_dir, self.manager.root_dir, self.in_path)
 
+    def get_content(self) -> str | byte:
+        with self.get_path_to_open().open(mode='rb' if self.byte_mode else 'r') as file:
+            return file.read()
+
     def generate(self) -> None:
-        print("Building:", str(self.in_path.as_posix()), '->', str(self.out_path.as_posix()))
+        Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' -> ' + str(self.out_path.as_posix()))
         self.save(self.transform(self.content))
 
     def initialize(self) -> None:

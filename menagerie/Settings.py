@@ -41,7 +41,7 @@ class Settings:
             'keywords': [],
             'image': None,
             'image_alt': "Logo",
-            'theme_color': "#080808",
+            'theme_color': "#333333",
             'bg_color': "#ffffff"
         }
     },

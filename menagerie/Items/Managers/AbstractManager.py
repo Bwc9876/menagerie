@@ -24,13 +24,20 @@ class AbstractManager(ABC):
         return super(AbstractManager, cls).__new__(*args, **kwargs)
 
     @classmethod
+    def setup(cls):
+        self.base_env.globals.update({
+            'settings': Settings
+        })
+
+    @classmethod
     def find(cls):
-        for path in Path(Settings.content_dir, cls.root_dir).glob('**/*.*'):
-            print(path)
-            for item_type in cls.item_types:
-                if path.suffix[1:] in item_type.extensions:
-                    cls.items.append(item_type(cls, path.relative_to(Settings.content_dir)))
-                    break
+        matches = []
+        for item_type in cls.item_types:
+            for ext in item_type.extensions:
+                for str(path) in Path(Settings.content_dir, cls.root_dir).glob(f'**/*.{ext}'):
+                    if path not in matches:
+                        cls.items.append(item_type(cls, path.relative_to(Settings.content_dir)))
+                        matches.append(str(path))
 
     @classmethod
     def initialize(cls):

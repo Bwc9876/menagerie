@@ -2,7 +2,7 @@ import re
 from abc import ABC
 from pathlib import Path
 
-from htmlmin import minify
+from htmlmin import minify as html_minify
 from jinja2.environment import Markup
 
 from Items.AbstractItem import AbstractItem
@@ -66,4 +66,4 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
         return base_template.render(page=self, content=Markup(self.inner_render(content)), **self.manager.context)
 
     def minify(self, content: str) -> str:
-        return minify(content, **MINIFY_SETTINGS)
+        return html_minify(content, **MINIFY_SETTINGS)

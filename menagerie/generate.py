@@ -20,22 +20,22 @@ def main(*argv):
                 config_path = Path(arg.split('=')[1])
                 break
             except IndexError:
-                print("Usage: python generate.py --config=CONFIG_PATH")
+                Logger.log_error("Usage: python generate.py --config=CONFIG_PATH")
+                return
     if config_path is None:
         config_path = Path('config.json')
     Logger.log_info("Loading Config")
     setup_settings(config_path)
+    Logger.log_info("Settings Up")
+    [man.setup() for man in managers]
     Logger.log_info("Beginning Generation")
     # TODO: Progressbar
     Logger.log_info("Finding Content")
-    for man in managers:
-        man.find()
+    [man.find() for man in managers]
     Logger.log_info("Initializing Meta Data")
-    for man in managers:
-        man.initialize()
+    [man.initialize() for man in managers]
     Logger.log_info("Generating Content")
-    for man in managers:
-        man.generate()
+    [man.generate() for man in managers]
     Logger.log_info("Done!")
 
 

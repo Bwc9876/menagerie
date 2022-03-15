@@ -24,7 +24,7 @@ class MDPage(AbstractPage):
         self.rendered_markdown = None
 
     def load_metadata(self) -> None:
-        self.rendered_markdown = self.md.convert(self.content)
+        self.rendered_markdown = self.md.convert(self.get_content())
         # noinspection PyUnresolvedReferences
         self.meta.update({k: None if v is None else v[0] for k, v in self.md.Meta.items()})
 

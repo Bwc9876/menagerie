@@ -29,7 +29,7 @@ class PageManager(AbstractManager):
 
     @classmethod
     def route(cls, title: str) -> str:
-        return cls.router.get(title, "#")
+        return cls.router.get(title, "#top")
 
     @classmethod
     def generate(cls):
@@ -38,11 +38,11 @@ class PageManager(AbstractManager):
             'route': cls.route
         }
         da_globals = {
-            'pages': cls.items
+            'pages': cls.items,
         }
-        cls.env.filters.update(filters)
         cls.base_env.filters.update(filters)
-        cls.env.globals.update(da_globals)
         cls.base_env.globals.update(da_globals)
+        cls.env.filters.update(cls.base_env.filters)
+        cls.env.globals.update(cls.base_env.globals)
         for item in cls.items:
             item.generate()

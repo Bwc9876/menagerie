@@ -13,7 +13,7 @@ class HTMLPage(AbstractPage):
         return self.manager.env.from_string(content).render(page=self, **self.manager.context)
 
     def load_metadata(self):
-        for match in re.findall(r"{#~(.*?)~#}", self.content, re.MULTILINE):
+        for match in re.findall(r"{#~(.*?)~#}", self.get_content(), re.MULTILINE):
             seperated = match.strip().split(':')
             self.meta[seperated[0].lower().replace('-', '_')] = seperated[1]
 
