@@ -5,7 +5,7 @@ from json import load
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 
-from utils.logger import Logger
+from menagerie.utils.logger import Logger
 
 
 __all__ = (

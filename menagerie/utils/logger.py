@@ -1,6 +1,6 @@
 from enum import IntEnum
 
-from utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
+from menagerie.utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
 
 
 __all__ = (
@@ -46,7 +46,7 @@ class Logger:
     }
 
     @classmethod
-    def update_level_from_string(level_str: str) -> None:
+    def update_level_from_string(cls, level_str: str) -> None:
         cls.update_level(['debug', 'info', 'warning', 'critical'].index(level_str.lower()))
 
     @classmethod
@@ -61,7 +61,7 @@ class Logger:
             :param message: Message to print
             :type message: str
             :param log_type: The type of message to log
-            :type log_typa: LogType
+            :type log_type: LogType
         """
 
         # TODO: Log to file eventually
@@ -85,7 +85,7 @@ class Logger:
         cls.log(message, LogType.debug)
             
     @classmethod
-    def force_log(cls, message: str, log_type: LogType):
+    def force_log(cls, message: str, log_type: LogType) -> None:
         """
             Similar to `log()`, but doesn't check against `__level`
         """
@@ -93,5 +93,5 @@ class Logger:
         cls.__print(message, log_type)
 
     @classmethod
-    def __print(cls, message: str, log_type: LogType):
+    def __print(cls, message: str, log_type: LogType) -> None:
         print(color_text(message, cls.__log_styles.get(log_type), reset=True))

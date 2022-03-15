@@ -47,13 +47,6 @@ class FourBitConsoleColors(IntEnum):
 class ConsoleTextStyle:
     """
         A set of options for outputting colored and bolded text to the console
-
-        :ivar color: The color of the text (see :class:ConsoleColors)
-        :type color: int
-        :ivar bold: Whether the text will be bolded in the console
-        :type bold: bool
-        :ivar high_intesity: Switch to the high intensity variant of the color selected
-        :type high_itensity: bool
     """
 
     fg_color: int | tuple[int] = None
@@ -103,7 +96,7 @@ def handle_color(color_type, style: ConsoleTextStyle, mode):
             return str(38 if color_type == 0 else 48) + ';5;' + str(color) + ";"
 
 
-def color_text(in_str: str, style: ConsoleTextStyle, reset: bool = True, override_color_mode: ConsoleColorMode = None):
+def color_text(in_str: str, style: ConsoleTextStyle, reset: bool = True, override_color_mode: ConsoleColorMode = None) -> str:
     """
         Colors the given string according to the provided :py:class:`ConsoleTextStyle`
 
@@ -115,6 +108,8 @@ def color_text(in_str: str, style: ConsoleTextStyle, reset: bool = True, overrid
         :type in_str: str
         :param style: The style to apply
         :type style: ConsoleTextStyle
+        :returns: The colored version of the given text
+        :rtype: str
     """
 
     if style is None:

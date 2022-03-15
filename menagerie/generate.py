@@ -3,7 +3,7 @@ from pathlib import Path
 
 from Items.Managers.PageManager import PageManager
 from Settings import setup_settings
-from utils.logger import Logger
+from menagerie.utils.logger import Logger
 
 __all__ = (
     'main'
@@ -11,10 +11,11 @@ __all__ = (
 
 managers = (PageManager,)
 
+
 def main(*argv):
     config_path = None
     for arg in argv:
-        if '--config=' in args:
+        if '--config=' in arg:
             try:
                 config_path = Path(arg.split('=')[1])
                 break
@@ -40,5 +41,3 @@ def main(*argv):
 
 if __name__ == "__main__":
     main(*sys.argv)
-
-
