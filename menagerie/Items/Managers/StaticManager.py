@@ -3,11 +3,14 @@ from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
 from menagerie.Settings import Settings
+from menagerie.Items.Static.StaticItem import StaticItem
+from menagerie.Items.Static.StaticImage import StaticImage
 
 
 class StaticManager(AbstractManager):
 
     changed_files: dict[str, str] = {}
+    item_types = (StaticImage, StaticItem)
 
     @classmethod
     def setup(cls) -> None:

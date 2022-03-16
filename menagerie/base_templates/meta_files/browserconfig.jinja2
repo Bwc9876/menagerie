@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            {% macro fav(link) %}
+                {{ (settings.brand['favicon_folder'] + link)|static }}
+            {% endmacro %}
+            <square70x70logo src="{{ fav("ms-icon-70x70.png") }}"/>
+            <square150x150logo src="{{ fav("ms-icon-150x150.png") }}"/>
+            <square310x310logo src="{{ fav("ms-icon-310x310.png") }}"/>
+            <TileColor>{{ settings.brand['meta']['bg_color'] }}</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>

@@ -28,6 +28,9 @@ class AbstractManager(ABC):
         self.base_env.globals.update({
             'settings': Settings
         })
+        self.base_env.filters.update({
+            'full_url': lambda relative: Settings.base_url + (relative[1:] if relative[0] == "/" else relative)
+        })
 
     @classmethod
     def find(cls):

@@ -27,7 +27,7 @@ def process_node(node) -> None:
     if node.tag == 'img':
         possible_match = re.match(r"{{ ?\"(.*?)\"\|static.*?}}", node.get('src'))
         if possible_match:
-            image_path = StaticManager.get_static(possible_match.group()[0])
+            image_path = StaticManager.get_static(possible_match.group(0))
             size = StaticImage.get_size(str(Path(image_path).relative_to(Settings.out_dir)))
             node.set('width', size[0])
             node.set('height', size[1])

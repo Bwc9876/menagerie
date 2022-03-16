@@ -39,7 +39,7 @@ class Settings:
     },
     brand = {
         'app_name': "My App",
-        'favicon_folder': None,
+        'favicon_folder': 'images/fav/',
         'navbar_icon': None,
         'socials': [],
         'show_gen_date': True,
