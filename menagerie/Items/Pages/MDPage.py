@@ -21,7 +21,7 @@ ADDITIONAL_CLASSES: dict[str, str] = {
     'table': "table-striped"
 }
 
-def process_node(node) -> None
+def process_node(node) -> None:
     if node.tag in ADDITIONAL_CLASSES.keys():
         node.set('class', ADDITIONAL_CLASSES[node.tag])
     if node.tag == 'img':
