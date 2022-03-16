@@ -1,3 +1,4 @@
+from os import getenv
 from json.decoder import JSONDecodeError
 from pathlib import Path
 from json import load
@@ -22,6 +23,13 @@ class Settings:
     def __new__(cls, *args, **kwargs):
         print("Settings is a static class!")
         return None
+
+    @classmethod
+    def setup_paths(cls) -> None:
+        cls.out_dir = Path(cls.folders['out'])
+        cls.content_dir = Path(cls.folders['content'])
+        cls.url_prefix = getenv("URL_PREFIX")
+
 
     base_url: str = ""
     log_level: str = 'info',
@@ -83,6 +91,7 @@ def setup_settings(config_path: Path):
         config = load(config_path)
         validate(config, schema)
         Settings.__dict__.update(config)
+        Settings.setup_paths()
         Logger.update_level_from_string(Settings.log_level)
     except FileNotFoundError:
         Logger.log_error(f"Can't find config file: `{config_path.as_posix()}`")
