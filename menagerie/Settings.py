@@ -1,43 +1,30 @@
-from os import getenv
-from json.decoder import JSONDecodeError
-from pathlib import Path
 from json import load
+from json.decoder import JSONDecodeError
+from os import getenv
+from pathlib import Path
 
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
+from ndicts.ndicts import NestedDict
 
 from menagerie.utils.logger import Logger
-
 
 __all__ = (
     'Settings',
     'setup_settings'
 )
 
-
-class Settings:
-    """
-        Settings for this site, see the config schema for info on what everything does
-    """
-
-    def __new__(cls, *args, **kwargs):
-        print("Settings is a static class!")
-        return None
-
-    @classmethod
-    def setup_paths(cls) -> None:
-        cls.out_dir = Path(cls.folders['out'])
-        cls.content_dir = Path(cls.folders['content'])
-        cls.url_prefix = getenv("URL_PREFIX")
-
-
-    base_url: str = ""
-    log_level: str = 'info',
-    themes: dict[str, str] = {
+Settings = NestedDict({
+    'out_dir': None,
+    'content_dir': None,
+    'url_prefix': None,
+    'base_url': '',
+    'log_level': "Info",
+    'themes': {
         'bootstrap': "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
         'highlight_js': "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css"
     },
-    brand = {
+    'brand': {
         'app_name': "My App",
         'favicon_folder': 'images/fav/',
         'navbar_icon': None,
@@ -47,34 +34,35 @@ class Settings:
         'meta': {
             'description': None,
             'keywords': [],
-            'image': None,
+            'image': "",
             'image_alt': "Logo",
             'theme_color': "#333333",
             'bg_color': "#ffffff"
         }
     },
-    templates: dict[str, str | None] = {
+    'templates': {
         'base': None,
         'table_of_contents': None,
         'schema': None
     },
-    styles: dict[str, str | None] = {
+    'styles': {
         'base': None,
         'schema': None
-    }
-    default_toc: bool = True
-    folders: dict[str, str | Path] = {
+    },
+    'paths': {
         'out': "out/",
         'content': 'content/',
         'pages': 'pages/',
         'static': 'static/'
-    }
-    minify: dict[str, bool] = {
-        'html': True,
-        'css': True,
-        'js': True,
-        'xml': True
-    }
+    },
+    'minify':
+        {
+            'html': True,
+            'css': True,
+            'js': True,
+            'xml': True
+        }
+})
 
 
 def setup_settings(config_path: Path):
@@ -85,14 +73,16 @@ def setup_settings(config_path: Path):
         :type config_path: Path 
     """
 
-    schema = load(Path('config_schema.json'))
+    schema = load(Path('config_schema.json').open(mode='r', encoding='utf-8'))
 
     try:
-        config = load(config_path)
+        config = load(config_path.open(mode='r', encoding='utf-8'))
         validate(config, schema)
-        Settings.__dict__.update(config)
-        Settings.setup_paths()
-        Logger.update_level_from_string(Settings.log_level)
+        Settings.update(NestedDict(config))
+        Settings['out_dir'] = Path(Settings['paths', 'out'])
+        Settings['content_dir'] = Path(Settings['paths', 'content'])
+        Settings['url_prefix'] = getenv("URL_PREFIX", "")
+        Logger.update_level_from_string(Settings['log_level'])
     except FileNotFoundError:
         Logger.log_error(f"Can't find config file: `{config_path.as_posix()}`")
     except JSONDecodeError as e:

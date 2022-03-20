@@ -1,3 +1,9 @@
 {
-  "out_path": "out/"
+  "$schema": "menagerie/config_schema.json",
+  "paths": {
+    "out": "../out/",
+    "content": "../content/",
+    "pages": "pages/",
+    "static": "static/"
+  }
 }

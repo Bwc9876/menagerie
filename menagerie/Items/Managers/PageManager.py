@@ -1,17 +1,15 @@
 from pathlib import Path
 
+from menagerie.Items.Managers.AbstractManager import AbstractManager
+from menagerie.Items.Managers.StaticManager import StaticManager
+from menagerie.Items.Pages.AbstractPage import AbstractPage
+from menagerie.Items.Pages.HTMLPage import HTMLPage
+from menagerie.Items.Pages.MDPage import MDPage
+from menagerie.Settings import Settings
 from jinja2 import Environment, FileSystemLoader
-
-from Items.Managers.AbstractManager import AbstractManager
-from Items.Managers.StaticManager import StaticManager
-from Items.Pages.AbstractPage import AbstractPage
-from Items.Pages.HTMLPage import HTMLPage
-from Items.Pages.MDPage import MDPage
-from Settings import Settings
 
 
 class PageManager(AbstractManager):
-
     root_dir = None
     item_types: AbstractPage = (MDPage, HTMLPage)
     items: list[AbstractPage] = []
@@ -19,27 +17,27 @@ class PageManager(AbstractManager):
 
     }
 
-    env: Environment = Environment(loader=FileSystemLoader(Settings.content_dir))
+    env: Environment = Environment(loader=FileSystemLoader(Settings['content_dir']))
     router: dict[str, str] = {}
 
     @classmethod
     def setup(cls) -> None:
-        super(AbstractManager, self).setup()
-        cls.root_dir = Path(Settings.folders['pages'])
+        super(PageManager, cls).setup()
+        cls.root_dir = Path(Settings['paths', 'pages'])
 
     @classmethod
     def initialize(cls):
         for item in cls.items:
             item.initialize()
-        cls.router = {p.meta['title']: str(p.out_path) for p in cls.items}
+        cls.router = {p.meta['title']: str(p.out_path.relative_to(Settings['out_dir']).as_posix()) for p in cls.items}
 
     @classmethod
     def route(cls, title: str) -> str:
-        return cls.router.get(title, "#")
+        return Settings['url_prefix'] + cls.router.get(title, "#")
 
     @classmethod
     def generate(cls):
-        Path(Settings.out_dir, cls.root_dir).mkdir(parents=True, exist_ok=True)
+        Path(Settings['out_dir'], cls.root_dir).mkdir(parents=True, exist_ok=True)
         filters = {
             'route': cls.route,
             'static': StaticManager.get_static

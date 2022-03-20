@@ -1,16 +1,14 @@
 from abc import ABC
 from pathlib import Path
 
+from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.Settings import Settings
 from jinja2 import Environment, PackageLoader
-
-from Items.AbstractItem import AbstractItem
-from Settings import Settings
 
 __all__ = ('AbstractManager',)
 
 
 class AbstractManager(ABC):
-
     item_types: tuple
     items: list[AbstractItem] = []
     root_dir: Path
@@ -25,11 +23,11 @@ class AbstractManager(ABC):
 
     @classmethod
     def setup(cls):
-        self.base_env.globals.update({
+        cls.base_env.globals.update({
             'settings': Settings
         })
-        self.base_env.filters.update({
-            'full_url': lambda relative: Settings.base_url + (relative[1:] if relative[0] == "/" else relative)
+        cls.base_env.filters.update({
+            'full_url': lambda relative: Settings['base_url'] + (relative[1:] if len(relative) > 1 and relative[0] == "/" else relative)
         })
 
     @classmethod
@@ -37,9 +35,9 @@ class AbstractManager(ABC):
         matches = []
         for item_type in cls.item_types:
             for ext in item_type.extensions:
-                for str(path) in Path(Settings.content_dir, cls.root_dir).glob(f'**/*.{ext}'):
-                    if path not in matches:
-                        cls.items.append(item_type(cls, path.relative_to(Settings.content_dir)))
+                for path in Path(Settings['content_dir'], cls.root_dir).glob(f'**/*.{ext}'):
+                    if str(path) not in matches:
+                        cls.items.append(item_type(cls, path.relative_to(Settings['content_dir'])))
                         matches.append(str(path))
 
     @classmethod

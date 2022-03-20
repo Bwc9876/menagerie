@@ -1,25 +1,27 @@
 {# Macros #}
-{% macro og(name, content) %}<meta property="og:{{ name }}" content="{{ content }}"/>{% endmacro %}
-{% macro tw(name, content) %}<meta name="twitter:{{ name }}" content="{{ content }}"/>{% endmacro %}
-{% macro fav(filename) %}{{ (settings.brand['favicon_folder'] + filename)|static }}{% endmacro %}
+{% macro og(name, content) %}
+    <meta property="og:{{ name }}" content="{{ content }}"/>{% endmacro %}
+{% macro tw(name, content) %}
+    <meta name="twitter:{{ name }}" content="{{ content }}"/>{% endmacro %}
+{% macro fav(filename) %}{{ (settings['brand']['favicon_folder'] + filename)|static }}{% endmacro %}
 
 {# Variable Declarations #}
 {% if page.meta['title']|lower == 'home' %}
-    {% set title=settings.brand['app_name'] %}
+    {% set title=settings['brand']['app_name'] %}
 {% else %}
-    {% set title=settings.brand['app_name'] + " | " + page.meta['title']|title %}
+    {% set title=settings['brand']['app_name'] + " | " + page.meta['title']|title %}
 {% endif %}
-{% set desc=page.meta['description']|default_if_none("No Description Provided") %}
-{% set img=settings.brand['meta']['image']|static|full_url %}
+{% set desc=page.meta['description']|default("No Description Provided") %}
+{% set img=settings['brand']['meta']['image']|static|full_url %}
 {% set canonical=page.title|route|full_url %}
-{% set theme_color=settings.brand['meta']['theme_color'] %}
+{% set theme_color=settings['brand']['meta']['theme_color'] %}
 
 {# Meta Info #}
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>{{ title }}</title>
-<meta name="keywords" content="{{ ', '.join(settings.brand['meta']['keywords']) }}"/>
+<meta name="keywords" content="{{ ', '.join(settings['brand']['meta']['keywords']) }}"/>
 <meta name="description" content="{{ desc }}"/>
 <link rel="canonical" href="{{ canonical }}">
 
@@ -29,14 +31,13 @@
 {{ og("description", desc) }}
 {{ og("url", canonical) }}
 {{ og("image", img) }}
-{{ og("image:alt", {{ settings.brand['meta']['image_alt'] }}) }}
+{{ og("image:alt", settings['brand']['meta']['image_alt']) }}
 
 {# Twitter Info #}
 {{ tw("title", title) }}
 {{ tw("description", desc) }}
 {{ tw("card", "summary_large_image") }}
 {{ tw("image", img) }}
-
 
 
 {# Favicons #}
@@ -54,8 +55,8 @@
 <link rel="icon" type="image/png" sizes="96x96" href="{{ fav("favicon-96x96.png") }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ fav("favicon-16x16.png") }}">
 <link rel="manifest" href="{{ "manifest.json"|static }}">
-<meta name="msapplication-config" content="{{ "browserconfig.xml"|static }}" />#}
+<meta name="msapplication-config" content="{{ "browserconfig.xml"|static }}"/>
 <meta name="msapplication-TileColor" content="{{ theme_color }}">
 <meta name="msapplication-TileImage" content="{{ fav("ms-icon-144x144.png") }}">
-<meta name="theme-color" data-react-helmet="true" content="{{ theme_color }}">
+<meta name="theme-color" content="{{ theme_color }}">
 

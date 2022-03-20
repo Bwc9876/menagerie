@@ -4,9 +4,8 @@
 from __future__ import annotations
 
 import sys
-from enum import IntEnum
 from dataclasses import dataclass
-
+from enum import IntEnum
 
 __all__ = (
     'ConsoleColorMode',
@@ -96,7 +95,8 @@ def handle_color(color_type, style: ConsoleTextStyle, mode):
             return str(38 if color_type == 0 else 48) + ';5;' + str(color) + ";"
 
 
-def color_text(in_str: str, style: ConsoleTextStyle, reset: bool = True, override_color_mode: ConsoleColorMode = None) -> str:
+def color_text(in_str: str, style: ConsoleTextStyle, reset: bool = True,
+               override_color_mode: ConsoleColorMode = None) -> str:
     """
         Colors the given string according to the provided :py:class:`ConsoleTextStyle`
 

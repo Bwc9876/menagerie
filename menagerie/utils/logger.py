@@ -2,7 +2,6 @@ from enum import IntEnum
 
 from menagerie.utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
 
-
 __all__ = (
     'LogType',
     'Logger'
@@ -83,7 +82,7 @@ class Logger:
     @classmethod
     def log_debug(cls, message: str) -> None:
         cls.log(message, LogType.debug)
-            
+
     @classmethod
     def force_log(cls, message: str, log_type: LogType) -> None:
         """

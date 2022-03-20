@@ -1,15 +1,12 @@
 import sys
 from pathlib import Path
 
-from Items.Managers.PageManager import PageManager
-from Settings import setup_settings
+from menagerie.Settings import setup_settings
 from menagerie.utils.logger import Logger
 
 __all__ = (
-    'main'
+    'main',
 )
-
-managers = (PageManager,)
 
 
 def main(*argv):
@@ -26,6 +23,11 @@ def main(*argv):
         config_path = Path('config.json')
     Logger.log_info("Loading Config")
     setup_settings(config_path)
+
+    from Items.Managers.PageManager import PageManager
+    from Items.Managers.StaticManager import StaticManager
+
+    managers = (PageManager, StaticManager)
     Logger.log_info("Settings Up")
     [man.setup() for man in managers]
     Logger.log_info("Beginning Generation")

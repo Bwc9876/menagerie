@@ -2,11 +2,10 @@ import re
 from abc import ABC
 from pathlib import Path
 
-from htmlmin import minify as html_minify
-from jinja2.environment import Markup
-
 from Items.AbstractItem import AbstractItem
 from Items.MinifiedItemMixin import MinifiedItemMixin
+from htmlmin import minify as html_minify
+from jinja2.environment import Markup
 
 __all__ = ('AbstractPage',)
 
