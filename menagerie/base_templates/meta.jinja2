@@ -1,9 +1,13 @@
 {# Macros #}
 {% macro og(name, content) %}
-    <meta property="og:{{ name }}" content="{{ content }}"/>{% endmacro %}
+    <meta property="og:{{ name }}" content="{{ content }}"/>
+{% endmacro %}
 {% macro tw(name, content) %}
-    <meta name="twitter:{{ name }}" content="{{ content }}"/>{% endmacro %}
-{% macro fav(filename) %}{{ (settings['brand']['favicon_folder'] + filename)|static }}{% endmacro %}
+    <meta name="twitter:{{ name }}" content="{{ content }}"/>
+{% endmacro %}
+{% macro fav(filename) %}
+    {{ (settings['brand']['favicon_folder'] + filename)|static }}
+{% endmacro %}
 
 {# Variable Declarations #}
 {% if page.meta['title']|lower == 'home' %}
@@ -39,7 +43,6 @@
 {{ tw("card", "summary_large_image") }}
 {{ tw("image", img) }}
 
-
 {# Favicons #}
 <link rel="apple-touch-icon" sizes="57x57" href="{{ fav('apple-icon-57x57.png') }}">
 <link rel="apple-touch-icon" sizes="60x60" href="{{ fav('apple-icon-60x60.png') }}">
@@ -59,4 +62,3 @@
 <meta name="msapplication-TileColor" content="{{ theme_color }}">
 <meta name="msapplication-TileImage" content="{{ fav("ms-icon-144x144.png") }}">
 <meta name="theme-color" content="{{ theme_color }}">
-

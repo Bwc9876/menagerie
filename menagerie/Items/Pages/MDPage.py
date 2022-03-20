@@ -35,7 +35,7 @@ class MTreeProcessor(Treeprocessor):
 
     def run(self, node):
         for child in node:
-            process_node(node)
+            process_node(child)
         return node
 
 

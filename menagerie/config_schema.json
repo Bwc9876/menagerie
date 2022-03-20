@@ -53,12 +53,21 @@
         },
         "highlight_js": {
           "type": "string",
-          "descriptions": "The link to the highlight.js theme you want to use",
+          "description": "The link to the highlight.js theme you want to use",
           "default": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css",
           "examples": [
             "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/github-dark-dimmed.min.css",
             "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/github.min.css"
           ]
+        },
+        "navbar_color": {
+          "type": "string",
+          "enum": [
+            "dark",
+            "light"
+          ],
+          "description": "Whether to use a dark or light bg- class on the navbar",
+          "default": "light"
         }
       },
       "additionalProperties": false
