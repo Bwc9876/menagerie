@@ -24,7 +24,7 @@ class StaticManager(AbstractManager):
 
     @classmethod
     def generate(cls):
-        Path(Settings['out_dir'], cls.root_dir).mkdir(parents=True, exist_ok=True)
+        Settings['out_dir'].mkdir(parents=True, exist_ok=True)
         for item in cls.items:
             item.generate()
 
