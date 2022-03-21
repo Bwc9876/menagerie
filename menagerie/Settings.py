@@ -27,6 +27,7 @@ Settings = NestedDict({
     },
     'brand': {
         'app_name': "My App",
+        'short_name': "My App",
         'favicon_folder': 'images/fav/',
         'navbar_icon': None,
         'socials': [],
@@ -35,6 +36,7 @@ Settings = NestedDict({
         'meta': {
             'description': None,
             'keywords': [],
+            'categories': [],
             'image': "",
             'image_alt': "Logo",
             'theme_color': "#333333",

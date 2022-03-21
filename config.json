@@ -10,5 +10,10 @@
     "bootstrap": "https://bootswatch.com/5/darkly/bootstrap.min.css",
     "highlight_js": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css",
     "navbar_color": "dark"
+  },
+  "brand": {
+    "meta": {
+      "categories": ["book", "education"]
+    }
   }
 }

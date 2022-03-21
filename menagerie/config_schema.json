@@ -80,6 +80,11 @@
           "description": "Name of your website, will be displayed on the navbar and included in various metadata",
           "default": "My App"
         },
+        "short_name": {
+          "type": "string",
+          "description": "Short name of the site; used where space is limited.",
+          "default": "My App"
+        },
         "favicon_folder": {
           "type": "string",
           "description": "The static folder to reference for various favicons, see [Favicon Generator](https://www.favicon-generator.org/)",
@@ -181,6 +186,9 @@
             },
             "keywords": {
               "type": "array",
+              "items": {
+                "type": "string"
+              },
               "description": "Keywords used by search engines to find the site",
               "examples": [
                 [
@@ -194,6 +202,20 @@
                   "Documentation"
                 ]
               ]
+            },
+            "categories": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "[See the list of widely used categories](https://github.com/w3c/manifest/wiki/Categories)",
+              "examples": [
+                [
+                  "books",
+                  "education"
+                ]
+              ],
+              "default": []
             },
             "image": {
               "type": "string",
