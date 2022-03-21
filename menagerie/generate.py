@@ -4,7 +4,8 @@ from pathlib import Path
 from Items.Managers.PageManager import PageManager
 from Items.Managers.StaticManager import StaticManager
 from Items.Managers.MetaManager import MetaManager
-from menagerie.Settings import setup_settings
+from menagerie.Settings import setup_settings, Settings
+from menagerie.SiteGen import SiteGen
 from menagerie.utils.logger import Logger
 
 __all__ = (
@@ -26,20 +27,17 @@ def main(*argv):
         config_path = Path('config.json')
     Logger.log_info("Loading Config")
     setup_settings(config_path)
-
-    site_info = {}
-
     managers = (PageManager, StaticManager, MetaManager)
     Logger.log_info("Setting Up")
-    [man.setup(site_info) for man in managers]
+    gen = SiteGen(Settings, managers)
     Logger.log_info("Beginning Generation")
     # TODO: Progressbar
     Logger.log_info("Finding Content")
-    [man.find() for man in managers]
+    gen.find()
     Logger.log_info("Initializing Meta Data")
-    [man.initialize() for man in managers]
+    gen.initialize()
     Logger.log_info("Generating Content")
-    [man.generate() for man in managers]
+    gen.generate()
     Logger.log_info("Done!")
 
 

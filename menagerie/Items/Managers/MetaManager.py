@@ -10,25 +10,22 @@ from menagerie.Items.Meta.JSONMetaItem import JSONMetaItem
 class MetaManager(AbstractManager):
 
     item_types = (MetaItem, XMLMetaItem)
-    items: list[MetaItem] = []
+    items = []
     root_dir = ''
 
-    @classmethod
-    def find(cls):
+    def find(self):
         pass
 
-    @classmethod
-    def initialize(cls):
-        cls.items = (
-            XMLMetaItem(cls, Path('sitemap.jinja2'), 'xml'),
-            XMLMetaItem(cls, Path('browserconfig.jinja2'), 'xml'),
-            JSONMetaItem(cls, Path('manifest.jinja2'), 'webmanifest'),
-            MetaItem(cls, Path('robots.jinja2'), 'txt'),
+    def initialize(self):
+        self.items = (
+            XMLMetaItem(self, Path('sitemap.jinja2'), 'xml'),
+            XMLMetaItem(self, Path('browserconfig.jinja2'), 'xml'),
+            JSONMetaItem(self, Path('manifest.jinja2'), 'webmanifest'),
+            MetaItem(self, Path('robots.jinja2'), 'txt'),
         )
 
-    @classmethod
-    def generate(cls):
-        cls.base_env.globals['pages'] = cls.site_info['pages']
-        cls.base_env.filters['static'] = StaticManager.get_static
-        for item in cls.items:
+    def generate(self):
+        self.base_env.globals['pages'] = self.gen.shared_info['pages']
+        self.base_env.filters['static'] = self.gen.shared_info['static_filter']
+        for item in self.items:
             item.generate()

@@ -20,36 +20,32 @@ class PageManager(AbstractManager):
     env: Environment = None
     router: dict[str, str] = {}
 
-    @classmethod
-    def setup(cls, site_info) -> None:
-        super(PageManager, cls).setup(site_info)
-        cls.env = Environment(loader=FileSystemLoader(Settings['content_dir']))
-        cls.root_dir = Path(Settings['paths', 'pages'])
+    def __init__(self, site_info) -> None:
+        super(PageManager, self).__init__(site_info)
+        self.env = Environment(loader=FileSystemLoader(self.gen.settings['content_dir']))
+        self.root_dir = Path(self.gen.settings['paths', 'pages'])
 
-    @classmethod
-    def initialize(cls):
-        for item in cls.items:
+    def initialize(self):
+        for item in self.items:
             item.initialize()
-        cls.router = {p.meta['title']: str(p.out_path.relative_to(Settings['out_dir']).as_posix()) for p in cls.items}
-        cls.site_info['pages'] = cls.items
+        self.router = {p.meta['title']: str(p.out_path.relative_to(self.gen.settings['out_dir']).as_posix()) for p in self.items}
+        self.gen.shared_info['pages'] = self.items
 
-    @classmethod
-    def route(cls, title: str) -> str:
-        return Settings['url_prefix'] + cls.router.get(title, "#")
+    def route(self, title: str) -> str:
+        return self.gen.settings['url_prefix'] + self.router.get(title, "#")
 
-    @classmethod
-    def generate(cls):
-        Settings['out_dir'].mkdir(parents=True, exist_ok=True)
+    def generate(self):
+        self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
         filters = {
-            'route': cls.route,
-            'static': StaticManager.get_static
+            'route': self.route,
+            'static': self.gen.shared_info['static_filter']
         }
         da_globals = {
-            'pages': cls.items,
+            'pages': self.items,
         }
-        cls.base_env.filters.update(filters)
-        cls.base_env.globals.update(da_globals)
-        cls.env.filters.update(cls.base_env.filters)
-        cls.env.globals.update(cls.base_env.globals)
-        for item in cls.items:
+        self.base_env.filters.update(filters)
+        self.base_env.globals.update(da_globals)
+        self.env.filters.update(self.base_env.filters)
+        self.env.globals.update(self.base_env.globals)
+        for item in self.items:
             item.generate()

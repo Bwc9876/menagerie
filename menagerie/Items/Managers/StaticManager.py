@@ -1,6 +1,8 @@
 from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
+from menagerie.Items.Static.StaticJS import StaticJS
+from menagerie.Items.Static.StaticCSS import StaticCSS
 from menagerie.Items.Static.StaticImage import StaticImage
 from menagerie.Items.Static.StaticItem import StaticItem
 from menagerie.Settings import Settings
@@ -9,25 +11,28 @@ from menagerie.Settings import Settings
 class StaticManager(AbstractManager):
     root_dir = 'static'
     changed_files: dict[str, str] = {}
-    item_types = (StaticImage, StaticItem)
+    item_types = (StaticJS, StaticCSS, StaticImage, StaticItem)
     items: list[StaticItem] = []
 
-    @classmethod
-    def setup(cls, site_info) -> None:
-        super(StaticManager, cls).setup(site_info)
-        cls.root_dir = Path(Settings['paths', 'static'])
+    def __init__(self, site_info) -> None:
+        super(StaticManager, self).__init__(site_info)
+        self.root_dir = Path(Settings['paths', 'static'])
+        self.gen.shared_info['static_map'] = {}
+        self.gen.shared_info['static_filter'] = self.get_static
 
-    @classmethod
-    def initialize(cls):
-        for item in cls.items:
+    def initialize(self):
+        for item in self.items:
             item.initialize()
+            if item.out_extension is not None and item.out_extension not in item.extensions:
+                self.gen.shared_info['static_map'][str(item.in_path)] = ''.join(item.out_path.suffixes)
 
-    @classmethod
-    def generate(cls):
-        Settings['out_dir'].mkdir(parents=True, exist_ok=True)
-        for item in cls.items:
+    def generate(self):
+        self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
+        for item in self.items:
             item.generate()
 
-    @classmethod
-    def get_static(cls, rel_path: str) -> str:
-        return Settings['url_prefix'] + cls.changed_files.get(rel_path, rel_path)
+    def get_static(self, rel_path: str) -> str:
+        path = rel_path
+        if rel_path in self.gen.shared_info['static_map'].keys():
+            path = Path(rel_path).with_suffix(self.gen.shared_info['static_map'].get(rel_path))
+        return Settings['url_prefix'] + str(path)
