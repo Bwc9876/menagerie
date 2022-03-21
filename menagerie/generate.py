@@ -1,6 +1,9 @@
 import sys
 from pathlib import Path
 
+from Items.Managers.PageManager import PageManager
+from Items.Managers.StaticManager import StaticManager
+from Items.Managers.MetaManager import MetaManager
 from menagerie.Settings import setup_settings
 from menagerie.utils.logger import Logger
 
@@ -24,12 +27,11 @@ def main(*argv):
     Logger.log_info("Loading Config")
     setup_settings(config_path)
 
-    from Items.Managers.PageManager import PageManager
-    from Items.Managers.StaticManager import StaticManager
+    site_info = {}
 
-    managers = (PageManager, StaticManager)
-    Logger.log_info("Settings Up")
-    [man.setup() for man in managers]
+    managers = (PageManager, StaticManager, MetaManager)
+    Logger.log_info("Setting Up")
+    [man.setup(site_info) for man in managers]
     Logger.log_info("Beginning Generation")
     # TODO: Progressbar
     Logger.log_info("Finding Content")

@@ -5,7 +5,7 @@
     {% for page in pages %}
         <url>
             <loc>{{ page.out_path|string|replace('\\', '/')|full_url }}</loc>
-            <priority>{{ page.sort_priority / 100 }}</priority>
+            <priority>{{ page.meta['sort_priority'] / 100 }}</priority>
         </url>
     {% endfor %}
 </urlset>

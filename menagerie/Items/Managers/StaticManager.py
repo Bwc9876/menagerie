@@ -7,12 +7,14 @@ from menagerie.Settings import Settings
 
 
 class StaticManager(AbstractManager):
+    root_dir = 'static'
     changed_files: dict[str, str] = {}
     item_types = (StaticImage, StaticItem)
+    items: list[StaticItem] = []
 
     @classmethod
-    def setup(cls) -> None:
-        super(StaticManager, cls).setup()
+    def setup(cls, site_info) -> None:
+        super(StaticManager, cls).setup(site_info)
         cls.root_dir = Path(Settings['paths', 'static'])
 
     @classmethod

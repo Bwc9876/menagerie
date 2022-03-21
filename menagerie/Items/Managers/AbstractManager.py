@@ -13,16 +13,18 @@ class AbstractManager(ABC):
     items: list[AbstractItem] = []
     root_dir: Path
     base_env: Environment = Environment(loader=PackageLoader('base_templates', '.'))
+    site_info = {}
 
     def __new__(cls, *args, **kwargs):
         if cls.root_dir is None:
             raise NotImplementedError("Root Dir is None")
         if cls.item_types is None:
             raise NotImplementedError("Item Types is None")
-        return super(AbstractManager, cls).__new__(*args, **kwargs)
+        return super(AbstractManager, cls).__new__(cls, *args, **kwargs)
 
     @classmethod
-    def setup(cls):
+    def setup(cls, site_info):
+        cls.site_info = site_info
         cls.base_env.globals.update({
             'settings': Settings
         })
@@ -39,6 +41,11 @@ class AbstractManager(ABC):
                     if str(path) not in matches:
                         cls.items.append(item_type(cls, path.relative_to(Settings['content_dir'])))
                         matches.append(str(path))
+        print(cls.__name__, cls.items)
+
+    @classmethod
+    def get_items(cls):
+        return cls.items
 
     @classmethod
     def initialize(cls):

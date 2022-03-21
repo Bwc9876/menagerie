@@ -10,19 +10,20 @@ from jinja2 import Environment, FileSystemLoader
 
 
 class PageManager(AbstractManager):
-    root_dir = None
+    root_dir = 'pages'
     item_types: AbstractPage = (MDPage, HTMLPage)
     items: list[AbstractPage] = []
     context: dict[str, object] = {
 
     }
 
-    env: Environment = Environment(loader=FileSystemLoader(Settings['content_dir']))
+    env: Environment = None
     router: dict[str, str] = {}
 
     @classmethod
-    def setup(cls) -> None:
-        super(PageManager, cls).setup()
+    def setup(cls, site_info) -> None:
+        super(PageManager, cls).setup(site_info)
+        cls.env = Environment(loader=FileSystemLoader(Settings['content_dir']))
         cls.root_dir = Path(Settings['paths', 'pages'])
 
     @classmethod
@@ -30,6 +31,7 @@ class PageManager(AbstractManager):
         for item in cls.items:
             item.initialize()
         cls.router = {p.meta['title']: str(p.out_path.relative_to(Settings['out_dir']).as_posix()) for p in cls.items}
+        cls.site_info['pages'] = cls.items
 
     @classmethod
     def route(cls, title: str) -> str:

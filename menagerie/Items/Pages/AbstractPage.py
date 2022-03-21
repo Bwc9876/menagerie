@@ -2,12 +2,12 @@ import re
 from abc import ABC
 from pathlib import Path
 
-from Items.AbstractItem import AbstractItem
-from Items.MinifiedItemMixin import MinifiedItemMixin
+from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
 from htmlmin import minify as html_minify
 from jinja2.environment import Markup
 
-__all__ = ('AbstractPage',)
+__all__ = ('AbstractPage', 'MINIFY_SETTINGS')
 
 
 def camel_to_pretty(raw):

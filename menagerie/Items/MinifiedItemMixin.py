@@ -1,12 +1,12 @@
 from abc import ABC
 
-from Items.AbstractItem import AbstractItem
+from menagerie.Items.AbstractItem import AbstractItem
 
 __all__ = ('MinifiedItemMixin',)
 
 
 class MinifiedItemMixin(AbstractItem, ABC):
-    byte_mode = True
+    byte_mode = False
 
     def minify(self, content: str) -> str:
         raise NotImplementedError()

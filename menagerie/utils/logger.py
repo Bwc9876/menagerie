@@ -33,8 +33,7 @@ class Logger:
     """
 
     def __new__(cls, *args, **kwargs):
-        print("Logger is a static class!")
-        return None
+        raise TypeError("Logger is a static class!")
 
     __level: LogType = LogType.info
     __log_styles: dict[LogType, ConsoleTextStyle] = {
