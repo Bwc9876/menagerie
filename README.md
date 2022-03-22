@@ -16,13 +16,14 @@ Install the package via your favorite virtual environment manager:
 pipenv install menagerie-docs
 ```
 
-Run the `bootstrap` command
+Run the `start` command
 
 ```shell
-python -m mgen bootstrap
+python -m mgen start MySite/
 ```
 
-This should create a `content/` folder as well as a `config.json`.
+This will create a `content/` folder as well as a `config.json` within a folder called `MySite`.  
+Omit the path to have it create these files in the working dir.
 
 # Building
 
@@ -33,3 +34,9 @@ python -m mgen generate
 ```
 
 This will output to a folder named `out/`; to view the site open the generated `index.html` in your browser.
+
+## Custom Config Path
+
+```shell
+python -m mgen generate --config=PATH/TO/CONFIG
+```
