@@ -63,6 +63,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
             self.meta['title'] = pretty_title(self.in_path.stem)
         if self.meta['table_of_contents'] is None:
             self.meta['render_toc'] = False
+        self.meta['sort_priority'] = int(self.meta['sort_priority'])
 
     def transform(self, content: str) -> str:
         base_template = self.manager.base_env.get_template("page_base.jinja2")

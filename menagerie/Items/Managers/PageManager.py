@@ -1,17 +1,16 @@
 from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
-from menagerie.Items.Managers.StaticManager import StaticManager
 from menagerie.Items.Pages.AbstractPage import AbstractPage
 from menagerie.Items.Pages.HTMLPage import HTMLPage
 from menagerie.Items.Pages.MDPage import MDPage
-from menagerie.Settings import Settings
+from menagerie.Items.Pages.Schema.XMLSchema import XMLSchema
 from jinja2 import Environment, FileSystemLoader
 
 
 class PageManager(AbstractManager):
     root_dir = 'pages'
-    item_types: AbstractPage = (MDPage, HTMLPage)
+    item_types: AbstractPage = (MDPage, HTMLPage, XMLSchema)
     context: dict[str, object] = {
 
     }
@@ -29,6 +28,7 @@ class PageManager(AbstractManager):
             item.initialize()
         self.router = {p.meta['title']: str(p.out_path.relative_to(self.gen.settings['out_dir']).as_posix()) for p in self.items}
         self.gen.shared_info['pages'] = self.items
+        self.items.sort(key=lambda p: p.meta['sort_priority'], reverse=True)
 
     def route(self, title: str) -> str:
         return self.gen.settings['url_prefix'] + self.router.get(title, "#")

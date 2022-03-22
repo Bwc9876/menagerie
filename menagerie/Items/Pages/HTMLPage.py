@@ -10,7 +10,7 @@ HEADER_PATTERN = re.compile('^h[1-6]$')
 
 
 class HTMLPage(AbstractPage):
-    extensions = ('jinja2', 'html', 'html5', 'htm')
+    extensions = ('jinja2', 'html', 'htm')
 
     def inner_render(self, content: str) -> str:
         return self.manager.env.from_string(content).render(page=self, **self.manager.context)
