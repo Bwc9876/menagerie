@@ -1,5 +1,5 @@
 import re
-from abc import ABC
+from abc import ABC, abstractmethod
 from pathlib import Path
 
 from menagerie.Items.AbstractItem import AbstractItem
@@ -49,16 +49,20 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
             'table_of_contents': None
         }
 
+    @abstractmethod
     def load_metadata(self) -> None:
-        raise NotImplementedError()
+        pass
 
+    @abstractmethod
     def inner_render(self, content: str) -> str:
-        raise NotImplementedError()
+        pass
 
     def initialize(self) -> None:
         self.load_metadata()
         if self.meta['title'] is None:
             self.meta['title'] = pretty_title(self.in_path.stem)
+        if self.meta['table_of_contents'] is None:
+            self.meta['render_toc'] = False
 
     def transform(self, content: str) -> str:
         base_template = self.manager.base_env.get_template("page_base.jinja2")

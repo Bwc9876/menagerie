@@ -1,8 +1,8 @@
-from abc import ABC
+from abc import ABC, abstractmethod
+from datetime import datetime
 from pathlib import Path
 
 from menagerie.Items.AbstractItem import AbstractItem
-from menagerie.Settings import Settings
 from jinja2 import Environment, PackageLoader
 
 __all__ = ('AbstractManager',)
@@ -25,9 +25,11 @@ class AbstractManager(ABC):
         return super(AbstractManager, cls).__new__(cls)
 
     def __init__(self, site_gen: SiteGen):
+        self.items = []
         self.gen = site_gen
         self.base_env.globals.update({
-            'settings': self.gen.settings
+            'settings': self.gen.settings,
+            'gen_time': datetime.now().strftime("%d/%m/%Y")
         })
         self.base_env.filters.update({
             'full_url': lambda relative: self.gen.settings['base_url'] + (relative[1:] if len(relative) > 1 and relative[0] == "/" else relative)
@@ -45,8 +47,9 @@ class AbstractManager(ABC):
     def get_items(self):
         return self.items
 
+    @abstractmethod
     def initialize(self):
-        raise NotImplementedError()
+        pass
 
     def generate(self):
         raise NotImplementedError()

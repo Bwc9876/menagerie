@@ -10,7 +10,6 @@ from menagerie.Items.Meta.JSONMetaItem import JSONMetaItem
 class MetaManager(AbstractManager):
 
     item_types = (MetaItem, XMLMetaItem)
-    items = []
     root_dir = ''
 
     def find(self):

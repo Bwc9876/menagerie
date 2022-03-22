@@ -32,7 +32,12 @@ Settings = NestedDict({
         'navbar_icon': None,
         'socials': [],
         'show_gen_date': True,
-        'footer_links': [],
+        'footer': {
+            'show_gen_time': True,
+            'show_back_to_top': True,
+            'show_made_with': True,
+            'links': []
+        },
         'meta': {
             'description': None,
             'keywords': [],

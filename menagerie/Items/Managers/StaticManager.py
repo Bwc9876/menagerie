@@ -12,12 +12,12 @@ class StaticManager(AbstractManager):
     root_dir = 'static'
     changed_files: dict[str, str] = {}
     item_types = (StaticJS, StaticCSS, StaticImage, StaticItem)
-    items: list[StaticItem] = []
 
     def __init__(self, site_info) -> None:
         super(StaticManager, self).__init__(site_info)
         self.root_dir = Path(Settings['paths', 'static'])
         self.gen.shared_info['static_map'] = {}
+        self.gen.shared_info['image_sizes'] = {}
         self.gen.shared_info['static_filter'] = self.get_static
 
     def initialize(self):

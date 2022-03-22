@@ -145,32 +145,57 @@
           "description": "Whether to show a message in the footer stating what time and date the site was last generated",
           "default": true
         },
-        "footer_links": {
-          "type": "array",
-          "description": "links to show in the footer",
-          "items": {
-            "type": "object",
-            "required_properties": [
-              "text",
-              "link"
-            ],
-            "properties": {
-              "text": {
-                "type": "string",
-                "description": "Text to display",
-                "examples": [
-                  "Report An Issue"
-                ]
-              },
-              "link": {
-                "type": "string",
-                "description": "Link to go to",
-                "examples": [
-                  "https://github.com/CoolPerson/CoolRepo/issues/new"
-                ]
-              }
+        "footer": {
+          "type": "object",
+          "additional_properties": false,
+          "properties": {
+            "show_gen_time": {
+              "type": "boolean",
+              "description": "Whether to show a timestamp of the last time docs were generated",
+              "default": true
             },
-            "additional_properties": false
+            "show_back_to_top": {
+              "type": "boolean",
+              "description": "Whether to show a \"Back to Top\" link in the footer",
+              "default": true
+            },
+            "show_made_with": {
+              "type": "boolean",
+              "description": "Whether to show a \"Made with Menagerie\" link in the footer"
+            },
+            "links": {
+              "type": "array",
+              "description": "additional links to show in the footer",
+              "items": {
+                "type": "object",
+                "required_properties": [
+                  "text",
+                  "link"
+                ],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Text to display",
+                    "examples": [
+                      "Report An Issue"
+                    ]
+                  },
+                  "link": {
+                    "type": "string",
+                    "description": "Link to go to",
+                    "examples": [
+                      "https://github.com/CoolPerson/CoolRepo/issues/new"
+                    ]
+                  },
+                  "external": {
+                    "type": "boolean",
+                    "description": "Whether this link goes to an external site",
+                    "default": true
+                  }
+                }
+              },
+              "default": []
+            }
           }
         },
         "meta": {
@@ -236,19 +261,43 @@
             "theme_color": {
               "$ref": "#/$defs/color",
               "description": "See [The MDN docs on theme color](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color)",
-              "default": [100, 100, 100],
+              "default": [
+                100,
+                100,
+                100
+              ],
               "examples": [
-                [255, 255, 255],
-                [20, 20, 20]
+                [
+                  255,
+                  255,
+                  255
+                ],
+                [
+                  20,
+                  20,
+                  20
+                ]
               ]
             },
             "bg_color": {
               "$ref": "#/$defs/color",
               "description": "Like theme_color but for backgrounds",
-              "default": [255, 255, 255],
+              "default": [
+                255,
+                255,
+                255
+              ],
               "examples": [
-                [255, 255, 255],
-                [0, 0, 0]
+                [
+                  255,
+                  255,
+                  255
+                ],
+                [
+                  0,
+                  0,
+                  0
+                ]
               ]
             }
           },

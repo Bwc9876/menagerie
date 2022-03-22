@@ -2,7 +2,7 @@
 // These comments should be gone when generated!
 
 function COOLTHING(wow) {
-    consolse.log(wow);
+    console.log(wow);
 
 
 

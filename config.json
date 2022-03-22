@@ -2,9 +2,7 @@
   "$schema": "menagerie/config_schema.json",
   "paths": {
     "out": "../out/",
-    "content": "../content/",
-    "pages": "pages/",
-    "static": "static/"
+    "content": "../content/"
   },
   "themes": {
     "bootstrap": "https://bootswatch.com/5/darkly/bootstrap.min.css",
@@ -12,8 +10,24 @@
     "navbar_color": "dark"
   },
   "brand": {
+    "socials": [
+      {
+        "name": "GitHub",
+        "link": "https://github.com",
+        "icon": "github"
+      }
+    ],
     "meta": {
       "categories": ["book", "education"]
+    },
+    "footer": {
+      "links": [
+        {
+          "link": "https://github.com/Bwc9876/menagerie/issues/new",
+          "text": "Report an issue",
+          "external": true
+        }
+      ]
     }
   }
 }

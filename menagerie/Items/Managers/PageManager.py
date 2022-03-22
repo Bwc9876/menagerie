@@ -12,7 +12,6 @@ from jinja2 import Environment, FileSystemLoader
 class PageManager(AbstractManager):
     root_dir = 'pages'
     item_types: AbstractPage = (MDPage, HTMLPage)
-    items: list[AbstractPage] = []
     context: dict[str, object] = {
 
     }

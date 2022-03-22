@@ -1,9 +1,6 @@
-from menagerie.Settings import Settings
-
-
 class SiteGen:
 
-    def __init__(self, settings: Settings, managers):
+    def __init__(self, settings, managers):
         self.settings = settings
         self.shared_info = {}
         self.managers = [manager(self) for manager in managers]
