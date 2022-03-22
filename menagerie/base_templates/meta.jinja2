@@ -13,7 +13,7 @@
 {% if page.meta['title']|lower == 'home' %}
     {% set title=settings['brand']['app_name'] %}
 {% else %}
-    {% set title=settings['brand']['app_name'] + " | " + page.meta['title']|title %}
+    {% set title=page.meta['title']|title + " - " + settings['brand']['app_name'] %}
 {% endif %}
 {% set desc=page.meta['description']|default("No Description Provided") %}
 {% set img=settings['brand']['meta']['image']|static|full_url %}
