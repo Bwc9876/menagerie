@@ -1,4 +1,3 @@
-import os
 import re
 from typing import AnyStr
 
@@ -36,6 +35,7 @@ class XMLSchema(AbstractPage):
             self.meta[seperated[0].lower().replace('-', '_')] = seperated[1]
         self.meta['render_toc'] = False
 
+    base_template = 'schema_templates/schema_template.jinja2'
     extensions = ('xsd', 'xml')
 
     def children(self, group):

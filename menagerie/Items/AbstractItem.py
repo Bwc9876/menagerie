@@ -1,5 +1,9 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from menagerie.Items.Managers.AbstractManager import AbstractManager
 
 from menagerie.utils.logger import Logger
 
@@ -7,6 +11,7 @@ __all__ = ('AbstractItem',)
 
 
 class AbstractItem(ABC):
+    should_cache: bool = True
     content: str | bytes
     root_dir: Path
     byte_mode: bool = False
@@ -20,10 +25,11 @@ class AbstractItem(ABC):
             raise NotImplementedError("extensions are not implemented")
         return super(AbstractItem, cls).__new__(cls)
 
-    def __init__(self, manager, path: Path):
-        self.manager = manager
-        self.in_path = path.relative_to(self.manager.root_dir)
-        self.out_path = Path(self.manager.gen.settings['out_dir'], Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir)))
+    def __init__(self, manager: 'AbstractManager', path: Path):
+        self.broken: bool = False
+        self.manager: 'AbstractManager' = manager
+        self.in_path: Path = path.relative_to(self.manager.root_dir)
+        self.out_path: Path = Path(self.manager.gen.settings['out_dir'], Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir)))
         if self.out_extension is not None:
             self.out_path = self.out_path.with_suffix(f'.{self.out_extension}')
 
@@ -35,8 +41,13 @@ class AbstractItem(ABC):
             return file.read()
 
     def generate(self) -> None:
-        Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' -> ' + str(self.out_path.as_posix()))
-        self.save(self.transform(self.get_content()))
+        if self.should_cache is False or self.manager.gen.cache.check_item_changed(self):
+            Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' -> ' + str(self.out_path.as_posix()))
+            self.save(self.transform(self.get_content()))
+            if self.should_cache:
+                self.manager.gen.cache.add_item(self)
+        else:
+            Logger.log_info("Skipping " + str(self.in_path.as_posix()) + " As It Hasn't Changed")
 
     @abstractmethod
     def initialize(self) -> None:

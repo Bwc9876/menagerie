@@ -35,6 +35,8 @@ MINIFY_SETTINGS = {
 
 
 class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
+
+    base_template = "page_base.jinja2"
     byte_mode = False
     out_extension = 'html'
 
@@ -66,7 +68,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
         self.meta['sort_priority'] = int(self.meta['sort_priority'])
 
     def transform(self, content: str) -> str:
-        base_template = self.manager.base_env.get_template("page_base.jinja2")
+        base_template = self.manager.base_env.get_template(self.base_template)
         return base_template.render(page=self, content=Markup(self.inner_render(content)), **self.manager.context)
 
     def minify(self, content: str) -> str:

@@ -5,6 +5,7 @@ from menagerie.Items.AbstractItem import AbstractItem
 
 class MetaItem(AbstractItem):
 
+    should_cache = False
     byte_mode = False
     extensions = ('*',)
 

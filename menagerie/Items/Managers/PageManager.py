@@ -4,13 +4,14 @@ from menagerie.Items.Managers.AbstractManager import AbstractManager
 from menagerie.Items.Pages.AbstractPage import AbstractPage
 from menagerie.Items.Pages.HTMLPage import HTMLPage
 from menagerie.Items.Pages.MDPage import MDPage
+from menagerie.Items.Pages.Schema.JSONSchema import JSONSchema
 from menagerie.Items.Pages.Schema.XMLSchema import XMLSchema
 from jinja2 import Environment, FileSystemLoader
 
 
 class PageManager(AbstractManager):
     root_dir = 'pages'
-    item_types: AbstractPage = (MDPage, HTMLPage, XMLSchema)
+    item_types: AbstractPage = (MDPage, HTMLPage, XMLSchema, JSONSchema)
     context: dict[str, object] = {
 
     }
@@ -37,7 +38,8 @@ class PageManager(AbstractManager):
         self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
         filters = {
             'route': self.route,
-            'static': self.gen.shared_info['static_filter']
+            'static': self.gen.shared_info['static_filter'],
+            'upper_first': lambda x:   x[0].upper() + x[1:],
         }
         da_globals = {
             'pages': self.items,

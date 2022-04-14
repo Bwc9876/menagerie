@@ -61,7 +61,8 @@ Settings = NestedDict({
         'out': "out/",
         'content': 'content/',
         'pages': 'pages/',
-        'static': 'static/'
+        'static': 'static/',
+        'cache': '.m_cache/'
     },
     'minify':
         {
