@@ -14,7 +14,7 @@ class AbstractManager(ABC):
     item_types: tuple
     items: list[AbstractItem] = []
     root_dir: Path
-    base_env: Environment = Environment(loader=PackageLoader('base_templates', '.'))
+    base_env: Environment = Environment(loader=PackageLoader('menagerie.base_templates', '.'))
     gen: SiteGen = None
 
     def __new__(cls, *args, **kwargs):

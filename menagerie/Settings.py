@@ -1,12 +1,14 @@
-from json import load
+from json import load, loads
 from json.decoder import JSONDecodeError
 from os import getenv
 from pathlib import Path
 
+import importlib.resources as pkg_resources
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from ndicts.ndicts import NestedDict
 
+import menagerie
 from menagerie.utils.logger import Logger
 
 __all__ = (
@@ -18,6 +20,7 @@ Settings = NestedDict({
     'out_dir': None,
     'content_dir': None,
     'url_prefix': None,
+    'default-toc': True,
     'base_url': '',
     'log_level': "Info",
     'themes': {
@@ -69,7 +72,8 @@ Settings = NestedDict({
             'html': True,
             'css': True,
             'js': True,
-            'xml': True
+            'xml': True,
+            'json': True
         }
 })
 
@@ -82,7 +86,7 @@ def setup_settings(config_path: Path):
         :type config_path: Path 
     """
 
-    schema = load(Path('config_schema.json').open(mode='r', encoding='utf-8'))
+    schema = loads(pkg_resources.read_text(menagerie, 'config_schema.json'))
 
     try:
         config = load(config_path.open(mode='r', encoding='utf-8'))

@@ -434,6 +434,11 @@
         "type": "boolean",
         "description": "Whether to minify XML files",
         "default": true
+      },
+      "json": {
+        "type": "boolean",
+        "description": "Whether to minify JSON files",
+        "default": true
       }
     },
     "additional_properties": false

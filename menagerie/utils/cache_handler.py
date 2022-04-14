@@ -4,6 +4,8 @@ from json import JSONDecoder, JSONEncoder
 
 from menagerie.Items.AbstractItem import AbstractItem
 
+__all__ = ('CacheHandler',)
+
 
 class CacheHandler:
 
@@ -14,10 +16,10 @@ class CacheHandler:
         self.cache_file = Path(self.cache_folder, "item_cache.json")
         self.decoder = JSONDecoder()
         self.encoder = JSONEncoder()
-        self.cache_data = self.decoder.decode(self.cache_file.read_text(encoding='utf-8'))
         self.cache_folder.mkdir(parents=True, exist_ok=True)
         if self.cache_file.exists() is False:
             self.cache_file.write_text("{}", encoding='utf-8')
+        self.cache_data = self.decoder.decode(self.cache_file.read_text(encoding='utf-8'))
 
     def get_hash(self, content: bytes) -> str:
         hasher = hashlib.new(self.HASH_ALGORITHM)

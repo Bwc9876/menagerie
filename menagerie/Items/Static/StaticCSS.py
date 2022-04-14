@@ -7,6 +7,7 @@ from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
 class StaticCSS(MinifiedItemMixin, StaticItem):
 
     extensions = ('css',)
+    minify_key = 'css'
     out_extension = 'min.css'
 
     def minify(self, content: str) -> str:

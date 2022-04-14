@@ -39,6 +39,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
     base_template = "page_base.jinja2"
     byte_mode = False
     out_extension = 'html'
+    minify_key = 'html'
 
     def __init__(self, manager, path: Path):
         super().__init__(manager, path)
@@ -47,7 +48,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
             'description': "No Description Provided",
             'sort_priority': 10,
             'hide_in_nav': False,
-            'render_toc': True,
+            'render_toc': self.manager.gen.settings['default-toc'],
             'table_of_contents': None
         }
 

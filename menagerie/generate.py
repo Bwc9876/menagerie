@@ -1,19 +1,19 @@
 import sys
 from pathlib import Path
 
-from Items.Managers.PageManager import PageManager
-from Items.Managers.StaticManager import StaticManager
-from Items.Managers.MetaManager import MetaManager
+from menagerie.Items.Managers.PageManager import PageManager
+from menagerie.Items.Managers.StaticManager import StaticManager
+from menagerie.Items.Managers.MetaManager import MetaManager
 from menagerie.Settings import setup_settings, Settings
 from menagerie.SiteGen import SiteGen
 from menagerie.utils.logger import Logger
 
 __all__ = (
-    'main',
+    'generate',
 )
 
 
-def main(*argv):
+def generate(*argv):
     config_path = None
     for arg in argv:
         if '--config=' in arg:
@@ -31,7 +31,6 @@ def main(*argv):
     Logger.log_info("Setting Up")
     gen = SiteGen(Settings, managers)
     Logger.log_info("Beginning Generation")
-    # TODO: Progressbar
     Logger.log_info("Finding Content")
     gen.find()
     Logger.log_info("Initializing Meta Data")
@@ -42,4 +41,4 @@ def main(*argv):
 
 
 if __name__ == "__main__":
-    main(*sys.argv)
+    generate(*sys.argv)

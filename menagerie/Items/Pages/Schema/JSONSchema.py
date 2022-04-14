@@ -36,7 +36,8 @@ class JSONSchema(AbstractPage):
         schema_template = self.manager.base_env.get_template("schema_templates/json/schema_base.jinja2")
         template_renderer = TemplateRenderer(SCHEMA_SETTINGS, schema_template)
         template_renderer.render = lambda inter:    self.template_override(template_renderer, inter, **self.manager.context)
-        rendered = generate_schemas_doc(schemas, template_renderer)
+        with NoPrint():
+            rendered = generate_schemas_doc(schemas, template_renderer)
         return rendered[str(self.in_path.name)]
 
     def template_override(self, template: TemplateRenderer, intermediate_schema, **context):

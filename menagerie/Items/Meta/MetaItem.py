@@ -1,6 +1,9 @@
 from pathlib import Path
 
+import importlib.resources as pkg_resources
+
 from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.base_templates import meta_files
 
 
 class MetaItem(AbstractItem):
@@ -13,8 +16,8 @@ class MetaItem(AbstractItem):
         self.out_extension = out_ext
         super(MetaItem, self).__init__(manager, path)
 
-    def get_path_to_open(self) -> Path:
-        return Path('base_templates/meta_files/', self.in_path)
+    def get_content(self) -> str | bytes:
+        return pkg_resources.read_text(meta_files, self.in_path)
 
     def initialize(self) -> None:
         pass

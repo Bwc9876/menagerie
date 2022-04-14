@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ settings['themes']['highlight_js'] }}">
     <script onload="hljs.highlightAll();" defer
             src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"></script>
+    {% if settings['styles']['base'] != None %}
+        <link rel="stylesheet" href="{{ settings['styles']['base']|static }}">
+    {% endif %}
     {% block resources %} {% endblock %}
 </head>
 <body class="vh-100 d-flex flex-column" style="overflow-x: hidden;" id="top"
