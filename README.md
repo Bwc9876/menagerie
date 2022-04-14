@@ -16,21 +16,22 @@ Install the package via your favorite virtual environment manager:
 pipenv install menagerie-docs
 ```
 
-Run the `start` command
+Run the `start_project` command
 
 ```shell
-python -m mgen start MySite/
+python -m menagerie start_project MySite
 ```
 
-This will create a `content/` folder as well as a `config.json` within a folder called `MySite`.  
-Omit the path to have it create these files in the working dir.
+This will create a `content/` folder as well as a `config.json` within a folder called `MySite`.
+
+Also, you may want to add `./m_cache` to your .gitignore
 
 # Building
 
 To generate the site, run the following:
 
 ```shell
-python -m mgen generate
+python -m menagerie generate
 ```
 
 This will output to a folder named `out/`; to view the site open the generated `index.html` in your browser.
@@ -38,5 +39,5 @@ This will output to a folder named `out/`; to view the site open the generated `
 ## Custom Config Path
 
 ```shell
-python -m mgen generate --config=PATH/TO/CONFIG
+python -m menagerie generate --config=PATH/TO/CONFIG
 ```
