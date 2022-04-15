@@ -21,6 +21,7 @@ beautifulsoup4 = "*"
 [dev-packages]
 pipenv-setup = "*"
 build = "*"
+twine = "*"
 
 [requires]
 python_version = "3.10"
