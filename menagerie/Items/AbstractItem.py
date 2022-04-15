@@ -30,14 +30,19 @@ class AbstractItem(ABC):
         self.manager: 'AbstractManager' = manager
         self.in_path: Path = path.relative_to(self.manager.root_dir)
         self.out_path: Path = Path(self.manager.gen.settings['out_dir'], Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir)))
-        if self.out_extension is not None:
+        if hasattr(self, 'out_extension') is True and (self.out_extension is not None):
             self.out_path = self.out_path.with_suffix(f'.{self.out_extension}')
 
     def get_path_to_open(self) -> Path:
         return Path(self.manager.gen.settings['content_dir'], self.manager.root_dir, self.in_path)
 
     def get_content(self) -> str | bytes:
-        with self.get_path_to_open().open(mode='rb' if self.byte_mode else 'r') as file:
+        kwargs = {
+            'mode': 'rb' if self.byte_mode else 'r'
+        }
+        if self.byte_mode is False:
+            kwargs['encoding'] = 'utf-8'
+        with self.get_path_to_open().open(**kwargs) as file:
             return file.read()
 
     def generate(self) -> None:
@@ -57,5 +62,11 @@ class AbstractItem(ABC):
         return content
 
     def save(self, new_content: str | bytes) -> None:
-        with self.out_path.open(mode='wb+' if self.byte_mode else 'w+') as file:
+        self.out_path.parent.mkdir(parents=True, exist_ok=True)
+        kwargs = {
+            'mode': 'wb+' if self.byte_mode else 'w+'
+        }
+        if self.byte_mode is False:
+            kwargs['encoding'] = 'utf-8'
+        with self.out_path.open(**kwargs) as file:
             file.write(new_content)

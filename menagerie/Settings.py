@@ -17,11 +17,13 @@ __all__ = (
 )
 
 Settings = NestedDict({
+    'config_path': None,
     'out_dir': None,
     'content_dir': None,
     'url_prefix': None,
     'default-toc': True,
     'base_url': '',
+    'cache_enabled': True,
     'log_level': "Info",
     'themes': {
         'bootstrap': "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
@@ -33,6 +35,7 @@ Settings = NestedDict({
         'short_name': "My App",
         'favicon_folder': 'images/fav/',
         'navbar_icon': None,
+        'navbar_icon_size': (100, 100),
         'socials': [],
         'show_gen_date': True,
         'footer': {
@@ -95,6 +98,7 @@ def setup_settings(config_path: Path):
         Settings['out_dir'] = Path(Settings['paths', 'out'])
         Settings['content_dir'] = Path(Settings['paths', 'content'])
         Settings['url_prefix'] = getenv("URL_PREFIX", "")
+        Settings['config_path'] = config_path
         Logger.update_level_from_string(Settings['log_level'])
     except FileNotFoundError:
         Logger.log_error(f"Can't find config file: `{config_path.as_posix()}`")

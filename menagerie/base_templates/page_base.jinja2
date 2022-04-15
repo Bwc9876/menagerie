@@ -24,14 +24,21 @@
     <nav class="navbar navbar-expand-xl navbar-{{ settings['themes']['navbar_color'] }} bg-{{ settings['themes']['navbar_color'] }} sticky-top mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ 'home'|route }}"
-               aria-label="Home">{{ settings['brand']['app_name'] }}</a>
+               aria-label="Home">
+                {% if settings['brand']['navbar_icon'] != None %}
+                    <img width="{{ settings['brand']['navbar_icon_size'][0] }}"
+                         height="{{ settings['brand']['navbar_icon_size'][1] }}"
+                         src="{{ settings['brand']['navbar_icon']|static }}" alt="{{ settings['brand']['app_name'] }} Logo"
+                         class="d-inline-block align-text-top me-2"/>
+                {% endif %}
+                {{ settings['brand']['app_name'] }}</a>
             <button class="navbar-toggler align-text-middle" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarMain" aria-controls="navbarMain"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarMain">
-                {% macro nav_item(title, href) %}
+                {% macro render_nav_item(title, href) %}
                     {% set active=page.meta['title']|lower == title|lower %}
                     <li class="nav-item me-1">
                         <a id="{{ title|lower }}-nav" href="{{ href }}"
@@ -42,8 +49,26 @@
                     </li>
                 {% endmacro %}
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% for nav_page in pages %}
-                        {{ nav_item(nav_page.meta['title'], nav_page.meta['title']|route) }}
+                    {% for nav_item in nav_items %}
+                        {% if nav_item.is_folder %}
+                            {% set active=page.meta['title']|lower in nav_item.titles %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle {% if active %}active{% endif %}" {% if active %}aria-current="page"{% endif %} href="#" data-bs-toggle="dropdown" aria-expanded="false" id="{{ nav_item.meta['title'] }}-group" role="button">
+                                    {{ nav_item.meta['title'] }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="{{ nav_item.meta['title'] }}-group">
+                                    {% for nav_page in nav_item.iter_items() %}
+                                        <li>
+                                            <a class="dropdown-item" href="{{ nav_page.content }}">
+                                                {{ nav_page.meta['title'] }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% else %}
+                            {{ render_nav_item(nav_item.meta['title'], nav_item.content) }}
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 {% if settings['brand']['socials']|length != 0 %}
@@ -112,7 +137,8 @@
         {% endif %}
         {% for item in settings['brand']['footer']['links'] %}
             <div class="col-md">
-                <a {% if item['external'] %}target="_blank" rel="_blank"{% endif %} href="{{ item['link'] }}">{{ item['text'] }}</a>
+                <a {% if item['external'] %}target="_blank" rel="_blank"{% endif %}
+                   href="{{ item['link'] }}">{{ item['text'] }}</a>
             </div>
         {% endfor %}
         {% if settings['brand']['footer']['show_made_with'] %}

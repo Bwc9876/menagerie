@@ -29,7 +29,7 @@
     <br/>
     <div class="row">
         <div class="col">
-            <span>{{ element|get_desc }}</span>
+            <span>{{ element|get_desc|simple_md }}</span>
         </div>
     </div>
     {% if element.type.has_complex_content() %}

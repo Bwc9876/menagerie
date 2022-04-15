@@ -49,10 +49,10 @@ class MDPage(AbstractPage):
         if node.tag in ADDITIONAL_CLASSES.keys():
             node.set('class', ADDITIONAL_CLASSES[node.tag])
         if node.tag == 'img':
-            possible_match = re.match(r"{{ ?\"(.*?)\"\|static.*?}}", node.get('src'))
+            possible_match = re.match(r"{{ ?[\"'](.*?)['\"]\|static.*?}}", node.get('src'))
             if possible_match:
                 image_path = possible_match.group(1)
-                size = self.manager.gen.shared_info['image_sizes'].get(str(Path(image_path)), (100, 100))
+                size = self.manager.gen.shared_info['image_sizes'].get(str(Path(image_path).as_posix()), (100, 100))
                 node.set('width', str(size[0]))
                 node.set('height', str(size[1]))
         for child in node:

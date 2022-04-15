@@ -6,12 +6,15 @@ from menagerie.Items.AbstractItem import AbstractItem
 
 __all__ = ('CacheHandler',)
 
+from menagerie.Settings import Settings
+
 
 class CacheHandler:
 
     HASH_ALGORITHM = 'sha256'
 
-    def __init__(self, folder: Path):
+    def __init__(self, folder: Path, settings: Settings):
+        self.enabled = settings['cache_enabled']
         self.cache_folder = folder
         self.cache_file = Path(self.cache_folder, "item_cache.json")
         self.decoder = JSONDecoder()
@@ -27,11 +30,15 @@ class CacheHandler:
         return hasher.hexdigest()
 
     def check_item_changed(self, item: AbstractItem) -> bool:
+        if self.enabled is False:
+            return True
         cache_key = str(item.in_path)
         hashed = self.get_hash(item.get_path_to_open().read_bytes())
         return self.cache_data.get(cache_key, "") != hashed
 
     def add_item(self, item: AbstractItem) -> None:
+        if self.enabled is False:
+            return
         cache_key = str(item.in_path)
         hashed = self.get_hash(item.get_path_to_open().read_bytes())
         self.cache_data[cache_key] = hashed

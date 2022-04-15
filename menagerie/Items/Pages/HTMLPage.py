@@ -46,7 +46,7 @@ class HTMLPage(AbstractPage):
 
             current_scope.append(item)
             item['parent'] = current_parent
-        self.meta['table_of_contents'] = root
+        self.meta['table_of_contents'] = root if root is not None else None
 
     def load_metadata(self):
         content = self.get_content()

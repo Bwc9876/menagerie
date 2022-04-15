@@ -23,8 +23,8 @@ class StaticManager(AbstractManager):
     def initialize(self):
         for item in self.items:
             item.initialize()
-            if item.out_extension is not None and item.out_extension not in item.extensions:
-                self.gen.shared_info['static_map'][str(item.in_path)] = ''.join(item.out_path.suffixes)
+            if hasattr(item, 'out_extension') and item.out_extension is not None and item.out_extension not in item.extensions:
+                self.gen.shared_info['static_map'][str(item.in_path.as_posix())] = ''.join(item.out_path.suffixes)
 
     def generate(self):
         self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
@@ -34,5 +34,5 @@ class StaticManager(AbstractManager):
     def get_static(self, rel_path: str) -> str:
         path = rel_path
         if rel_path in self.gen.shared_info['static_map'].keys():
-            path = Path(rel_path).with_suffix(self.gen.shared_info['static_map'].get(rel_path))
+            path = Path(rel_path).with_suffix(self.gen.shared_info['static_map'].get(rel_path)).as_posix()
         return Settings['url_prefix'] + str(path)

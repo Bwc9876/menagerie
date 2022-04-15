@@ -9,7 +9,7 @@ class SiteGen:
         self.settings = settings
         self.shared_info = {}
         self.managers = [manager(self) for manager in managers]
-        self.cache = CacheHandler(Path(settings['paths']['cache']))
+        self.cache = CacheHandler(Path(settings['paths']['cache']), settings)
 
     def find(self):
         for manager in self.managers:

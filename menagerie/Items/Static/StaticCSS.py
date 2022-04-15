@@ -9,6 +9,7 @@ class StaticCSS(MinifiedItemMixin, StaticItem):
     extensions = ('css',)
     minify_key = 'css'
     out_extension = 'min.css'
+    byte_mode = False
 
     def minify(self, content: str) -> str:
         return cssmin(content)

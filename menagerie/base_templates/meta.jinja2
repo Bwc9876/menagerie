@@ -13,11 +13,11 @@
 {% if page.meta['title']|lower == 'home' %}
     {% set title=settings['brand']['app_name'] %}
 {% else %}
-    {% set title=page.meta['title']|title + " - " + settings['brand']['app_name'] %}
+    {% set title=page.meta['title'] + " - " + settings['brand']['app_name'] %}
 {% endif %}
 {% set desc=page.meta['description']|default("No Description Provided") %}
 {% set img=settings['brand']['meta']['image']|static|full_url %}
-{% set canonical=page.title|route|full_url %}
+{% set canonical=title|route|full_url %}
 {% set theme_color=settings['brand']['meta']['theme_color'] %}
 
 {# Meta Info #}
