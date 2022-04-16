@@ -45,7 +45,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
         super().__init__(manager, path)
         self.meta: dict[str, object] = {
             'title': None,
-            'description': "No Description Provided",
+            'description': self.manager.gen.settings['brand']['meta']['description'],
             'sort_priority': 10,
             'hide_in_nav': False,
             'out_file': None,
