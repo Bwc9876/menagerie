@@ -45,7 +45,7 @@ Settings = NestedDict({
             'links': []
         },
         'meta': {
-            'description': None,
+            'description': "",
             'keywords': [],
             'categories': [],
             'image': "",
@@ -53,11 +53,6 @@ Settings = NestedDict({
             'theme_color': "#333333",
             'bg_color': "#ffffff"
         }
-    },
-    'templates': {
-        'base': None,
-        'table_of_contents': None,
-        'schema': None
     },
     'styles': {
         'base': None,

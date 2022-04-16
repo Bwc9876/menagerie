@@ -288,34 +288,6 @@
       },
       "additional_properties": false
     },
-    "templates": {
-      "type": "object",
-      "description": "Override the templates used for various parts of the site",
-      "properties": {
-        "base": {
-          "type": "string",
-          "description": "Override the base template used for all pages, **MUST** have a `content` and `resources` block available for overriding",
-          "examples": [
-            "my_better_template.jinja2"
-          ]
-        },
-        "table_of_contents": {
-          "type": "string",
-          "description": "Override the template used for the table of contents",
-          "examples": [
-            "my_cool_toc.jinja2"
-          ]
-        },
-        "schema": {
-          "type": "string",
-          "description": "Override the template used for schema rendering",
-          "examples": [
-            "my_cool_schema_page.jinja2"
-          ]
-        }
-      },
-      "additional_properties": false
-    },
     "styles": {
       "type": "object",
       "description": "Add styles",
