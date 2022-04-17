@@ -47,7 +47,7 @@ class AbstractItem(ABC):
 
     def generate(self) -> None:
         if self.should_cache is False or self.manager.gen.cache.check_item_changed(self):
-            Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' -> ' + str(self.out_path.as_posix()))
+            Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' ➔ ' + str(self.out_path.as_posix()))
             self.save(self.transform(self.get_content()))
             if self.should_cache:
                 self.manager.gen.cache.add_item(self)
