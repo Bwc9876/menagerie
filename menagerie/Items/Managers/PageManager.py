@@ -77,7 +77,7 @@ class PageManager(AbstractManager):
     def generate_nav_items(self) -> list[NavItem]:
         root_pages = []
         groups: dict[str, NavItem] = {}
-        for page in self.items:
+        for page in filter(lambda p: p.meta['hide_in_nav'] is not True, self.items):
             if page.in_path.parent.name != '':
                 if page.in_path.parent.name in groups.keys():
                     groups[page.in_path.parent.name].add_item(self.make_nav_item_from_page(page))
