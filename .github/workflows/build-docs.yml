@@ -1,0 +1,35 @@
+name: Build Docs
+
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+
+jobs:
+
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3.1.2
+        with:
+          python-version: 3.10
+          
+      - name: Install Self
+        run: pip install .
+
+      - name: Generate Documentation
+        run: python -m menagerie generate --config=docs/config.json
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3.0.0
+        with:
+          name: Menagerie-Docs
+          path: out/
+      # TODO: Push to pages
