@@ -63,6 +63,7 @@ Uses xml comments (<!-- -->), create comments near the top of the file that look
 ```xml
 <!--~ Title:My Page ~-->
 <!--~ Sort_Priority:100 ~-->
+<Myelement>Text</Myelement>
 <!-- ... -->
 ```
 
