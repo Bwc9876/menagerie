@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - run: cp -r docs/** .
+      
       - run: mkdir .venv
       
       - name: Cache Requirements
