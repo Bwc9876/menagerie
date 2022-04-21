@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - run: mkdir .venv
+      
+      - name: Cache Requirements
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+      
       - name: Install Requirements
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
