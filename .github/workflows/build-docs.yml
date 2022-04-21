@@ -16,13 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v3.1.2
-        with:
-          python-version: 3.10
-          
       - name: Install Self
-        run: pip install .
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: install .
 
       - name: Generate Documentation
         run: python -m menagerie generate --config=docs/config.json
