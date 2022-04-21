@@ -4,9 +4,9 @@ A static site generator that supports:
 
 - Markdown
 - HTML
-- JSON Schemas
+- JSON Schemas (Limited)
 - XML Schemas
-- YAML Schemas
+- YAML Schemas (Coming soon)
 
 # Setup
 
