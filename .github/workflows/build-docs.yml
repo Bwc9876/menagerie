@@ -25,9 +25,11 @@ jobs:
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
           command: install .
-
-      - name: Generate Documentation
-        run: python -m menagerie generate --config=docs/config.json
+          
+      - name: Generate Docs
+        uses: VaultVulp/action-pipenv@v2.0.1
+        with:
+          command: run python -m menagerie generate --config=docs/config.json
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.0.0
