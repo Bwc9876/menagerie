@@ -1,5 +1,5 @@
 {
   "$schema": "https://raw.githubusercontent.com/Bwc9876/menagerie/master/menagerie/config_schema.json",
   "base_url": "https://bwc9876.github.io/menagerie/",
-  "use_cache": false,
+  "use_cache": false
 }

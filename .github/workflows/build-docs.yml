@@ -39,7 +39,7 @@ jobs:
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: run python -m menagerie generate --config=docs/config.json
+          command: run python -m menagerie generate
         
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.0.0
