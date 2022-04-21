@@ -3,6 +3,9 @@ name: Build Docs
 on:
   push:
     branches: [ master ]
+    paths:
+      - docs/**
+      - *_schema.json
 
   workflow_dispatch:
 

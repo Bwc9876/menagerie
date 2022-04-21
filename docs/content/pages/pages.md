@@ -1,5 +1,5 @@
 Title: Pages
-Sort-Priority: 90
+Sort_Priority: 90
 
 # Pages
 

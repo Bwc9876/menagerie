@@ -1,5 +1,5 @@
 Title: Home
-Sort-Priority: 100
+Sort_Priority: 100
 Render_TOC: True
 
 # Menagerie Docs
