@@ -20,7 +20,7 @@ Menagerie will look for the following file extensions to generate from:
 
 # Page Metadata
 
-Page metadata is data included in the file that tells menagerie how to generate a corresonding HTML document.  
+Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.  
 The way to describe metadata is different depending on what language you're using
 
 ## Markdown Metadata
@@ -58,7 +58,7 @@ Create a top-level key named `$docs`. Then simply put in keys:
 
 ## XML Schema Metadata
 
-Uses xml comments (<!-- -->), create comments near the top of the file that look like this (note the `~` characters)
+Uses xml comments; create comments near the top of the file that look like this (note the `~` characters)
 
 ```xml
 <!--~ Title:My Page ~-->
@@ -131,7 +131,7 @@ You can use the `styles` config option to set a global CSS file to apply to all 
 
 # Grouping Pages
 
-To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a dropdown for all of my schemas I might lay out my pages folder like so:
+To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a dropdown for all of my schemas I might lay out my `pages` folder like so:
 
 ```file
 - index.md

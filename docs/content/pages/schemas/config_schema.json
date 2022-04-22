@@ -9,7 +9,7 @@
   },
   "type": "object",
   "title": "Config Schema",
-  "description": "Describes the properties a configuration to use",
+  "description": "Describes the properties a configuration can use",
   "properties": {
     "base_url": {
       "type": "string",
