@@ -1,4 +1,4 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Bwc9876/menagerie/master/menagerie/config_schema.json",
+  "$schema": "https://raw.githubusercontent.com/Bwc9876/menagerie/master/menagerie/docs/content/pages/schemas/config_schema.json",
   "$comment": "Check the docs for how to set up your config.json"
 }
