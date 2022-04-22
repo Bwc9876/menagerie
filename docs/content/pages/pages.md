@@ -143,3 +143,7 @@ This will create a dropdown named "Schemas" on the navbar.
 ## Group Metadata
 
 Groups can also have metadata.  To specify it, create a file called `_folder.json` in the folder.  Then fill this out with the metadata.  Groups only allow for `title` and `sort_priority` to be set.
+
+# Minification
+
+All rendered pages are minified to save on space and network load (this can be disabled in `config.json`).
