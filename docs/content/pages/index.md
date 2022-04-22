@@ -49,5 +49,5 @@ python -m menagerie generate --config=my-config.json
 # Next steps
 
 Now you're ready to start creating your site!  
-For help with this, look at the rest of this site, the [pages]({{ "pages"|route }}) page is a good place to start  
-In addition, [this site was generated in menagerie](https://github.com/Bwc9876/menagerie/tree/master/docs){ target="_blank" }.
+For help with this, look at the rest of this site, the [pages]({{ "pages"|route }}) page is a good place to start.  
+In addition, [this site was generated in menagerie](https://github.com/Bwc9876/menagerie/tree/master/docs){ target="_blank" } so you can use it as an example.
