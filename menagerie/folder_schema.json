@@ -5,7 +5,7 @@
     "description": "The folder configuration schema"
   },
   "title": "Folder Config",
-  "description": "Used to configure a folder's sort priority and title in the navbar.  Create a json file named `_folder.json` withing the folder you want to configure",
+  "description": "Used to configure a folder's sort priority and title in the navbar.  Create a json file named `_folder.json` within the folder you want to configure",
   "type": "object",
   "properties": {
     "title": {
