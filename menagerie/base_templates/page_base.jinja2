@@ -21,7 +21,7 @@
       {% if page.meta['render_toc'] %}data-bs-spy="scroll" data-bs-target="#TableOfContents"
       data-bs-offset="65"{% endif %}>
 <header>
-    <nav style="z-index: 999 !important;" class="navbar navbar-expand-xl navbar-{{ settings['themes']['navbar_color'] }} bg-{{ settings['themes']['navbar_color'] }} sticky-top mb-3">
+    <nav class="navbar navbar-expand-xl navbar-{{ settings['themes']['navbar_color'] }} bg-{{ settings['themes']['navbar_color'] }} sticky-top mb-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ 'home'|route }}"
                aria-label="Home">
@@ -95,7 +95,7 @@
                 <div class="col-lg-3">
                     <nav id="TableOfContents"
                          class="navbar navbar-light sticky-top flex-column align-items-stretch p-3"
-                         style="max-height: 100vh !important;overflow-x: hidden;overflow-y: auto;">
+                         style="max-height: 100vh !important;overflow-x: hidden;overflow-y: auto;z-index: 999 !important;">
                         {% macro render(item) %}
                             <a id="{{ item['id'] }}-toc" class="nav-link toc-link px-1 mb-1" href="#{{ item['id'] }}"
                                style="margin-left: {{ 0.7 * item['level'] }}rem;">{{ item['name'] }}</a>
