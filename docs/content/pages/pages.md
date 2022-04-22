@@ -123,10 +123,6 @@ You can use the `styles` config option to set a global CSS file to apply to all 
 }
 ```
 
-# Schemas
-
-For documentation specific to schemas, please see the [schemas]({{ 'schemas'|route }}) page.
-
 # Grouping Pages
 
 To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a dropdown for all of my schemas I might lay out my pages folder like so:
