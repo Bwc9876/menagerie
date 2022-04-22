@@ -10,7 +10,7 @@ __all__ = ('MDPage',)
 
 ADDITIONAL_CLASSES: dict[str, str] = {
     'img': "img-fluid rounded mx-auto d-flex",
-    'table': "table-striped"
+    'table': "table table-striped"
 }
 
 
