@@ -12,7 +12,7 @@ on:
         relative_path:
           description: "Path to set for relative files, set to a blank string for local builds"
           required: false
-          default: "/"
+          default: "/menagerie/"
 
 env:
   URL_PREFIX:  ${{ github.events.inputs.relative_path }}
@@ -32,7 +32,7 @@ jobs:
       
       - if: github.ref == 'refs/heads/master'
         run: |
-          echo "URL_PREFIX=/" >> $GITHUB_ENV
+          echo "URL_PREFIX=/menagerie/" >> $GITHUB_ENV
       
       - name: Cache Requirements
         uses: actions/cache@v2
