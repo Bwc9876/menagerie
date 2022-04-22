@@ -3,7 +3,7 @@ Sort_Priority: 90
 
 # Pages
 
-Pages are the actual content the user sees. The page you're currently looking at is a [markdown page](https://github.com/Bwc9876/menagerie/){target='_blank'}.
+Pages are the actual content the user sees. The page you're currently looking at is a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md){target='_blank'}.
 
 # Adding Pages
 
@@ -71,7 +71,7 @@ Uses xml comments (<!-- -->), create comments near the top of the file that look
 
 (TODO)
 
-# Linking to pages
+# Linking to Pages
 
 You can link to other pages in markdown and html pages by using the `route` filter and passing in the title of the page
 
@@ -108,7 +108,7 @@ Images are [static files]({{ "static files"|route }}), in order to get the path 
 ![My cool image]({{ '{{' }} 'images/my_image.png'|static {{ '}}' }})
 ```
 
-# Adding styles to pages
+# Adding Styles to Pages
 
 You can use the `styles` config option to set a global CSS file to apply to all pages, just pass in the path relative to the `static` folder.
 
@@ -126,3 +126,20 @@ You can use the `styles` config option to set a global CSS file to apply to all 
 # Schemas
 
 For documentation specific to schemas, please see the [schemas]({{ 'schemas'|route }}) page.
+
+# Grouping Pages
+
+To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a dropdown for all of my schemas I might lay out my pages folder like so:
+
+```file
+- index.md
+- schemas/
+    - my_schema.json
+    - my_other_schema.xsd
+```
+
+This will create a dropdown named "Schemas" on the navbar.  
+
+## Group Metadata
+
+Groups can also have metadata.  To specify it, create a file called `_folder.json` in the folder.  Then fill this out with the metadata.  Groups only allow for `title` and `sort_priority` to be set.
