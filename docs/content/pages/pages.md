@@ -29,7 +29,8 @@ The way to describe metadata is different depending on what language you're usin
 Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:
 
 ```md
-Title: My Page Sort-Priority: 100
+Title: My Page
+Sort-Priority: 100
 ```
 
 ## HTML Metadata
