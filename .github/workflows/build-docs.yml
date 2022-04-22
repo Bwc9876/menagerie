@@ -28,7 +28,7 @@ jobs:
 
       - run: cp -r docs/** .
       
-      - run: cp -r menagerie/schemas/ contents/pages/ 
+      - run: cp -r menagerie/schemas/ content/pages/ 
 
       - run: mkdir .venv
 
