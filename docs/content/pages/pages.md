@@ -1,5 +1,4 @@
-Title: Pages 
-Sort_Priority: 90
+Title: Pages Sort_Priority: 90
 
 # Pages
 
@@ -70,20 +69,13 @@ Uses xml comments; create comments near the top of the file that look like this 
 
 # Metadata Reference
 
-| **Name**          | **
-Description**                                                                                                                                                           | **
-Default**                                  |
+| **Name**          | **Description**                                                                                                                                                           | **Default**                                  |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| **
-Title**         | The title of this page, displayed in many places and used in metadata. Also what you pass to `route`. This is case-insensitive so make sure not to make duplicate titles | Derives from filename if nothing is provided |
-| **
-Description**   | The description of this page, appears in social media embeds and metadata                                                                                                 | Description specified in `config.json`       |
-| **
-Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
-| **
-Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
-| **
-Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
+| **Title**         | The title of this page, displayed in many places and used in metadata. Also what you pass to `route`.  This is case-insensitive so make sure not to make duplicate titles | Derives from filename if nothing is provided |
+| **Description**   | The description of this page, appears in social media embeds and metadata                                                                                                 | Description specified in `config.json`       |
+| **Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
+| **Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
+| **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
 
 # Linking to Pages
 
