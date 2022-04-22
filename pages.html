@@ -31,7 +31,8 @@
 + *.json, *.jsonc -&gt; JSON Schema
 + *.xsd, *.xml -&gt; XML Schema
 - *.yml -&gt; YAML Schema (Support coming soon)
-</code></pre><h1 id="page-metadata">Page Metadata</h1><p>Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.<br> The way to describe metadata is different depending on what language you're using</p><h2 id="markdown-metadata">Markdown Metadata</h2><p>Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:</p><pre><code class="language-md">Title: My Page Sort-Priority: 100
+</code></pre><h1 id="page-metadata">Page Metadata</h1><p>Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.<br> The way to describe metadata is different depending on what language you're using</p><h2 id="markdown-metadata">Markdown Metadata</h2><p>Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:</p><pre><code class="language-md">Title: My Page
+Sort-Priority: 100
 </code></pre><h2 id="html-metadata">HTML Metadata</h2><p>Uses <strong>jinja</strong> comments (<code>{# #}</code>), create comments near the top of the file that look like this (note the <code>~</code> characters):</p><pre><code class="language-jinja2">{#~ Title: My Page ~#}
 {#~ Sort-Priority: ~#}
 </code></pre><h2 id="json-schema-metadata">JSON Schema Metadata</h2><p>Create a top-level key named <code>$docs</code>. Then simply put in keys:</p><pre><code class="language-json">{
