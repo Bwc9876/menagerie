@@ -28,7 +28,8 @@
                 {% if settings['brand']['navbar_icon'] != None %}
                     <img width="{{ settings['brand']['navbar_icon_size'][0] }}"
                          height="{{ settings['brand']['navbar_icon_size'][1] }}"
-                         src="{{ settings['brand']['navbar_icon']|static }}" alt="{{ settings['brand']['app_name'] }} Logo"
+                         src="{{ settings['brand']['navbar_icon']|static }}"
+                         alt="{{ settings['brand']['app_name'] }} Logo"
                          class="d-inline-block align-text-top me-2"/>
                 {% endif %}
                 {{ settings['brand']['app_name'] }}</a>
@@ -53,7 +54,9 @@
                         {% if nav_item.is_folder %}
                             {% set active=page.meta['title']|lower in nav_item.titles %}
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle {% if active %}active{% endif %}" {% if active %}aria-current="page"{% endif %} href="#" data-bs-toggle="dropdown" aria-expanded="false" id="{{ nav_item.meta['title'] }}-group" role="button">
+                                <a class="nav-link dropdown-toggle {% if active %}active{% endif %}"
+                                   {% if active %}aria-current="page"{% endif %} href="#" data-bs-toggle="dropdown"
+                                   aria-expanded="false" id="{{ nav_item.meta['title'] }}-group" role="button">
                                     {{ nav_item.meta['title'] }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="{{ nav_item.meta['title'] }}-group">

@@ -29,7 +29,8 @@ class AbstractItem(ABC):
         self.broken: bool = False
         self.manager: 'AbstractManager' = manager
         self.in_path: Path = path.relative_to(self.manager.root_dir)
-        self.out_path: Path = Path(self.manager.gen.settings['out_dir'], Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir)))
+        self.out_path: Path = Path(self.manager.gen.settings['out_dir'],
+                                   Path(self.manager.root_dir, self.in_path).relative_to(Path(self.manager.root_dir)))
         if hasattr(self, 'out_extension') is True and (self.out_extension is not None):
             self.out_path = self.out_path.with_suffix(f'.{self.out_extension}')
 

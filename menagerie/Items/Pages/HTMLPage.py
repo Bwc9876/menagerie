@@ -55,5 +55,3 @@ class HTMLPage(AbstractPage):
             self.meta[seperated[0].lower().replace('-', '_')] = seperated[1]
         if self.meta['render_toc']:
             self.setup_toc(content)
-
-

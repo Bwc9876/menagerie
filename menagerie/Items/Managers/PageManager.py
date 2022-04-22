@@ -1,7 +1,8 @@
+import importlib.resources as pkg_resources
 from json import loads, load, JSONDecodeError
 from pathlib import Path
-import importlib.resources as pkg_resources
 
+from jinja2 import Environment, FileSystemLoader
 from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 from markdown import Markdown
@@ -13,8 +14,6 @@ from menagerie.Items.Pages.HTMLPage import HTMLPage
 from menagerie.Items.Pages.MDPage import MDPage
 from menagerie.Items.Pages.Schema.JSONSchema import JSONSchema
 from menagerie.Items.Pages.Schema.XMLSchema import XMLSchema
-from jinja2 import Environment, FileSystemLoader
-
 from menagerie.utils.logger import Logger
 
 
@@ -64,7 +63,8 @@ class PageManager(AbstractManager):
     def initialize(self):
         for item in self.items:
             item.initialize()
-        self.router = {p.meta['title'].lower(): str(p.out_path.relative_to(self.gen.settings['out_dir']).as_posix()) for p in self.items}
+        self.router = {p.meta['title'].lower(): str(p.out_path.relative_to(self.gen.settings['out_dir']).as_posix()) for
+                       p in self.items}
         self.gen.shared_info['pages'] = self.items
         self.filter_md = Markdown(extensions=['extra'], output_format='html5')
 
@@ -111,7 +111,7 @@ class PageManager(AbstractManager):
         filters = {
             'route': self.route,
             'static': self.gen.shared_info['static_filter'],
-            'upper_first': lambda x:   x[0].upper() + x[1:],
+            'upper_first': lambda x: x[0].upper() + x[1:],
             'simple_md': lambda md: self.filter_md.convert(md)
         }
         da_globals = {

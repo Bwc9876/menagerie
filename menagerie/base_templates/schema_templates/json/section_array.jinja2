@@ -16,14 +16,14 @@
     </div>
 {% endif %}
 {% if schema.tuple_validation_items %}
-<h4>Tuple Validation</h4>
+    <h4>Tuple Validation</h4>
     {% for item in schema.tuple_validation_items %}
-    <h5>Item at {{ loop.index }} must be:</h5>
-    <div class="card">
-        <div class="card-body items-definition" id="{{ item.html_id }}">
-            {{ content(item) }}
+        <h5>Item at {{ loop.index }} must be:</h5>
+        <div class="card">
+            <div class="card-body items-definition" id="{{ item.html_id }}">
+                {{ content(item) }}
+            </div>
         </div>
-    </div>
     {% endfor %}
 {% endif %}
 {% if schema.kw_contains and schema.kw_contains.literal != {} %}

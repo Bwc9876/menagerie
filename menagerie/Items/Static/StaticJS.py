@@ -5,7 +5,6 @@ from menagerie.Items.Static.StaticItem import StaticItem
 
 
 class StaticJS(MinifiedItemMixin, StaticItem):
-
     extensions = ('js',)
     minify_key = 'js'
     out_extension = 'min.js'
@@ -13,4 +12,3 @@ class StaticJS(MinifiedItemMixin, StaticItem):
 
     def minify(self, content: str) -> str:
         return jsmin(content)
-

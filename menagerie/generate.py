@@ -1,9 +1,9 @@
 import sys
 from pathlib import Path
 
+from menagerie.Items.Managers.MetaManager import MetaManager
 from menagerie.Items.Managers.PageManager import PageManager
 from menagerie.Items.Managers.StaticManager import StaticManager
-from menagerie.Items.Managers.MetaManager import MetaManager
 from menagerie.Settings import setup_settings, Settings
 from menagerie.SiteGen import SiteGen
 from menagerie.utils.logger import Logger

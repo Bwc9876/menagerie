@@ -1,7 +1,6 @@
+import importlib.resources as pkg_resources
 import os
 import shutil
-import importlib.resources as pkg_resources
-import sys
 from pathlib import Path
 
 import menagerie

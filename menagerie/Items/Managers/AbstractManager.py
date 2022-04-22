@@ -2,8 +2,9 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from pathlib import Path
 
-from menagerie.Items.AbstractItem import AbstractItem
 from jinja2 import Environment, PackageLoader
+
+from menagerie.Items.AbstractItem import AbstractItem
 
 __all__ = ('AbstractManager',)
 
@@ -32,7 +33,8 @@ class AbstractManager(ABC):
             'gen_time': datetime.now().strftime("%d/%m/%Y")
         })
         self.base_env.filters.update({
-            'full_url': lambda relative: self.gen.settings['base_url'] + (relative[1:] if len(relative) > 1 and relative[0] == "/" else relative)
+            'full_url': lambda relative: self.gen.settings['base_url'] + (
+                relative[1:] if len(relative) > 1 and relative[0] == "/" else relative)
         })
 
     def find(self):

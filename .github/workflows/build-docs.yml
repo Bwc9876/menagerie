@@ -9,37 +9,37 @@ on:
 
   workflow_dispatch:
     inputs:
-        relative_path:
-          description: "Path to set for relative files, set to a blank string for local builds"
-          required: false
-          default: "/menagerie/"
+      relative_path:
+        description: "Path to set for relative files, set to a blank string for local builds"
+        required: false
+        default: "/menagerie/"
 
 env:
-  URL_PREFIX:  ${{ github.events.inputs.relative_path }}
+  URL_PREFIX: ${{ github.events.inputs.relative_path }}
 
 jobs:
 
   build:
-  
+
     runs-on: ubuntu-latest
     
     steps:
       - uses: actions/checkout@v3
-      
+
       - run: cp -r docs/** .
-      
+
       - run: mkdir .venv
-      
+
       - if: github.ref == 'refs/heads/master'
         run: |
           echo "URL_PREFIX=/menagerie/" >> $GITHUB_ENV
-      
+
       - name: Cache Requirements
         uses: actions/cache@v2
         with:
           path: .venv
           key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-      
+
       - name: Install Requirements
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
@@ -49,22 +49,22 @@ jobs:
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
           command: install .
-          
+
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
           command: run python -m menagerie generate
-        
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v3.0.0
         with:
           name: Menagerie-Docs
           path: out/
-          
+
       - name: Deploy To Pages
         if: success() && github.ref == 'refs/heads/master'
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          branch: gh-pages 
+          branch: gh-pages
           folder: out/
       

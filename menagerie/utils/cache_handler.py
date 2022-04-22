@@ -1,6 +1,6 @@
 import hashlib
-from pathlib import Path
 from json import JSONDecoder, JSONEncoder
+from pathlib import Path
 
 from menagerie.Items.AbstractItem import AbstractItem
 
@@ -10,7 +10,6 @@ from menagerie.Settings import Settings
 
 
 class CacheHandler:
-
     HASH_ALGORITHM = 'sha256'
 
     def __init__(self, folder: Path, settings: Settings):
@@ -43,8 +42,3 @@ class CacheHandler:
         hashed = self.get_hash(item.get_path_to_open().read_bytes())
         self.cache_data[cache_key] = hashed
         self.cache_file.write_text(self.encoder.encode(self.cache_data))
-
-
-
-
-

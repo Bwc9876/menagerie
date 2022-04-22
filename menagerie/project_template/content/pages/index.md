@@ -1,5 +1,4 @@
-Title: Home
-Sort-Priority: 100
+Title: Home Sort-Priority: 100
 
 # Welcome!
 

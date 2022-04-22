@@ -1,13 +1,11 @@
-from pathlib import Path
-
 import importlib.resources as pkg_resources
+from pathlib import Path
 
 from menagerie.Items.AbstractItem import AbstractItem
 from menagerie.base_templates import meta_files
 
 
 class MetaItem(AbstractItem):
-
     should_cache = False
     byte_mode = False
     extensions = ('*',)

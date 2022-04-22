@@ -1,11 +1,10 @@
 from rcssmin import cssmin
 
-from menagerie.Items.Static.StaticItem import StaticItem
 from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
+from menagerie.Items.Static.StaticItem import StaticItem
 
 
 class StaticCSS(MinifiedItemMixin, StaticItem):
-
     extensions = ('css',)
     minify_key = 'css'
     out_extension = 'min.css'

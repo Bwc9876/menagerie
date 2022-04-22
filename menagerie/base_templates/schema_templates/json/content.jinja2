@@ -42,7 +42,8 @@
 
 
     {% if schema.should_be_a_link(config) %}
-        <a href="#{{ schema.links_to.html_id }}" onclick="anchorLink('{{ schema.links_to.html_id }}')" class="ref-link">Same definition as {{ schema.links_to.link_name }}</a>
+        <a href="#{{ schema.links_to.html_id }}" onclick="anchorLink('{{ schema.links_to.html_id }}')" class="ref-link">Same
+            definition as {{ schema.links_to.link_name }}</a>
     {% elif schema.refers_to %}
         {{ content(schema.refers_to_merged, True) }}
     {% else %}
@@ -58,13 +59,16 @@
 
             {# Combining: allOf, anyOf, oneOf, not #}
             {% if schema.kw_all_of %}
-                <div class="all-of-value" id="{{ schema.kw_all_of.html_id }}">{{ tabbed_section("allOf", schema.kw_all_of) }}</div>
+                <div class="all-of-value"
+                     id="{{ schema.kw_all_of.html_id }}">{{ tabbed_section("allOf", schema.kw_all_of) }}</div>
             {% endif %}
             {% if schema.kw_any_of %}
-                <div class="any-of-value" id="{{ schema.kw_any_of.html_id }}">{{ tabbed_section("anyOf", schema.kw_any_of) }}</div>
+                <div class="any-of-value"
+                     id="{{ schema.kw_any_of.html_id }}">{{ tabbed_section("anyOf", schema.kw_any_of) }}</div>
             {% endif %}
             {% if schema.kw_one_of %}
-                <div class="one-of-value" id="{{ schema.kw_one_of.html_id }}">{{ tabbed_section("oneOf", schema.kw_one_of) }}</div>
+                <div class="one-of-value"
+                     id="{{ schema.kw_one_of.html_id }}">{{ tabbed_section("oneOf", schema.kw_one_of) }}</div>
             {% endif %}
             {% if schema.kw_not %}
                 {% include "/schema_templates/json/section_not.jinja2" %}
@@ -73,21 +77,23 @@
             {# Enum and const #}
             {% if schema.kw_enum %}
                 <div class="enum-value" id="{{ schema.kw_enum.html_id }}">
-                <h4>Must be one of:</h4>
-                <ul class="list-group">
-                {% for enum_choice in schema.kw_enum.array_items %}
-                    <li class="list-group-item enum-item">{{ enum_choice.literal | python_to_json }}</li>
-                {% endfor %}
-                </ul>
+                    <h4>Must be one of:</h4>
+                    <ul class="list-group">
+                        {% for enum_choice in schema.kw_enum.array_items %}
+                            <li class="list-group-item enum-item">{{ enum_choice.literal | python_to_json }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             {% endif %}
             {% if schema.kw_const %}
-                <span class="const-value" id="{{ schema.kw_const.html_id }}">Specific value: <code>{{ schema.kw_const.raw | python_to_json }}</code></span>
+                <span class="const-value"
+                      id="{{ schema.kw_const.html_id }}">Specific value: <code>{{ schema.kw_const.raw | python_to_json }}</code></span>
             {% endif %}
 
             {# Pattern (Regular Expression) #}
             {% if schema.kw_pattern %}
-                <span class="pattern-value" id="{{ schema.kw_pattern.html_id }}">Must match regular expression: <code>{{ schema.kw_pattern.literal | escape }}</code></span>
+                <span class="pattern-value"
+                      id="{{ schema.kw_pattern.html_id }}">Must match regular expression: <code>{{ schema.kw_pattern.literal | escape }}</code></span>
             {% endif %}
 
             {# Conditional subschema, or if-then-else section #}

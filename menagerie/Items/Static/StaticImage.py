@@ -9,4 +9,5 @@ class StaticImage(StaticItem):
 
     def initialize(self) -> None:
         with Image.open(self.get_path_to_open(), mode='r') as img:
-            self.manager.gen.shared_info['image_sizes'][str(self.out_path.relative_to(self.manager.gen.settings['out_dir']).as_posix())] = img.size
+            self.manager.gen.shared_info['image_sizes'][
+                str(self.out_path.relative_to(self.manager.gen.settings['out_dir']).as_posix())] = img.size

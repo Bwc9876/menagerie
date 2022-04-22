@@ -1,9 +1,9 @@
+import importlib.resources as pkg_resources
 from json import load, loads
 from json.decoder import JSONDecodeError
 from os import getenv
 from pathlib import Path
 
-import importlib.resources as pkg_resources
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from ndicts.ndicts import NestedDict

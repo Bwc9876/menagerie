@@ -98,4 +98,3 @@ class XMLSchema(AbstractPage):
         })
         schema = XMLDataSchema(content)
         return self.manager.base_env.get_template('schema_templates/xml_schema.jinja2').render(page=self, schema=schema)
-

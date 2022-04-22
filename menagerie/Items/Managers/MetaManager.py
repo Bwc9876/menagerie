@@ -1,14 +1,12 @@
 from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
-from menagerie.Items.Managers.StaticManager import StaticManager
+from menagerie.Items.Meta.JSONMetaItem import JSONMetaItem
 from menagerie.Items.Meta.MetaItem import MetaItem
 from menagerie.Items.Meta.XMLMetaItem import XMLMetaItem
-from menagerie.Items.Meta.JSONMetaItem import JSONMetaItem
 
 
 class MetaManager(AbstractManager):
-
     item_types = (MetaItem, XMLMetaItem)
     root_dir = ''
 

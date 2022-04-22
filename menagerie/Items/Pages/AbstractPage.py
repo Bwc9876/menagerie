@@ -2,10 +2,11 @@ import re
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from menagerie.Items.AbstractItem import AbstractItem
-from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
 from htmlmin import minify as html_minify
 from jinja2.environment import Markup
+
+from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
 
 __all__ = ('AbstractPage', 'MINIFY_SETTINGS', 'pretty_title')
 
@@ -35,7 +36,6 @@ MINIFY_SETTINGS = {
 
 
 class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
-
     base_template = "page_base.jinja2"
     byte_mode = False
     out_extension = 'html'

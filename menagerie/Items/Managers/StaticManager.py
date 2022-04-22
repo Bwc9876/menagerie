@@ -1,10 +1,10 @@
 from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
-from menagerie.Items.Static.StaticJS import StaticJS
 from menagerie.Items.Static.StaticCSS import StaticCSS
 from menagerie.Items.Static.StaticImage import StaticImage
 from menagerie.Items.Static.StaticItem import StaticItem
+from menagerie.Items.Static.StaticJS import StaticJS
 from menagerie.Settings import Settings
 
 
@@ -23,7 +23,8 @@ class StaticManager(AbstractManager):
     def initialize(self):
         for item in self.items:
             item.initialize()
-            if hasattr(item, 'out_extension') and item.out_extension is not None and item.out_extension not in item.extensions:
+            if hasattr(item,
+                       'out_extension') and item.out_extension is not None and item.out_extension not in item.extensions:
                 self.gen.shared_info['static_map'][str(item.in_path.as_posix())] = ''.join(item.out_path.suffixes)
 
     def generate(self):

@@ -1,9 +1,9 @@
-Title: Pages
-Sort_Priority: 90
+Title: Pages Sort_Priority: 90
 
 # Pages
 
-Pages are the actual content the user sees. The page you're currently looking at is a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md){target='_blank'}.
+Pages are the actual content the user sees. The page you're currently looking at is
+a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md){target='_blank'}.
 
 # Adding Pages
 
@@ -28,13 +28,13 @@ The way to describe metadata is different depending on what language you're usin
 Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:
 
 ```md
-Title: My Page
-Sort-Priority: 100
+Title: My Page Sort-Priority: 100
 ```
 
 ## HTML Metadata
 
-Uses **jinja** comments (`{{ '{#' }} {{ '#}' }}`), create comments near the top of the file that look like this (note the `~` characters):
+Uses **jinja** comments (`{{ '{#' }} {{ '#}' }}`), create comments near the top of the file that look like this (note
+the `~` characters):
 
 ```jinja2
 {{ '{#~' }} Title: My Page {{ '~#}' }}
@@ -64,18 +64,25 @@ Uses xml comments; create comments near the top of the file that look like this 
 <!--~ Title:My Page ~-->
 <!--~ Sort_Priority:100 ~-->
 <Myelement>Text</Myelement>
-<!-- ... -->
+        <!-- ... -->
 ```
 
 # Metadata Reference
 
-| **Name**          | **Description**                                                                                                                                                           | **Default**                                  |
+| **Name**          | **
+Description**                                                                                                                                                           | **
+Default**                                  |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| **Title**         | The title of this page, displayed in many places and used in metadata. Also what you pass to `route`.  This is case-insensitive so make sure not to make duplicate titles | Derives from filename if nothing is provided |
-| **Description**   | The description of this page, appears in social media embeds and metadata                                                                                                 | Description specified in `config.json`       |
-| **Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
-| **Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
-| **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
+| **
+Title**         | The title of this page, displayed in many places and used in metadata. Also what you pass to `route`. This is case-insensitive so make sure not to make duplicate titles | Derives from filename if nothing is provided |
+| **
+Description**   | The description of this page, appears in social media embeds and metadata                                                                                                 | Description specified in `config.json`       |
+| **
+Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
+| **
+Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
+| **
+Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
 
 # Linking to Pages
 
@@ -104,7 +111,8 @@ In HTML all headings **with an id** are put into the table of contents
 
 # Images
 
-Images are [static files]({{ "static files"|route }}), in order to get the path to put in the src attribute, you can use the `static` filter. Pass in the path of the files relative to the `static` folder in `content`.
+Images are [static files]({{ "static files"|route }}), in order to get the path to put in the src attribute, you can use
+the `static` filter. Pass in the path of the files relative to the `static` folder in `content`.
 
 ```jinja2
 <img alt="My cool image" src="{{ '{{' }} 'images/my_image.png'|static {{ '}}' }}"/>
@@ -116,7 +124,8 @@ Images are [static files]({{ "static files"|route }}), in order to get the path 
 
 # Adding Styles to Pages
 
-You can use the `styles` config option to set a global CSS file to apply to all pages, just pass in the path relative to the `static` folder.
+You can use the `styles` config option to set a global CSS file to apply to all pages, just pass in the path relative to
+the `static` folder.
 
 ```jsonc
 {
@@ -131,7 +140,8 @@ You can use the `styles` config option to set a global CSS file to apply to all 
 
 # Grouping Pages
 
-To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a dropdown for all of my schemas I might lay out my `pages` folder like so:
+To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a
+dropdown for all of my schemas I might lay out my `pages` folder like so:
 
 ```file
 - index.md
@@ -140,11 +150,12 @@ To create groups of pages (dropdowns in the navbar), create folders in the `page
     - my_other_schema.xsd
 ```
 
-This will create a dropdown named "Schemas" on the navbar.  
+This will create a dropdown named "Schemas" on the navbar.
 
 ## Group Metadata
 
-Groups can also have metadata.  To specify it, create a file called `_folder.json` in the folder.  Then fill this out with the metadata.  Groups only allow for `title` and `sort_priority` to be set.
+Groups can also have metadata. To specify it, create a file called `_folder.json` in the folder. Then fill this out with
+the metadata. Groups only allow for `title` and `sort_priority` to be set.
 
 # Minification
 
