@@ -14,7 +14,7 @@ You can also create folders for these files for organization; Unlike pages, nest
 
 To reference a static file in a page, use the `static` filter.
 
-```jinja2
+```html
 <img alt="My cool image" src="{{ '{{' }} 'images/my_image.png'|static {{ '}}' }}"/>
 ```
 
@@ -22,7 +22,7 @@ To reference a static file in a page, use the `static` filter.
 
 If you need the full url for whatever reason, you can use the `full_url` filter after the static filter:
 
-```jinja2
+```html
 <img alt="My Cool Absolute Image" src="{{ '{{' }} 'images/my_image.png'|static|full_url {{ '}}' }}"/>
 ```
 

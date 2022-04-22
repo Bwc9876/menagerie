@@ -46,14 +46,12 @@ the `~` characters):
 
 Create a top-level key named `$docs`. Then simply put in keys:
 
-```jsonc
+```json
 {
-    // ...
     "$docs": {
         "title": "My Page",
         "sort_priority": 100
     }
-    // ...
 }
 ```
 
@@ -65,7 +63,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 <!--~ Title:My Page ~-->
 <!--~ Sort_Priority:100 ~-->
 <Myelement>Text</Myelement>
-        <!-- ... -->
+<!-- ... -->
 ```
 
 # Metadata Reference
@@ -108,7 +106,7 @@ In HTML all headings **with an id** are put into the table of contents
 Images are [static files]({{ "static files"|route }}), in order to get the path to put in the src attribute, you can use
 the `static` filter. Pass in the path of the files relative to the `static` folder in `content`.
 
-```jinja2
+```html
 <img alt="My cool image" src="{{ '{{' }} 'images/my_image.png'|static {{ '}}' }}"/>
 ```
 
@@ -121,16 +119,16 @@ the `static` filter. Pass in the path of the files relative to the `static` fold
 You can use the `styles` config option to set a global CSS file to apply to all pages, just pass in the path relative to
 the `static` folder.
 
-```jsonc
+```json
 {
-    // ...
     "styles": {
         "base": "styles/my_base_styles.css",
-        "schema": "styles/my_schema_styles.css" // You can also specify one for schemas only
+        "schema": "styles/my_schema_styles.css"
     }
-    // ...
 }
 ```
+
+You can also specify one for schemas only.
 
 # Grouping Pages
 
