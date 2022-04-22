@@ -1,4 +1,5 @@
-Title: Static Files Sort_Priority: 80
+Title: Static Files
+Sort_Priority: 80
 
 # Static Files
 
