@@ -34,31 +34,27 @@
 </code></pre><h1 id="page-metadata">Page Metadata</h1><p>Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.<br> The way to describe metadata is different depending on what language you're using</p><h2 id="markdown-metadata">Markdown Metadata</h2><p>Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:</p><pre><code class="language-md">Title: My Page Sort-Priority: 100
 </code></pre><h2 id="html-metadata">HTML Metadata</h2><p>Uses <strong>jinja</strong> comments (<code>{# #}</code>), create comments near the top of the file that look like this (note the <code>~</code> characters):</p><pre><code class="language-jinja2">{#~ Title: My Page ~#}
 {#~ Sort-Priority: ~#}
-</code></pre><h2 id="json-schema-metadata">JSON Schema Metadata</h2><p>Create a top-level key named <code>$docs</code>. Then simply put in keys:</p><pre><code class="language-jsonc">{
-    // ...
+</code></pre><h2 id="json-schema-metadata">JSON Schema Metadata</h2><p>Create a top-level key named <code>$docs</code>. Then simply put in keys:</p><pre><code class="language-json">{
     "$docs": {
         "title": "My Page",
         "sort_priority": 100
     }
-    // ...
 }
 </code></pre><h2 id="xml-schema-metadata">XML Schema Metadata</h2><p>Uses xml comments; create comments near the top of the file that look like this (note the <code>~</code> characters)</p><pre><code class="language-xml">&lt;!--~ Title:My Page ~--&gt;
 &lt;!--~ Sort_Priority:100 ~--&gt;
 &lt;Myelement&gt;Text&lt;/Myelement&gt;
-        &lt;!-- ... --&gt;
+&lt;!-- ... --&gt;
 </code></pre><h1 id="metadata-reference">Metadata Reference</h1><table class="table table-striped"><thead><tr><th><strong>Name</strong></th><th><strong>Description</strong></th><th><strong>Default</strong></th></tr></thead><tbody><tr><td><strong>Title</strong></td><td>The title of this page, displayed in many places and used in metadata. Also what you pass to <code>route</code>. This is case-insensitive so make sure not to make duplicate titles</td><td>Derives from filename if nothing is provided</td></tr><tr><td><strong>Description</strong></td><td>The description of this page, appears in social media embeds and metadata</td><td>Description specified in <code>config.json</code></td></tr><tr><td><strong>Sort_Priority</strong></td><td>How much to prioritize this page in the navbar, should be from 0-100.</td><td>30</td></tr><tr><td><strong>Render_TOC</strong></td><td>Whether to render a table of contents on this page (HTML/MD Pages only)</td><td>True</td></tr><tr><td><strong>Out_File</strong></td><td>Name of output file, omit the file extension</td><td>Same as name of source file</td></tr></tbody></table><h1 id="linking-to-pages">Linking to Pages</h1><p>You can link to other pages in markdown and html pages by using the <code>route</code> filter and passing in the title of the page</p><pre><code class="language-jinja2">&lt;a href="{{ 'my page'|route }}"&gt;Check out my cool page!&lt;/a&gt;
 </code></pre><pre><code class="language-md">[Check out my cool page!]({{ 'my page'|route }})
-</code></pre><h1 id="table-of-contents">Table of Contents</h1><p>A table of contents is automatically generated for HTML and Markdown pages.<br> This can be disabled with the <code>render_toc</code> metadata attribute.</p><h2 id="in-markdown">In Markdown</h2><p>In markdown all headings are put into the table of contents</p><h2 id="in-html">In HTML</h2><p>In HTML all headings <strong>with an id</strong> are put into the table of contents</p><h1 id="images">Images</h1><p>Images are <a href="/menagerie/#">static files</a>, in order to get the path to put in the src attribute, you can use the <code>static</code> filter. Pass in the path of the files relative to the <code>static</code> folder in <code>content</code>.</p><pre><code class="language-jinja2">&lt;img alt="My cool image" src="{{ 'images/my_image.png'|static }}"/&gt;
+</code></pre><h1 id="table-of-contents">Table of Contents</h1><p>A table of contents is automatically generated for HTML and Markdown pages.<br> This can be disabled with the <code>render_toc</code> metadata attribute.</p><h2 id="in-markdown">In Markdown</h2><p>In markdown all headings are put into the table of contents</p><h2 id="in-html">In HTML</h2><p>In HTML all headings <strong>with an id</strong> are put into the table of contents</p><h1 id="images">Images</h1><p>Images are <a href="/menagerie/#">static files</a>, in order to get the path to put in the src attribute, you can use the <code>static</code> filter. Pass in the path of the files relative to the <code>static</code> folder in <code>content</code>.</p><pre><code class="language-html">&lt;img alt="My cool image" src="{{ 'images/my_image.png'|static }}"/&gt;
 </code></pre><pre><code class="language-md">![My cool image]({{ 'images/my_image.png'|static }})
-</code></pre><h1 id="adding-styles-to-pages">Adding Styles to Pages</h1><p>You can use the <code>styles</code> config option to set a global CSS file to apply to all pages, just pass in the path relative to the <code>static</code> folder.</p><pre><code class="language-jsonc">{
-    // ...
+</code></pre><h1 id="adding-styles-to-pages">Adding Styles to Pages</h1><p>You can use the <code>styles</code> config option to set a global CSS file to apply to all pages, just pass in the path relative to the <code>static</code> folder.</p><pre><code class="language-json">{
     "styles": {
         "base": "styles/my_base_styles.css",
-        "schema": "styles/my_schema_styles.css" // You can also specify one for schemas only
+        "schema": "styles/my_schema_styles.css"
     }
-    // ...
 }
-</code></pre><h1 id="grouping-pages">Grouping Pages</h1><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-file">- index.md
+</code></pre><p>You can also specify one for schemas only.</p><h1 id="grouping-pages">Grouping Pages</h1><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-file">- index.md
 - schemas/
     - my_schema.json
     - my_other_schema.xsd
