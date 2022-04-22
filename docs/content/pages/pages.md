@@ -81,7 +81,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 
 You can link to other pages in markdown and html pages by using the `route` filter and passing in the title of the page
 
-```jinja2
+```html
 <a href="{{ '{{' }} 'my page'|route {{ '}}' }}">Check out my cool page!</a>
 ```
 

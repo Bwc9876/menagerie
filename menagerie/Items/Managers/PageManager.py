@@ -7,7 +7,7 @@ from jsonschema.exceptions import ValidationError
 from jsonschema.validators import validate
 from markdown import Markdown
 
-import menagerie
+from menagerie import schemas
 from menagerie.Items.Managers.AbstractManager import AbstractManager
 from menagerie.Items.Pages.AbstractPage import AbstractPage, pretty_title
 from menagerie.Items.Pages.HTMLPage import HTMLPage
@@ -55,7 +55,7 @@ class PageManager(AbstractManager):
         super(PageManager, self).__init__(site_info)
         self.env = Environment(loader=FileSystemLoader(self.gen.settings['content_dir']))
         self.root_dir = Path(self.gen.settings['paths', 'pages'])
-        self.group_schema = loads(pkg_resources.read_text(menagerie, 'folder_schema.json', encoding='utf-8'))
+        self.group_schema = loads(pkg_resources.read_text(schemas, 'folder_schema.json', encoding='utf-8'))
 
     def find(self):
         super(PageManager, self).find()
@@ -89,7 +89,7 @@ class PageManager(AbstractManager):
                     }
                     if group_config_path.exists():
                         try:
-                            group_config = load(group_config_path)
+                            group_config = loads(group_config_path.read_text(encoding='utf-8'))
                             validate(group_config, self.group_schema)
                             group_meta.update(group_config)
                         except JSONDecodeError as jde:

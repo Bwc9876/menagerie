@@ -8,7 +8,7 @@ from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from ndicts.ndicts import NestedDict
 
-import menagerie
+from menagerie import schemas
 from menagerie.utils.logger import Logger
 
 __all__ = (
@@ -84,7 +84,7 @@ def setup_settings(config_path: Path):
         :type config_path: Path 
     """
 
-    schema = loads(pkg_resources.read_text(menagerie, 'config_schema.json'))
+    schema = loads(pkg_resources.read_text(schemas, 'config_schema.json'))
 
     try:
         config = load(config_path.open(mode='r', encoding='utf-8'))
