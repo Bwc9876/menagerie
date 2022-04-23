@@ -30,7 +30,7 @@ If you need the full url for whatever reason, you can use the `full_url` filter 
 
 JS and CSS files are minimizes automatically. (this can be disabled in `config.json`). You do not need to worry about
 changing references to these files to `.min.js` and `.min.css`, menagerie will automatically change it. Using `.min.*`
-still works however.
+still works, however.
 
 # Images
 

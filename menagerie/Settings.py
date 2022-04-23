@@ -28,7 +28,7 @@ Settings = NestedDict({
     'themes': {
         'bootstrap': "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
         'highlight_js': "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css",
-        'navbar_color': "light"
+        'theme': "light"
     },
     'brand': {
         'app_name': "My App",
