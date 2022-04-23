@@ -5,6 +5,18 @@
   "brand": {
     "app_name": "Menagerie",
     "short_name": "Menagerie",
+    "socials": [
+      {
+        "name": "GitHub",
+        "link": "https://github.com/Bwc9876/menagerie",
+        "icon": "github"
+      },
+      {
+        "name": "PyPi",
+        "link": "https://pypi.org/project/menagerie-docs/",
+        "icon": "download"
+      }
+    ],
     "meta": {
       "description": "Documentation for using the menagerie-docs static site generator",
       "image_alt": "The menagerie logo"
