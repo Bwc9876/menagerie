@@ -4,7 +4,7 @@ Sort_Priority: 90
 # Pages
 
 Pages are the actual content the user sees. The page you're currently looking at is
-a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md){target='_blank'}.
+a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md?plain=1){target='_blank'}.
 
 # Adding Pages
 
