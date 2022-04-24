@@ -24,7 +24,7 @@ python -m menagerie new-project MyCoolDocsSite
 
 This will create a new folder called `MyCoolDocsSite` with the following contents:
 
-```file
+```txt
 - content/
     - pages/
         - index.md

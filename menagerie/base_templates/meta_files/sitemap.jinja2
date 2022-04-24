@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     {% for page in pages %}
         <url>
-            <loc>{{ page.out_path|string|replace('\\', '/')|full_url }}</loc>
+            <loc>{{ page.meta['title']|route|full_url(False) }}</loc>
             <priority>{{ page.meta['sort_priority'] / 100 }}</priority>
         </url>
     {% endfor %}

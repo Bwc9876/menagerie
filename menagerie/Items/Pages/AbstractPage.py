@@ -1,4 +1,3 @@
-import re
 from abc import ABC, abstractmethod
 from pathlib import Path
 
@@ -8,25 +7,9 @@ from jinja2.environment import Markup
 from menagerie.Items.AbstractItem import AbstractItem
 from menagerie.Items.MinifiedItemMixin import MinifiedItemMixin
 
-__all__ = ('AbstractPage', 'MINIFY_SETTINGS', 'pretty_title')
+__all__ = ('AbstractPage', 'MINIFY_SETTINGS')
 
-
-def camel_to_pretty(raw):
-    return ' '.join(re.findall(r'[A-Z](?:[a-z]+|[A-Z]*(?=[A-Z]|$))', raw))
-
-
-def pretty_title(raw: str) -> str:
-    if '_' in raw:
-        return ' '.join(x[0].upper() + x[1:] for x in raw.split('_'))
-    elif any(x.isupper() for x in raw):
-        if raw[0].islower():
-            new_raw = raw[0].upper() + raw[1:]
-        else:
-            new_raw = raw
-        return camel_to_pretty(new_raw)
-    else:
-        return raw[0].upper() + raw[1:]
-
+from menagerie.utils.str_util import pretty_title
 
 MINIFY_SETTINGS = {
     'remove_empty_space': True,
@@ -69,6 +52,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
             self.meta['title'] = pretty_title(self.in_path.stem)
         if str(self.meta['render_toc']).lower() == 'false' or self.meta['table_of_contents'] is None:
             self.meta['render_toc'] = False
+        self.meta['hide_in_nav'] = str(self.meta['hide_in_nav']).lower() != 'false'
         self.meta['sort_priority'] = int(self.meta['sort_priority'])
 
     def transform(self, content: str) -> str:

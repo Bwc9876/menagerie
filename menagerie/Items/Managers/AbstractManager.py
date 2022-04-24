@@ -5,6 +5,7 @@ from pathlib import Path
 from jinja2 import Environment, PackageLoader
 
 from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.utils.str_util import remove_preceding_slash
 
 __all__ = ('AbstractManager',)
 
@@ -33,8 +34,7 @@ class AbstractManager(ABC):
             'gen_time': datetime.now().strftime("%d/%m/%Y")
         })
         self.base_env.filters.update({
-            'full_url': lambda relative: self.gen.settings['base_url'] + (
-                relative[1:] if len(relative) > 1 and relative[0] == "/" else relative)
+            'full_url': lambda relative, add_prefix=True: self.gen.settings['base_url'] + (remove_preceding_slash(self.gen.settings['url_prefix']) if add_prefix else "") + remove_preceding_slash(relative)
         })
 
     def find(self):

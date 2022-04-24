@@ -9,7 +9,8 @@ from markdown import Markdown
 
 from menagerie import schemas
 from menagerie.Items.Managers.AbstractManager import AbstractManager
-from menagerie.Items.Pages.AbstractPage import AbstractPage, pretty_title
+from menagerie.Items.Pages.AbstractPage import AbstractPage
+from menagerie.utils.str_util import pretty_title
 from menagerie.Items.Pages.HTMLPage import HTMLPage
 from menagerie.Items.Pages.MDPage import MDPage
 from menagerie.Items.Pages.Schema.JSONSchema import JSONSchema
@@ -65,7 +66,7 @@ class PageManager(AbstractManager):
             item.initialize()
         self.router = {p.meta['title'].lower(): str(p.out_path.relative_to(self.gen.settings['out_dir']).as_posix()) for
                        p in self.items}
-        self.gen.shared_info['pages'] = self.items
+        self.gen.shared_info['pages'] = filter(lambda i: i.meta['hide_in_nav'] is False, self.items)
         self.filter_md = Markdown(extensions=['extra'], output_format='html5')
 
     def route(self, title: str) -> str:
