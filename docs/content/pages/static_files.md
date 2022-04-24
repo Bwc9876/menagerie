@@ -26,7 +26,7 @@ If you need the full url for whatever reason, you can use the `full_url` filter 
 <img alt="My Cool Absolute Image" src="{{ '{{' }} 'images/my_image.png'|static|full_url {{ '}}' }}"/>
 ```
 
-You can also pass in a value of `False` to this filter to not append the `URL_PREFIX` environment variable
+You can also pass in a value of `False` to this filter to not prepend the `URL_PREFIX` environment variable
 
 # Minification
 
