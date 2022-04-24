@@ -80,7 +80,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 | **Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
 | **Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
 | **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
-| **Hidden_In_Nav** | Whether to hide this page in the navbar (this site [has one]({{ secret_link }}))                                                                                          | False                                        |
+| **Hide_In_Nav**   | Whether to hide this page in the navbar (this site [has one]({{ secret_link }}))                                                                                          | False                                        |
 
 # Linking to Pages
 
