@@ -24,7 +24,8 @@
     "navbar_icon_size": [32, 32],
     "meta": {
       "description": "Documentation for using the menagerie-docs static site generator",
-      "image": "images/logo.webp",
+      "image": "images/logo.svg",
+      "theme_color": "#ffffff",
       "image_alt": "The menagerie logo"
     }
   }
