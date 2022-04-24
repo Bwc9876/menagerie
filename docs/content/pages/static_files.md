@@ -36,5 +36,5 @@ still works, however.
 
 # Images
 
-It's recommended to use the `.webp` format for images, support for auto-converting to this can come soon.
+It's recommended to use the `.webp` format for images.
 
