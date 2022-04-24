@@ -69,6 +69,10 @@ Uses xml comments; create comments near the top of the file that look like this 
 
 # Metadata Reference
 
+**Note:** These are all case-insensitive
+
+{% set secret_link='Hidden Page'|route %}
+
 | **Name**          | **Description**                                                                                                                                                           | **Default**                                  |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
 | **Title**         | The title of this page, displayed in many places and used in metadata. Also what you pass to `route`.  This is case-insensitive so make sure not to make duplicate titles | Derives from filename if nothing is provided |
@@ -76,6 +80,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 | **Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
 | **Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
 | **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
+| **Hidden_In_Nav** | Whether to hide this page in the navbar (this site [has one]({{ secret_link }}))                                                                                          | False                                        |
 
 # Linking to Pages
 
@@ -136,7 +141,7 @@ You can also specify one for schemas only.
 To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a
 dropdown for all of my schemas I might lay out my `pages` folder like so:
 
-```file
+```txt
 - index.md
 - schemas/
     - my_schema.json

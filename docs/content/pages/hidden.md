@@ -3,6 +3,6 @@ Hide_In_Nav: True
 Render_TOC: False
 
 
-# Cow
+# Secret
 
-Hidden Page Yay!
+You found a secret page!

@@ -8,36 +8,11 @@ A static site generator that supports:
 - XML Schemas
 - YAML Schemas (Coming soon)
 
-# Setup
+# Documentation
 
-Install the package via your favorite virtual environment manager:
+Documentation for how to use menagerie is located at [https://bwc9876.github.io/menagerie/]
 
-```shell
-pipenv install menagerie-docs
-```
 
-Run the `start_project` command
+# Contributing 
 
-```shell
-python -m menagerie start_project MySite
-```
-
-This will create a `content/` folder as well as a `config.json` within a folder called `MySite`.
-
-Also, you may want to add `./m_cache` to your .gitignore
-
-# Building
-
-To generate the site, run the following:
-
-```shell
-python -m menagerie generate
-```
-
-This will output to a folder named `out/`; to view the site open the generated `index.html` in your browser.
-
-## Custom Config Path
-
-```shell
-python -m menagerie generate --config=PATH/TO/CONFIG
-```
+To contribute to menagerie, take a look at (CONTRIBUTING.md)[https://github.com/Bwc9876/menagerie/CONTRIBUTING.md]
