@@ -20,7 +20,7 @@
         "icon": "download"
       }
     ],
-    "navbar_icon": "images/logo.webp",
+    "navbar_icon": "images/logo.svg",
     "navbar_icon_size": [32, 32],
     "meta": {
       "description": "Documentation for using the menagerie-docs static site generator",
