@@ -17,7 +17,7 @@
       {
         "name": "PyPi",
         "link": "https://pypi.org/project/menagerie-docs/",
-        "icon": "download"
+        "icon": "boxes"
       }
     ],
     "navbar_icon": "images/logo.svg",
