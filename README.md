@@ -15,4 +15,4 @@ Documentation for how to use menagerie is located at [https://bwc9876.github.io/
 
 # Contributing 
 
-To contribute to menagerie, take a look at [CONTRIBUTING.md](https://github.com/Bwc9876/menagerie/CONTRIBUTING.md)
+To contribute to menagerie, take a look at [CONTRIBUTING.md](https://github.com/Bwc9876/menagerie/blob/master/CONTRIBUTING.md)
