@@ -40,10 +40,10 @@ To generate the site, run the `generate` command.
 $ python -m menagerie generate
 ```
 
-You can also specify a different config file with the `--config` option.
+You can also specify a different config file by passing it in as an arg.
 
 ```shell
-$ python -m menagerie generate --config=my-config.json
+$ python -m menagerie generate my-config.json
 ```
 
 # Next steps
