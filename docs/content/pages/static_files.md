@@ -38,3 +38,6 @@ still works, however.
 
 It's recommended to use the `.webp` format for images.
 
+# Setting up favicons
+
+Menagerie will look in the folder specified in the `favicon_folder` config property, it will look for png files with specific names.  To help generate these, use this tool: [Favicon generator](https://www.favicon-generator.org/).  Make sure to select "Generate icons for Web, Android, ...".  Put the contents to the generated zip file in the `favicon_folder` folder.  You can delete `manifest.json` and `browser.config.xml` as meangerie will make these for you. 
