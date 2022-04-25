@@ -5,9 +5,7 @@
 {% macro tw(name, content) %}
     <meta name="twitter:{{ name }}" content="{{ content }}"/>
 {% endmacro %}
-{% macro fav(filename) %}
-    {{ (settings['brand']['favicon_folder'] + filename)|static }}
-{% endmacro %}
+{% macro fav(filename) %}{{ (settings['brand']['favicon_folder'] + filename)|static }}{% endmacro %}
 
 {# Variable Declarations #}
 {% if page.meta['title']|lower == 'home' %}
