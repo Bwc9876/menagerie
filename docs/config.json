@@ -21,7 +21,7 @@
       }
     ],
     "navbar_icon": "images/logo.svg",
-    "navbar_icon_size": [32, 32],
+    "navbar_icon_size": [25, 25],
     "meta": {
       "description": "Documentation for using the menagerie-docs static site generator",
       "image": "images/logo.webp",
