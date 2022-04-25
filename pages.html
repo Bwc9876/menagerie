@@ -5,7 +5,7 @@
 - *.yml -&gt; YAML Schema (Support coming soon)
 </code></pre><h1 id="page-metadata">Page Metadata</h1><p>Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.<br> The way to describe metadata is different depending on what language you're using</p><h2 id="markdown-metadata">Markdown Metadata</h2><p>Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:</p><pre><code class="language-md">Title: My Page
 Sort-Priority: 100
-</code></pre><h2 id="html-metadata">HTML Metadata</h2><p>Uses <strong>jinja</strong> comments (<code>{# #}</code>), create comments near the top of the file that look like this (note the <code>~</code> characters):</p><pre><code class="language-jinja2">{#~ Title: My Page ~#}
+</code></pre><h2 id="html-metadata">HTML Metadata</h2><p>Uses <strong>jinja</strong> comments (<code>{# #}</code>), create comments near the top of the file that look like this (note the <code>~</code> characters):</p><pre><code class="language-text">{#~ Title: My Page ~#}
 {#~ Sort-Priority: ~#}
 </code></pre><h2 id="json-schema-metadata">JSON Schema Metadata</h2><p>Create a top-level key named <code>$docs</code>. Then simply put in keys:</p><pre><code class="language-json">{
     "$docs": {
@@ -27,7 +27,7 @@ Sort-Priority: 100
         "schema": "styles/my_schema_styles.css"
     }
 }
-</code></pre><p>You can also specify one for schemas only.</p><h1 id="grouping-pages">Grouping Pages</h1><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-txt">- index.md
+</code></pre><p>You can also specify one for schemas only.</p><h1 id="grouping-pages">Grouping Pages</h1><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-text">- index.md
 - schemas/
     - my_schema.json
     - my_other_schema.xsd
