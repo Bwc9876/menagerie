@@ -1,6 +1,4 @@
-{% macro fav(link) %}
-    {{ (settings['brand']['favicon_folder'] + link)|static }}
-{% endmacro %}
+{% macro fav(link) %}{{ (settings['brand']['favicon_folder'] + link)|static }}{% endmacro %}
 {% macro categories(in_list) %}{% for cat in in_list %}"{{ cat }}"{% if loop.last == False %},{% endif %}
 {% endfor %}{% endmacro %}
 {
