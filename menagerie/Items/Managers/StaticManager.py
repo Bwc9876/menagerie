@@ -5,7 +5,6 @@ from menagerie.Items.Static.StaticCSS import StaticCSS
 from menagerie.Items.Static.StaticImage import StaticImage
 from menagerie.Items.Static.StaticItem import StaticItem
 from menagerie.Items.Static.StaticJS import StaticJS
-from menagerie.Settings import Settings
 
 
 class StaticManager(AbstractManager):
@@ -15,7 +14,7 @@ class StaticManager(AbstractManager):
 
     def __init__(self, site_info) -> None:
         super(StaticManager, self).__init__(site_info)
-        self.root_dir = Path(Settings['paths', 'static'])
+        self.root_dir = Path(self.gen.settings['paths', 'static'])
         self.gen.shared_info['static_map'] = {}
         self.gen.shared_info['image_sizes'] = {}
         self.gen.shared_info['static_filter'] = self.get_static
@@ -36,4 +35,4 @@ class StaticManager(AbstractManager):
         path = rel_path
         if rel_path in self.gen.shared_info['static_map'].keys():
             path = Path(rel_path).with_suffix(self.gen.shared_info['static_map'].get(rel_path)).as_posix()
-        return Settings['url_prefix'] + str(path)
+        return self.gen.settings['url_prefix'] + str(path)

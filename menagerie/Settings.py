@@ -89,12 +89,14 @@ def setup_settings(config_path: Path):
     try:
         config = loads(config_path.read_text(encoding='utf-8'))
         validate(instance=config, schema=schema)
-        Settings.update(NestedDict(config))
-        Settings['out_dir'] = Path(Settings['paths', 'out'])
-        Settings['content_dir'] = Path(Settings['paths', 'content'])
-        Settings['url_prefix'] = getenv("URL_PREFIX", "")
-        Settings['config_path'] = config_path
-        Logger.update_level_from_string(Settings['log_level'])
+        new_config = Settings.copy()
+        new_config.update(NestedDict(config))
+        new_config['out_dir'] = Path(new_config['paths', 'out'])
+        new_config['content_dir'] = Path(new_config['paths', 'content'])
+        new_config['url_prefix'] = getenv("URL_PREFIX", "")
+        new_config['config_path'] = config_path
+        Logger.update_level_from_string(new_config['log_level'])
+        return new_config
     except FileNotFoundError:
         Logger.log_error(f"Can't find config file: `{config_path.as_posix()}`")
     except JSONDecodeError as e:

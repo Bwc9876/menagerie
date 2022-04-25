@@ -10,9 +10,9 @@ If you want reference on what each property in this file does, take a look at th
 
 ## Using a Different Config File
 
-You can use a different config file during generation using the `--config` flag
+You can use a different config file during generation by passing it in after `generate`
 ```shell
-$ python -m menageri generate --config=path/to/config.json
+menagerie generate path/to/config.json
 ```
 
 # Environment Variables
@@ -25,7 +25,7 @@ To counteract this I can set my `URL_PREFIX` variable to `/docs/out/` so that wa
 
 If you're using pipenv this is as simple as making a file called `.env` at the root of your docs folder and doing
 ```shell
-$ pipenv run python -m menagerie generate
+pipenv run menagerie generate
 ```
 Pipenv should automatically load environment variables from `.env` for you
 

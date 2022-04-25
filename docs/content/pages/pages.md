@@ -38,7 +38,7 @@ Sort-Priority: 100
 Uses **jinja** comments (`{{ '{#' }} {{ '#}' }}`), create comments near the top of the file that look like this (note
 the `~` characters):
 
-```jinja2
+```text
 {{ '{#~' }} Title: My Page {{ '~#}' }}
 {{ '{#~' }} Sort-Priority: {{ '~#}' }}
 ```
@@ -141,7 +141,7 @@ You can also specify one for schemas only.
 To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a
 dropdown for all of my schemas I might lay out my `pages` folder like so:
 
-```txt
+```text
 - index.md
 - schemas/
     - my_schema.json
