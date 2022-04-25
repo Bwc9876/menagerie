@@ -14,7 +14,7 @@ To get started, install `menagerie-docs` with your package manager.
 pip install menagerie-docs
 ```
 
-# Starting a project
+# Starting a Project
 
 Once installed, you can use the `new-project` command.
 
@@ -32,7 +32,7 @@ This will create a new folder called `MyCoolDocsSite` with the following content
 - config.json
 ```
 
-# Generating the site
+# Generating the Site
 
 To generate the site, run the `generate` command.
 
@@ -46,7 +46,7 @@ You can also specify a different config file by passing it in as an arg.
 menagerie generate my-config.json
 ```
 
-# Next steps
+# Next Steps
 
 Now you're ready to start creating your site!  
 For help with this, look at the rest of this site, the [pages]({{ "pages"|route }}) page is a good place to start.  
