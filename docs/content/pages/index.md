@@ -19,7 +19,7 @@ $ pip install menagerie-docs
 Once installed, you can use the `new-project` command.
 
 ```shell
-$ python -m menagerie new-project MyCoolDocsSite
+$ menagerie new-project MyCoolDocsSite
 ```
 
 This will create a new folder called `MyCoolDocsSite` with the following contents:
@@ -37,13 +37,13 @@ This will create a new folder called `MyCoolDocsSite` with the following content
 To generate the site, run the `generate` command.
 
 ```shell
-$ python -m menagerie generate
+$ menagerie generate
 ```
 
 You can also specify a different config file by passing it in as an arg.
 
 ```shell
-$ python -m menagerie generate my-config.json
+$ menagerie generate my-config.json
 ```
 
 # Next steps
