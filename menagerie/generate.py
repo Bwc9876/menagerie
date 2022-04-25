@@ -13,18 +13,7 @@ __all__ = (
 )
 
 
-def generate(*argv):
-    config_path = None
-    for arg in argv:
-        if '--config=' in arg:
-            try:
-                config_path = Path(arg.split('=')[1])
-                break
-            except IndexError:
-                Logger.log_error("Usage: python generate.py --config=CONFIG_PATH")
-                return
-    if config_path is None:
-        config_path = Path('config.json')
+def generate(config_path: Path):
     Logger.log_info("Loading Config")
     setup_settings(config_path)
     managers = (PageManager, StaticManager, MetaManager)

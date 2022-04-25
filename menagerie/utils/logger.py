@@ -1,3 +1,4 @@
+import sys
 from enum import IntEnum
 
 from menagerie.utils.console import ConsoleTextStyle, FourBitConsoleColors, color_text
@@ -67,8 +68,10 @@ class Logger:
             cls.__print(message, log_type)
 
     @classmethod
-    def log_error(cls, message: str) -> None:
+    def log_error(cls, message: str, should_exit: bool = True) -> None:
         cls.log(message, LogType.critical)
+        if should_exit:
+            sys.exit(1)
 
     @classmethod
     def log_warning(cls, message: str) -> None:

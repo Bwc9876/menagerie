@@ -87,8 +87,8 @@ def setup_settings(config_path: Path):
     schema = loads(pkg_resources.read_text(schemas, 'config_schema.json'))
 
     try:
-        config = load(config_path.open(mode='r', encoding='utf-8'))
-        validate(config, schema)
+        config = loads(config_path.read_text(encoding='utf-8'))
+        validate(instance=config, schema=schema)
         Settings.update(NestedDict(config))
         Settings['out_dir'] = Path(Settings['paths', 'out'])
         Settings['content_dir'] = Path(Settings['paths', 'content'])
