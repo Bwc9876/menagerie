@@ -21,12 +21,24 @@
       }
     ],
     "navbar_icon": "images/logo.svg",
-    "navbar_icon_size": [25, 25],
+    "navbar_icon_size": [
+      25,
+      25
+    ],
     "meta": {
       "description": "Documentation for using the menagerie-docs static site generator",
+      "categories": [
+        "utilities"
+      ],
+      "keywords": [
+        "Python",
+        "Jinja2",
+        "Documentation"
+      ],
       "image": "images/logo.webp",
       "theme_color": "#ffffff",
-      "image_alt": "The menagerie logo"
+      "image_alt": "The menagerie logo",
+      "bg_color": "#ffffff"
     }
   }
 }
