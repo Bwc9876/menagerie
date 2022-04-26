@@ -28,7 +28,8 @@ Settings = NestedDict({
     'themes': {
         'bootstrap': "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css",
         'highlight_js': "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/default.min.css",
-        'theme': "light"
+        'theme': "light",
+        'theme-opposite': None
     },
     'brand': {
         'app_name': "My App",
@@ -95,6 +96,7 @@ def setup_settings(config_path: Path):
         new_config['content_dir'] = Path(new_config['paths', 'content'])
         new_config['url_prefix'] = getenv("URL_PREFIX", "")
         new_config['config_path'] = config_path
+        new_config['themes', 'theme-opposite'] = "light" if config['themes', 'theme'] == 'dark' else "dark"
         Logger.update_level_from_string(new_config['log_level'])
         return new_config
     except FileNotFoundError:

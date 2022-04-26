@@ -135,18 +135,18 @@
         {% endif %}
         {% if settings['brand']['footer']['show_back_to_top'] %}
             <div class="col-md">
-                <a href="#top">Back To Top</a>
+                <a class="link-{{ settings['theme']['theme-opposite'] }}" href="#top">Back To Top</a>
             </div>
         {% endif %}
         {% for item in settings['brand']['footer']['links'] %}
             <div class="col-md">
-                <a {% if item['external'] %}target="_blank" rel="_blank"{% endif %}
+                <a class="link-{{ settings['theme']['theme-opposite'] }}" {% if item['external'] %}target="_blank" rel="_blank"{% endif %}
                    href="{{ item['link'] }}">{{ item['text'] }}</a>
             </div>
         {% endfor %}
         {% if settings['brand']['footer']['show_made_with'] %}
             <div class="col-md">
-                <a target="_blank" rel="noopener" href="https://github.com/Bwc9876/menagerie">Made With Menagerie</a>
+                <a class="link-{{ settings['theme']['theme-opposite'] }}" target="_blank" rel="noopener" href="https://github.com/Bwc9876/menagerie">Made With Menagerie</a>
             </div>
         {% endif %}
     </div>
