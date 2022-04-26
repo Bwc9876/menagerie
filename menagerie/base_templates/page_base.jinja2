@@ -80,7 +80,7 @@
                     <ul class="navbar-nav mb-2 ms-md-auto mb-lg-0">
                         {% for social in settings['brand']['socials'] %}
                             <li class="nav-item me-2">
-                                <a class="nav-link p-2 fs-5" target="_blank" rel="noopener" href="{{ social['link'] }}">
+                                <a class="nav-link p-2 fs-5" aria-label="{{ social['name'] }}" target="_blank" rel="noopener" href="{{ social['link'] }}">
                                     <i class="bi-{{ social['icon'] }}"></i>
                                     <small class="d-xl-none ms-2">{{ social['name'] }}</small>
                                 </a>
