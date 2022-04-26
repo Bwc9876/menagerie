@@ -96,7 +96,7 @@ def setup_settings(config_path: Path):
         new_config['content_dir'] = Path(new_config['paths', 'content'])
         new_config['url_prefix'] = getenv("URL_PREFIX", "")
         new_config['config_path'] = config_path
-        new_config['themes', 'theme-opposite'] = "light" if config['themes', 'theme'] == 'dark' else "dark"
+        new_config['themes', 'theme-opposite'] = "light" if new_config['themes', 'theme'] == 'dark' else "dark"
         Logger.update_level_from_string(new_config['log_level'])
         return new_config
     except FileNotFoundError:
