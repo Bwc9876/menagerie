@@ -2,7 +2,17 @@
 
 {% block resources %}
     <script>
-        function jqueryLoaded(){
+
+        let libsLoaded = 0;
+
+        function onLibLoaded(){
+            libsLoaded += 1;
+            if (libsLoaded === 2) {
+                startAnchors();
+            }
+        }
+
+        function startAnchors(){
             $(document).ready(() => {
                 anchorOnLoad()
             });
