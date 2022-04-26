@@ -2,16 +2,18 @@
 
 {% block resources %}
     <script defer>
-        $(document).ready(() => {
-            anchorOnLoad()
-        });
-        $(document).on('click', 'a[href^="#"]', function (event) {
-            if (this.href.split("#")[1] === "top") {
-                return
-            }
-            event.preventDefault();
-            history.pushState({}, '', this.href)
-        });
+        window.onload = function(){
+            $(document).ready(() => {
+                anchorOnLoad()
+            });
+            $(document).on('click', 'a[href^="#"]', function (event) {
+                if (this.href.split("#")[1] === "top") {
+                    return
+                }
+                event.preventDefault();
+                history.pushState({}, '', this.href)
+            });
+        }
 
         function flashElement(elementId) {
             myElement = document.getElementById(elementId).parentNode;
