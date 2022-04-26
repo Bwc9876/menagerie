@@ -50,7 +50,7 @@ jobs:
       - name: Install Self
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
-          command: install .
+          command: run pip install --editable .
 
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
