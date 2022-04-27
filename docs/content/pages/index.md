@@ -43,7 +43,7 @@ menagerie generate
 You can also specify a different config file by passing it in as an arg.
 
 ```shell
-menagerie generate my-config.json
+menagerie generate --config my-config.json
 ```
 
 # Next Steps

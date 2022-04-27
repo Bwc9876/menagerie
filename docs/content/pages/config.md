@@ -12,7 +12,7 @@ If you want reference on what each property in this file does, take a look at th
 
 You can use a different config file during generation by passing it in after `generate`
 ```shell
-menagerie generate path/to/config.json
+menagerie generate --config path/to/config.json
 ```
 
 # Environment Variables
