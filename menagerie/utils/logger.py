@@ -69,9 +69,10 @@ class Logger:
 
     @classmethod
     def log_error(cls, message: str, should_exit: bool = True) -> None:
-        cls.log(message, LogType.critical)
         if should_exit:
-            sys.exit(1)
+            sys.exit(cls.__get_colored_str(message, LogType.critical))
+        else:
+            cls.log(message, LogType.critical)
 
     @classmethod
     def log_warning(cls, message: str) -> None:
@@ -95,4 +96,8 @@ class Logger:
 
     @classmethod
     def __print(cls, message: str, log_type: LogType) -> None:
-        print(color_text(message, cls.__log_styles.get(log_type), reset=True))
+        print(cls.__get_colored_str(message, log_type))
+
+    @classmethod
+    def __get_colored_str(cls, message: str, log_type: LogType) -> str:
+        return color_text(message, cls.__log_styles.get(log_type), reset=True)
