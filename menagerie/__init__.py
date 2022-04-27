@@ -1,4 +1,5 @@
 import sys
+import argparse
 from pathlib import Path
 from textwrap import dedent
 
@@ -14,23 +15,31 @@ __help__ =  dedent("""
                     menagerie version : Shows the version
             """)
 
+def get_parser():
+    
+    # Root Parser
+    parser = argparse.ArgumentParser(description="Run a menagerie command")
+    parser.add_argument("command", choices=['generate', 'new-project'], help="The command you wish to perform")
+    parser.add_argument("--version", action='version', version=__version__)
+    subparsers = parser.add_subparsers(help='sub-command help')
+
+    # New Project Parser
+    new_proj_parser = subparsers.add_parser('new-project', help="new-project help")
+    subparsers.add_argument('name', help="The new folder to create and place the new project in", default="NewProject")
+
+    # Generate Parser
+    gen_parser = subparsers.add_parser('generate', help="generate help")
+    gen_parser.add_argument("--config", help="Specify a differeny config file to use", default="config.json", type=argparse.FileType('r', encoding='utf-8'))
+
+    return parser
+
 
 def execute_from_commandline(args: list[str] = None):
+    parser = get_parser()
     if args is None:
         args = sys.argv
-    match [arg.lower() for arg in args[1:]]:
-        case ['new-project']:
-            new_project("NewProject")
-        case ['new-project', name]:
-            new_project(name)
-        case ['generate']:
-            generate(Path('config.json'))
-        case ['generate', Path(config_path)]:
-            generate(config_path)
-        case ['version']:
-            print(f"Menagerie Version: {__version__}")
-        case ['help']:
-            print(__help__)
-        case _:
-            print(f"Invalid Command '{' '.join(sys.argv)}'")
-            print(__help__)
+    parsed_args = parser.parse_args(args)
+    if parsed_args.command == 'generate':
+        generate(Path(parsed_args.config))
+    elif parsed_args.command == 'new-project':
+        new_project(parsed_args.name)
