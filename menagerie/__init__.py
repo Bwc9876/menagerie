@@ -37,8 +37,9 @@ def get_parser():
 def execute_from_commandline(args: list[str] = None):
     parser = get_parser()
     if args is None:
-        args = sys.argv
-    parsed_args = parser.parse_args(args)
+        parsed_args = parser.parse_args()
+    else:
+        parsed_args = parser.parse_args(args)
     if parsed_args.command == 'generate':
         generate(Path(parsed_args.config))
     elif parsed_args.command == 'new-project':
