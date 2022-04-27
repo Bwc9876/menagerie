@@ -15,21 +15,21 @@ __help__ =  dedent("""
                     menagerie version : Shows the version
             """)
 
+
 def get_parser():
-    
+
     # Root Parser
     parser = argparse.ArgumentParser(description="Run a menagerie command")
-    parser.add_argument("command", choices=['generate', 'new-project'], help="The command you wish to perform")
     parser.add_argument("--version", action='version', version=__version__)
-    subparsers = parser.add_subparsers(help='sub-command help')
+    subparsers = parser.add_subparsers(title='command', dest='command', required=True)
 
     # New Project Parser
-    new_proj_parser = subparsers.add_parser('new-project', help="new-project help")
+    new_proj_parser = subparsers.add_parser('new-project', help="Start a new menagerie site")
     new_proj_parser.add_argument('name', help="The new folder to create and place the new project in", default="NewProject")
 
     # Generate Parser
-    gen_parser = subparsers.add_parser('generate', help="generate help")
-    gen_parser.add_argument("--config", help="Specify a differeny config file to use", default="config.json", type=argparse.FileType('r', encoding='utf-8'))
+    gen_parser = subparsers.add_parser('generate', help="Generate an existing menagerie site")
+    gen_parser.add_argument("--config", help="Specify a different config file to use", default="config.json", type=Path)
 
     return parser
 
