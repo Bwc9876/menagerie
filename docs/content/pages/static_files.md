@@ -30,7 +30,7 @@ You can also pass in a value of `False` to this filter to not prepend the `URL_P
 
 # Minification
 
-JS and CSS files are minimizes automatically. (this can be disabled in `config.json`). You do not need to worry about
+JS and CSS files are minified automatically. (this can be disabled in `config.json` with the [minify]({{ 'Configuration Schema'|route }}#minify) option). You do not need to worry about
 changing references to these files to `.min.js` and `.min.css`, menagerie will automatically change it. Using `.min.*`
 still works, however.
 
@@ -40,4 +40,4 @@ It's recommended to use the `.webp` format for images.
 
 # Setting up Favicons
 
-Menagerie will look in the folder specified in the `favicon_folder` config property, it will look for png files with specific names.  To help generate these, use this tool: [Favicon generator](https://www.favicon-generator.org/).  Make sure to select "Generate icons for Web, Android, ...".  Put the contents of the generated zip file in the `favicon_folder` folder.  You can delete `manifest.json` and `browser.config.xml` as menagerie will make these for you. 
+Menagerie will look in the folder specified in the [favicon_folder]({{ 'Configuration Schema'|route }}#brand_favicon_folder) config property, it will look for png files with specific names.  To help generate these, use this tool: [Favicon generator](https://www.favicon-generator.org/).  Make sure to select "Generate icons for Web, Android, ...".  Put the contents of the generated zip file in the `favicon_folder` folder.  You can delete `manifest.json` and `browser.config.xml` as menagerie will make these for you. 

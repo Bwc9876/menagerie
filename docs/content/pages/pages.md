@@ -80,7 +80,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 | **Sort_Priority** | How much to prioritize this page in the navbar, should be from 0-100.                                                                                                     | 30                                           |
 | **Render_TOC**    | Whether to render a table of contents on this page (HTML/MD Pages only)                                                                                                   | True                                         |
 | **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
-| **Hide_In_Nav**   | Whether to hide this page in the navbar (this site [has one]({{ secret_link }}))                                                                                          | False                                        |
+| **Hide_In_Nav**   | Whether to hide this page in the navbar (this site [has a hidden page]({{ secret_link }}))                                                                                | False                                        |
 
 # Linking to Pages
 
@@ -93,6 +93,16 @@ You can link to other pages in markdown and html pages by using the `route` filt
 ```md
 [Check out my cool page!]({{ '{{' }} 'my page'|route {{ '}}' }})
 ```
+
+## Referencing Schema Properties
+
+When you want to link to specific schemas properties, you can use the normal `route` filter and append the path of the property after a hashtag.
+
+```md
+[Link to my schema property]({{ '{{' }} "My Schema"|route {{ '}}' }}#my-property)
+```
+
+If you don't know the path of the property, go to the page for the schema and click on it; The path should then appear in your URL bar after the `#` character.
 
 # Table of Contents
 
@@ -158,3 +168,17 @@ the metadata. Groups only allow for `title` and `sort_priority` to be set.
 # Minification
 
 All rendered pages are minified to save on space and network load (this can be disabled in `config.json`).
+
+# Built-In Filters & Globals Reference
+
+In addition to [all the built-in jinja filters](https://jinja.palletsprojects.com/en/3.1.x/templates/#builtin-filters), menagerie provides some more:
+
+| **Name**    | **Description**                                                                               |
+|-------------|-----------------------------------------------------------------------------------------------|
+| `route`     | Route a page title to the output file path                                                    |
+| `static`    | Get a static file's path, replacing file extensions if necessary                              |
+| `full_url`  | Get the full URL of a file                                                                    |
+| `simple_md` | Render markdown in the string to HTML (Probably wanna pass the output of this through `safe`) |
+
+Also, you have access to the `settings` dictionary, which holds all options from your `config.json` and some more.  
+To view these properties, look at [Settings.py](https://github.com/Bwc9876/menagerie/blob/master/menagerie/Settings.py) in the source code.
