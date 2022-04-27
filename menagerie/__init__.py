@@ -25,7 +25,7 @@ def get_parser():
 
     # New Project Parser
     new_proj_parser = subparsers.add_parser('new-project', help="new-project help")
-    subparsers.add_argument('name', help="The new folder to create and place the new project in", default="NewProject")
+    new_proj_parser.add_argument('name', help="The new folder to create and place the new project in", default="NewProject")
 
     # Generate Parser
     gen_parser = subparsers.add_parser('generate', help="generate help")
