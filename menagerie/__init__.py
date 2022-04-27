@@ -20,7 +20,7 @@ def get_parser():
 
     # Root Parser
     parser = argparse.ArgumentParser(description="Run a menagerie command")
-    parser.add_argument("--version", action='version', version=__version__)
+    parser.add_argument("-v", "--version", action='version', version=__version__)
     subparsers = parser.add_subparsers(title='command', dest='command', required=True)
 
     # New Project Parser
@@ -29,7 +29,7 @@ def get_parser():
 
     # Generate Parser
     gen_parser = subparsers.add_parser('generate', help="Generate an existing menagerie site")
-    gen_parser.add_argument("--config", help="Specify a different config file to use", default="config.json", type=Path)
+    gen_parser.add_argument("-c", "--config", help="Specify a different config file to use", default="config.json", type=Path)
 
     return parser
 
