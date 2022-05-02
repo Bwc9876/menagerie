@@ -19,6 +19,15 @@ Menagerie will look for the following file extensions to generate from:
 - *.yml -> YAML Schema (Support coming soon)
 ```
 
+## A Note About Home
+
+When menagerie encounters a page titled 'home', special behaviour occurs:
+
+- The title of the page is set to *just* the app name, and the "Home -" is omitted
+- The navbar icons and app name will lead to that page when clicked
+
+You want to set `Out_File` to `index` on this page so your webserver knows to use this page as the landing document.
+
 # Page Metadata
 
 Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.  
