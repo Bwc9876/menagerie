@@ -401,6 +401,11 @@
         }
       },
       "additional_properties": false
+    },
+    "extras": {
+      "type": "object",
+      "description": "Any additional properties you wish to store, these can be inserted by using the settings dictionary in pages (See Built-In Filter & Globals Reference on the pages page for more info).",
+      "default": {}
     }
   },
   "additional_properties": false

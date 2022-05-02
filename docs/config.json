@@ -40,5 +40,8 @@
       "image_alt": "The menagerie logo",
       "bg_color": "#ffffff"
     }
+  },
+  "extras": {
+    "extras_explanation": "For example, this sentence is actually a property in extras."
   }
 }

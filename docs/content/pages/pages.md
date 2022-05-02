@@ -191,3 +191,18 @@ In addition to [all the built-in jinja filters](https://jinja.palletsprojects.co
 
 Also, you have access to the `settings` dictionary, which holds all options from your `config.json` and some more.  
 To view these properties, look at [Settings.py](https://github.com/Bwc9876/menagerie/blob/master/menagerie/Settings.py) in the source code.
+
+## Extra Settings
+
+Using the `extras` key in settings allows you to define additional options to insert into pages.
+{{ settings['extras']['extras_explanation'] }}
+
+```json
+{
+    "extras": {
+        "extras_explanation": "For example, this sentence is actually a property in extras."
+    }
+}
+```
+
+This can be useful for stuff like author names, copyright, and other data that is used in multiple places and changes often.

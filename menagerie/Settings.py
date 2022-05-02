@@ -73,7 +73,8 @@ Settings = NestedDict({
             'js': True,
             'xml': True,
             'json': True
-        }
+        },
+    'extras': {}
 })
 
 
