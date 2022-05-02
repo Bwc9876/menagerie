@@ -194,7 +194,7 @@ To view these properties, look at [Settings.py](https://github.com/Bwc9876/menag
 
 ## Extra Settings
 
-Using the `extras` key in settings allows you to define additional options to insert into pages.
+Using the `extras` key in settings allows you to define additional options to insert into pages.  
 {{ settings['extras']['extras_explanation'] }}
 
 ```json
@@ -203,6 +203,11 @@ Using the `extras` key in settings allows you to define additional options to in
         "extras_explanation": "For example, this sentence is actually a property in extras."
     }
 }
+```  
+  
+```md
+... into pages.  
+{{ '{{' }} settings['extras']['extras_explanation'] {{ '}}' }}
 ```
 
 This can be useful for stuff like author names, copyright, and other data that is used in multiple places and changes often.
