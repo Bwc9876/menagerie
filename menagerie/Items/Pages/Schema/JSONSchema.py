@@ -22,8 +22,8 @@ class JSONSchema(AbstractPage):
         try:
             decoded = JSONDecoder().decode(self.get_content())
             self.meta.update({k.strip().lower(): v for k, v in decoded.get("$docs", {}).items()})
-        except JSONDecodeError:
-            Logger.log_error(f"Couldn't parse json file: {self.in_path.name}")
+        except JSONDecodeError as jde:
+            Logger.log_error(f"Couldn't parse json file: {self.in_path.name}: {str(jde)}")
 
     def inner_render(self, content: str) -> str:
         schema_renderer = TemplateRenderer(SCHEMA_SETTINGS)
