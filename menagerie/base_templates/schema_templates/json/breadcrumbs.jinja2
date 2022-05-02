@@ -4,7 +4,7 @@
             Root
         {% else %}
             <a href="#{{ node.html_id }}"
-               onclick="anchorLink('{{ node.html_id }}')">{{ node.name_for_breadcrumbs | upper_first }}</a>
+               onclick="anchorLink('{{ node.html_id }}')">{{ node.name_for_breadcrumbs }}</a>
         {% endif %}
         {% if not loop.last %}
             <i class="bi-arrow-right-short"></i>
