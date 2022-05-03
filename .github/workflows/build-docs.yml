@@ -26,9 +26,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - run: cd docs/
+      - run: cp -r docs/** .
       
-      - run: cp -r ../menagerie/schemas/ content/pages/ 
+      - run: cp -r menagerie/schemas/ docs/content/pages/ 
 
       - run: mkdir .venv
 
