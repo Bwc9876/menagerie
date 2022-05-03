@@ -52,7 +52,7 @@
 <link rel="apple-touch-icon" sizes="152x152" href="{{ fav("apple-icon-152x152.png") }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ fav("apple-icon-180x180.png") }}">
 <link rel="icon" type="image/png" sizes="192x192" href="{{ fav("android-icon-192x192.png") }}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ fav("favicon-32x32.png") }}">
+<link rel="icon" type="image/png" sizes="32x3   2" href="{{ fav("favicon-32x32.png") }}">
 <link rel="icon" type="image/png" sizes="96x96" href="{{ fav("favicon-96x96.png") }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ fav("favicon-16x16.png") }}">
 <link rel="manifest" href="{{ "manifest.webmanifest"|static }}">
@@ -60,3 +60,8 @@
 <meta name="msapplication-TileColor" content="{{ theme_color }}">
 <meta name="msapplication-TileImage" content="{{ fav("ms-icon-144x144.png") }}">
 <meta name="theme-color" content="{{ theme_color }}">
+
+{# Google Search Console Verification #}
+{% if settings['brand']['meta']['search_console_code'] is not None %}
+    <meta name="google-site-verification" content="{{ settings['brand']['meta']['search_console_code'] }}">
+{% endif %}

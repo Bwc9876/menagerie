@@ -46,6 +46,7 @@ Settings = NestedDict({
             'links': []
         },
         'meta': {
+            'search_console_code': None,
             'description': "",
             'keywords': [],
             'categories': [],
