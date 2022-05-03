@@ -62,6 +62,6 @@
 <meta name="theme-color" content="{{ theme_color }}">
 
 {# Google Search Console Verification #}
-{% if settings['brand']['meta']['search_console_code'] is not None %}
+{% if settings['brand']['meta']['search_console_code'] is False %}
     <meta name="google-site-verification" content="{{ settings['brand']['meta']['search_console_code'] }}">
 {% endif %}
