@@ -18,7 +18,7 @@ def generate(config_path: Path):
     Logger.log_info("Loading Config")
     config = setup_settings(config_path)
     managers = (PageManager, StaticManager, MetaManager)
-    parent_folder = config_path.resolve().parent()
+    parent_folder = config_path.resolve().parent
     os.chdir(str(parent_folder))
     Logger.log_info("Setting Up")
     gen = SiteGen(config, managers)
