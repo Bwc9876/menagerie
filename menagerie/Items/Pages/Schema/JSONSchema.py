@@ -17,6 +17,7 @@ SCHEMA_SETTINGS.minify = False
 class JSONSchema(AbstractPage):
     base_template = 'schema_templates/schema_template.jinja2'
     extensions = ('json', 'jsonc')
+    ignore_names = ['_folder']
 
     def load_metadata(self) -> None:
         try:

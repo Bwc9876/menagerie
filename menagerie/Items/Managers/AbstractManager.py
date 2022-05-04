@@ -42,7 +42,7 @@ class AbstractManager(ABC):
         for item_type in self.item_types:
             for ext in item_type.extensions:
                 for path in Path(self.gen.settings['content_dir'], self.root_dir).glob(f'**/*.{ext}'):
-                    if str(path) not in matches:
+                    if str(path) not in matches and path.stem not in item_type.ignore_names:
                         self.items.append(item_type(self, path.relative_to(self.gen.settings['content_dir'])))
                         matches.append(str(path))
 

@@ -19,6 +19,7 @@ class AbstractItem(ABC):
     out_path: Path
     extensions: tuple
     out_extension: str
+    ignore_names: list[str] = []
 
     def __new__(cls, *args, **kwargs):
         if cls.extensions is None:
