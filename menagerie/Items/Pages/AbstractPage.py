@@ -32,7 +32,7 @@ class AbstractPage(MinifiedItemMixin, AbstractItem, ABC):
             'sort_priority': 10,
             'hide_in_nav': False,
             'out_file': None,
-            'render_toc': self.manager.gen.settings['default-toc'],
+            'render_toc': self.manager.gen.settings['default_toc'],
             'table_of_contents': None
         }
 
