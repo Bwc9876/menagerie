@@ -21,7 +21,7 @@ Settings = NestedDict({
     'out_dir': None,
     'content_dir': None,
     'url_prefix': None,
-    'default-toc': True,
+    'default_toc': True,
     'base_url': '',
     'cache_enabled': True,
     'log_level': "Info",

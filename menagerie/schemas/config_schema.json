@@ -319,7 +319,7 @@
       },
       "additional_properties": false
     },
-    "default-toc": {
+    "default_toc": {
       "type": "boolean",
       "default": true,
       "description": "Whether to render a table of contents for each page (except schemas) by default"
