@@ -15,6 +15,12 @@ You can use a different config file during generation by passing it in after `ge
 menagerie generate --config path/to/config.json
 ```
 
+# Caching
+
+Using the `cache_enabled` config property, you can control whether you want menagerie to cache output so subsequent builds are faster.
+Before you turn on caching, add `.m_cache` to your `.gitignore` so it doesn't get pushed to the repo. Anytime menagerie encounters a file that hasn't changed since last run, the rendered version of that file will be loaded from the cache.
+A dot (`.`) is displayed instead of `Building: path/to/file.md ➔ out/path/to/out.html` if this occurs. Finally, if `config.json` is edited the entire cache will be invalidated.
+
 # Environment Variables
 
 The `URL_PREFIX` environment variable is used to prepend paths when calling `route` and `static`.  
