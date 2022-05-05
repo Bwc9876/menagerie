@@ -29,6 +29,8 @@ def generate(config_path: Path):
     gen.initialize()
     Logger.log_info("Generating Content")
     gen.generate()
+    if gen.settings['cache_enabled']:
+        gen.cache.dump()
     Logger.log_info("Done!")
 
 

@@ -52,6 +52,12 @@ jobs:
         with:
           command: run pip install --editable .
 
+      - name: Cache Output
+        uses: actions/cache@v2
+        with:
+          path: .m_cache
+          key: docs-cache
+
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
         with:

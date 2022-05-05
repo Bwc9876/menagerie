@@ -12,8 +12,8 @@ class MinifiedItemMixin(AbstractItem, ABC):
     def minify(self, content: str) -> str:
         raise NotImplementedError()
 
-    def save(self, new_content: str) -> None:
-        if self.manager.gen.settings['minify'][self.minify_key] is True:
+    def save(self, new_content: str, minify: bool = True, **kwargs) -> None:
+        if minify and self.manager.gen.settings['minify'][self.minify_key] is True:
             super(MinifiedItemMixin, self).save(self.minify(new_content))
         else:
             super(MinifiedItemMixin, self).save(new_content)

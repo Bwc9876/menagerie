@@ -48,13 +48,19 @@ class AbstractItem(ABC):
             return file.read()
 
     def generate(self) -> None:
-        if self.should_cache is False or self.manager.gen.cache.check_item_changed(self):
-            Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' ➔ ' + str(self.out_path.as_posix()))
-            self.save(self.transform(self.get_content()))
-            if self.should_cache:
-                self.manager.gen.cache.add_item(self)
+        content = self.get_content()
+        rel_path = str(self.get_path_to_open().relative_to(self.manager.gen.settings['content_dir']).as_posix())
+        should_cache = self.manager.gen.settings['cache_enabled'] and (self.byte_mode is False)
+        hit, hashed = self.manager.gen.cache.check_for_hit(rel_path, content) if should_cache else (False, None)
+        if hit:
+            Logger.log_info(".")
+            self.save(self.manager.gen.cache.get_cached_output(self.out_path), minify=False)
         else:
-            Logger.log_info("Skipping " + str(self.in_path.as_posix()) + " As It Hasn't Changed")
+            Logger.log_info("Building: " + str(self.in_path.as_posix()) + ' ➔ ' + str(self.out_path.as_posix()))
+            output = self.transform(content)
+            self.save(output)
+            if should_cache:
+                self.manager.gen.cache.memo_output(rel_path, self.out_path, hashed)
 
     @abstractmethod
     def initialize(self) -> None:
@@ -63,7 +69,7 @@ class AbstractItem(ABC):
     def transform(self, content: str | bytes) -> str | bytes:
         return content
 
-    def save(self, new_content: str | bytes) -> None:
+    def save(self, new_content: str | bytes, **kwargs) -> None:
         self.out_path.parent.mkdir(parents=True, exist_ok=True)
         kwargs = {
             'mode': 'wb+' if self.byte_mode else 'w+'
