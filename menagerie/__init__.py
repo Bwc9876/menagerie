@@ -1,16 +1,13 @@
-import sys
 import argparse
 from pathlib import Path
-from textwrap import dedent
 
 from menagerie.generate import generate
 from menagerie.new_project import new_project
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 def get_parser():
-
     # Root Parser
     parser = argparse.ArgumentParser(description="Run a menagerie command")
     parser.add_argument("-v", "--version", action='version', version=__version__)
@@ -18,11 +15,13 @@ def get_parser():
 
     # New Project Parser
     new_proj_parser = subparsers.add_parser('new-project', help="Start a new menagerie site")
-    new_proj_parser.add_argument('name', help="The new folder to create and place the new project in", default="NewProject")
+    new_proj_parser.add_argument('name', help="The new folder to create and place the new project in",
+                                 default="NewProject")
 
     # Generate Parser
     gen_parser = subparsers.add_parser('generate', help="Generate an existing menagerie site")
-    gen_parser.add_argument("-c", "--config", help="Specify a different config file to use", default="config.json", type=Path)
+    gen_parser.add_argument("-c", "--config", help="Specify a different config file to use", default="config.json",
+                            type=Path)
 
     return parser
 
