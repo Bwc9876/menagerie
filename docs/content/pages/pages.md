@@ -42,7 +42,7 @@ Uses the standard markdown metadata format, create a block at the very top of yo
 ```md
 ---
 Title: My Page
-Sort-Priority: 100
+Sort_Priority: 100
 ---
 
 # Welcome to my cool page!
