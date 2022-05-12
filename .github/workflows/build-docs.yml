@@ -56,7 +56,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .m_cache
-          key: docs-cache-${{ hashFiles(".m_cache/hashes.json") }}
+          key: docs-cache-${{ hashFiles('.m_cache/hashes.json') }}
 
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
