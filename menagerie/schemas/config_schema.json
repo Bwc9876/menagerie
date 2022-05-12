@@ -406,6 +406,25 @@
       },
       "additional_properties": false
     },
+    "search": {
+      "type": "object",
+      "description": "Options related to the search bar",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether to show the search bar in the nav bar",
+          "default": true
+        },
+        "site": {
+          "type": "string",
+          "description": "What to put in the site: argument of the Google query",
+          "examples": [
+            "www.example.com",
+            "www.mycoolsite.com"
+          ]
+        }
+      }
+    },
     "extras": {
       "type": "object",
       "description": "Any additional properties you wish to store, these can be inserted by using the settings dictionary in pages (See Built-In Filter & Globals Reference on the pages page for more info).",

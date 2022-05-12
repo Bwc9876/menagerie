@@ -67,14 +67,17 @@ Settings = NestedDict({
         'static': 'static/',
         'cache': '.m_cache/'
     },
-    'minify':
-        {
-            'html': True,
-            'css': True,
-            'js': True,
-            'xml': True,
-            'json': True
-        },
+    'minify': {
+        'html': True,
+        'css': True,
+        'js': True,
+        'xml': True,
+        'json': True
+    },
+    'search': {
+        'enabled': True,
+        'site': None
+    },
     'extras': {}
 })
 

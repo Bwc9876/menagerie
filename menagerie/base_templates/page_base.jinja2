@@ -75,11 +75,20 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
+                {% set search_enabled=settings['search']['enabled'] and settings['search']['site'] %}
+                {% if search_enabled %}
+                    <hr class="d-xl-none"/>
+                    <form action="https://google.com/search" method="get" class="d-flex me-3">
+                        <input class="d-none" type="hidden" name="q" value="site:{{ settings['search']['site'] }}">
+                        <input class="form-control me-2" type="search" placeholder="Search This Site..." name="q" aria-label="Search">
+                        <button class="btn btn-outline-{{ settings['themes']['theme-opposite'] }}" type="submit">Search</button>
+                    </form>
+                {% endif %}
                 {% if settings['brand']['socials']|length != 0 %}
                     <hr class="d-xl-none"/>
-                    <ul class="navbar-nav mb-2 ms-md-auto mb-lg-0">
+                    <ul class="navbar-nav {% if not search_enabled %}ms-md-auto{% endif %} mb-2 mb-lg-0">
                         {% for social in settings['brand']['socials'] %}
-                            <li class="nav-item me-2">
+                            <li class="nav-item  me-2">
                                 <a class="nav-link p-2 fs-5" aria-label="{{ social['name'] }}" target="_blank" rel="noopener" href="{{ social['link'] }}">
                                     <i class="bi-{{ social['icon'] }}"></i>
                                     <small class="d-xl-none ms-2">{{ social['name'] }}</small>

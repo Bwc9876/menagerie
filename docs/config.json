@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/Bwc9876/menagerie/master/menagerie/schemas/config_schema.json",
   "base_url": "https://bwc9876.github.io/",
-  "cache_enabled": true,
+  "cache_enabled": false,
   "themes": {
     "highlight_js": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-light.min.css"
   },
@@ -40,6 +40,9 @@
       "image_alt": "The menagerie logo",
       "bg_color": "#ffffff"
     }
+  },
+  "search": {
+    "enabled": false
   },
   "extras": {
     "extras_explanation": "For example, this sentence is actually a property in extras."
