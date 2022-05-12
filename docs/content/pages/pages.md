@@ -1,12 +1,14 @@
+---
 Title: Pages
 Sort_Priority: 90
+---
 
 # Pages
 
 Pages are the actual content the user sees. The page you're currently looking at is
 a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/pages/pages.md?plain=1){target='_blank'}.
 
-# Adding Pages
+## Adding Pages
 
 To create new pages, simply add them to the `pages` folder in `content`.  
 Menagerie will look for the following file extensions to generate from:
@@ -19,7 +21,7 @@ Menagerie will look for the following file extensions to generate from:
 - *.yml -> YAML Schema (Support coming soon)
 ```
 
-## A Note About Home
+### A Note About Home
 
 When menagerie encounters a page titled 'home', special behaviour occurs:
 
@@ -28,21 +30,26 @@ When menagerie encounters a page titled 'home', special behaviour occurs:
 
 You want to set `Out_File` to `index` on this page so your webserver knows to use this page as the landing document.
 
-# Page Metadata
+## Page Metadata
 
 Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.  
 The way to describe metadata is different depending on what language you're using
 
-## Markdown Metadata
+### Markdown Metadata
 
 Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:
 
 ```md
+---
 Title: My Page
 Sort-Priority: 100
+---
+
+# Welcome to my cool page!
+...
 ```
 
-## HTML Metadata
+### HTML Metadata
 
 Uses **jinja** comments (`{{ '{#' }} {{ '#}' }}`), create comments near the top of the file that look like this (note
 the `~` characters):
@@ -52,7 +59,7 @@ the `~` characters):
 {{ '{#~' }} Sort-Priority: {{ '~#}' }}
 ```
 
-## JSON Schema Metadata
+### JSON Schema Metadata
 
 Create a top-level key named `$docs`. Then simply put in keys:
 
@@ -65,7 +72,7 @@ Create a top-level key named `$docs`. Then simply put in keys:
 }
 ```
 
-## XML Schema Metadata
+### XML Schema Metadata
 
 Uses xml comments; create comments near the top of the file that look like this (note the `~` characters)
 
@@ -76,7 +83,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 <!-- ... -->
 ```
 
-# Metadata Reference
+## Metadata Reference
 
 **Note:** These are all case-insensitive
 
@@ -91,7 +98,7 @@ Uses xml comments; create comments near the top of the file that look like this 
 | **Out_File**      | Name of output file, omit the file extension                                                                                                                              | Same as name of source file                  |
 | **Hide_In_Nav**   | Whether to hide this page in the navbar (this site [has a hidden page]({{ secret_link }}))                                                                                | False                                        |
 
-# Linking to Pages
+## Linking to Pages
 
 You can link to other pages in markdown and html pages by using the `route` filter and passing in the title of the page
 
@@ -103,7 +110,7 @@ You can link to other pages in markdown and html pages by using the `route` filt
 [Check out my cool page!]({{ '{{' }} 'my page'|route {{ '}}' }})
 ```
 
-## Referencing Schema Properties
+### Referencing Schema Properties
 
 When you want to link to specific schemas properties, you can use the normal `route` filter and append the path of the property after a hashtag.
 
@@ -113,20 +120,20 @@ When you want to link to specific schemas properties, you can use the normal `ro
 
 If you don't know the path of the property, go to the page for the schema and click on it; The path should then appear in your URL bar after the `#` character.
 
-# Table of Contents
+## Table of Contents
 
 A table of contents is automatically generated for HTML and Markdown pages.  
 This can be disabled with the `render_toc` metadata attribute.
 
-## In Markdown
+### In Markdown
 
 In markdown all headings are put into the table of contents
 
-## In HTML
+### In HTML
 
 In HTML all headings **with an id** are put into the table of contents
 
-# Images
+## Images
 
 Images are [static files]({{ "static files"|route }}), in order to get the path to put in the src attribute, you can use
 the `static` filter. Pass in the path of the files relative to the `static` folder in `content`.
@@ -139,7 +146,7 @@ the `static` filter. Pass in the path of the files relative to the `static` fold
 ![My cool image]({{ '{{' }} 'images/my_image.png'|static {{ '}}' }})
 ```
 
-# Adding Styles to Pages
+## Adding Styles to Pages
 
 You can use the `styles` config option to set a global CSS file to apply to all pages, just pass in the path relative to
 the `static` folder.
@@ -155,7 +162,7 @@ the `static` folder.
 
 You can also specify one for schemas only.
 
-# Grouping Pages
+## Grouping Pages
 
 To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a
 dropdown for all of my schemas I might lay out my `pages` folder like so:
@@ -169,16 +176,16 @@ dropdown for all of my schemas I might lay out my `pages` folder like so:
 
 This will create a dropdown named "Schemas" on the navbar.
 
-## Group Metadata
+### Group Metadata
 
 Groups can also have metadata. To specify it, create a file called `_folder.json` in the folder. Then fill this out with
 the metadata. Groups only allow for `title` and `sort_priority` to be set.
 
-# Minification
+## Minification
 
 All rendered pages are minified to save on space and network load (this can be disabled in `config.json`).
 
-# Built-In Filters & Globals Reference
+## Built-In Filters & Globals Reference
 
 In addition to [all the built-in jinja filters](https://jinja.palletsprojects.com/en/3.1.x/templates/#builtin-filters), menagerie provides some more:
 
@@ -192,7 +199,7 @@ In addition to [all the built-in jinja filters](https://jinja.palletsprojects.co
 Also, you have access to the `settings` dictionary, which holds all options from your `config.json` and some more.  
 To view these properties, look at [Settings.py](https://github.com/Bwc9876/menagerie/blob/master/menagerie/Settings.py) in the source code.
 
-## Extra Settings
+### Extra Settings
 
 Using the `extras` key in settings allows you to define additional options to insert into pages.  
 {{ settings['extras']['extras_explanation'] }}

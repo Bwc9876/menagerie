@@ -1,12 +1,14 @@
+---
 Title: Home
 Sort_Priority: 100
 Render_TOC: True
+---
 
 # Menagerie Docs
 
 Menagerie docs is a python package used to generate static sites from a *menagerie* (see what I did there?) of files.
 
-# Installation
+## Installation
 
 To get started, install `menagerie-docs` with your package manager.
 
@@ -14,7 +16,7 @@ To get started, install `menagerie-docs` with your package manager.
 pip install menagerie-docs
 ```
 
-# Starting a Project
+## Starting a Project
 
 Once installed, you can use the `new-project` command.
 
@@ -32,7 +34,7 @@ This will create a new folder called `MyCoolDocsSite` with the following content
 - config.json
 ```
 
-# Generating the Site
+## Generating the Site
 
 To generate the site, run the `generate` command.
 
@@ -46,7 +48,7 @@ You can also specify a different config file by passing it in as an arg.
 menagerie generate --config my-config.json
 ```
 
-# Next Steps
+## Next Steps
 
 Now you're ready to start creating your site!  
 For help with this, look at the rest of this site, the [pages]({{ "pages"|route }}) page is a good place to start.  
