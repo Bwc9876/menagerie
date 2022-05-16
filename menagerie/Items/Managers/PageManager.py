@@ -46,7 +46,7 @@ class NavItem:
             'is_folder': self.is_folder,
             'titles': self.titles,
             'meta': self.meta,
-            'content': self.content is self.is_folder is False else [item.as_dict() for item in self.content]
+            'content': self.content if self.is_folder is False else [item.as_dict() for item in self.content]
             }
 
 
