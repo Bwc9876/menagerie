@@ -41,6 +41,14 @@ class NavItem:
         if self.is_folder:
             self.titles = [str(p.meta['title']).lower() for p in self.content]
 
+    def as_dict(self) -> dict[str, object]:
+        return {
+            'is_folder': self.is_folder,
+            'titles': self.titles,
+            'meta': self.meta,
+            'content': self.content
+            }
+
 
 class PageManager(AbstractManager):
     root_dir = 'pages'

@@ -58,7 +58,7 @@ class CacheHandler:
         # If the metadata for any item changes (such as the title), all pages may need to regenerated
         hasher = hashlib.new(self.HASH_ALGORITHM)
         for item in nav_items:
-            hasher.update(bytes(dumps(item.__dict__), 'utf-8'))
+            hasher.update(bytes(dumps(item.as_dict()), 'utf-8'))
         current_hash = hasher.hexdigest()
         if self.hashes['meta'] is None:
             self.hashes['meta'] = current_hash
