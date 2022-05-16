@@ -3,6 +3,7 @@ from pathlib import Path
 
 from markdown import Markdown, Extension
 from markdown.treeprocessors import Treeprocessor
+from markdown.extensions.admonition import AdmonitionProcessor
 
 from menagerie.Items.Pages.AbstractPage import AbstractPage
 
@@ -26,6 +27,12 @@ class MTreeProcessor(Treeprocessor):
         return node
 
 
+class MenagerieAdmonitions(AdmonitionProcessor):
+
+    CLASSNAME = "alert"
+    CLASSNAME_TITLE = "h4"
+
+
 class MenagerieMarkdownExtension(Extension):
 
     def __init__(self, page, **kwargs):
@@ -38,6 +45,8 @@ class MenagerieMarkdownExtension(Extension):
         self.tree.md = md
         self.tree.config = self.getConfigs()
         md.treeprocessors.add('menagerie_tree', self.tree, '_end')
+        md.parser.blockprocessors.register(MenagerieAdmonitions(md.parser), 'm-admonition', 105)
+
 
 
 class MDPage(AbstractPage):
@@ -61,7 +70,7 @@ class MDPage(AbstractPage):
     def __init__(self, manager, path: Path):
         super(MDPage, self).__init__(manager, path)
         md_settings = {
-            'extensions': ['extra', 'toc', 'meta', 'admonition', MenagerieMarkdownExtension(self)],
+            'extensions': ['extra', 'toc', 'meta', MenagerieMarkdownExtension(self)],
             'output-format': 'html5'
         }
         self.md = Markdown(**md_settings)
