@@ -109,6 +109,9 @@ class PageManager(AbstractManager):
 
     def generate(self):
         self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
+        nav_items = self.generate_nav_items()
+        if self.gen.settings['cache_enabled']:
+            self.gen.cache.check_for_meta_change(nav_items)
         filters = {
             'route': self.route,
             'static': self.gen.shared_info['static_filter'],
@@ -116,7 +119,7 @@ class PageManager(AbstractManager):
             'simple_md': lambda md: self.filter_md.convert(md)
         }
         da_globals = {
-            'nav_items': self.generate_nav_items(),
+            'nav_items': nav_items,
         }
         self.base_env.filters.update(filters)
         self.base_env.globals.update(da_globals)

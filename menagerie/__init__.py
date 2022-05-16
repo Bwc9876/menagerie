@@ -22,6 +22,7 @@ def get_parser():
     gen_parser = subparsers.add_parser('generate', help="Generate an existing menagerie site")
     gen_parser.add_argument("-c", "--config", help="Specify a different config file to use", default="config.json",
                             type=Path)
+    gen_parser.add_argument("--clear-cache", action="store_true", help="Clear the cache before generating")
 
     return parser
 

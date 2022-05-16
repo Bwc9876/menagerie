@@ -14,7 +14,7 @@ __all__ = (
 )
 
 
-def generate(config_path: Path):
+def generate(config_path: Path, clear_cache: bool = False):
     Logger.log_info("Loading Config")
     config = setup_settings(config_path)
     managers = (PageManager, StaticManager, MetaManager)
@@ -22,6 +22,8 @@ def generate(config_path: Path):
     os.chdir(str(parent_folder))
     Logger.log_info("Setting Up")
     gen = SiteGen(config, managers)
+    if clear_cache:
+        gen.cache.invalidate()
     Logger.log_info("Beginning Generation")
     Logger.log_info("Finding Content")
     gen.find()

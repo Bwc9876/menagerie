@@ -4,6 +4,7 @@ from pathlib import Path
 from shutil import rmtree
 
 from menagerie.Items.AbstractItem import AbstractItem
+from menagerie.Items.Managers.PageManager import NavItem
 
 __all__ = ('CacheHandler',)
 
@@ -27,7 +28,7 @@ class CacheHandler:
         if self.hash_file.exists():
             self.hashes = loads(self.hash_file.read_text(encoding='utf-8'))
         else:
-            self.hashes = {'config': "", 'items': {}}
+            self.hashes = {'config': "", 'meta': None, 'items': {}}
 
         config_hash = self.get_hash(settings['config_path'].read_bytes())
         if self.hashes['config'] != config_hash:
@@ -37,7 +38,7 @@ class CacheHandler:
     def invalidate(self):
         rmtree(self.out_cache)
         self.out_cache.mkdir(parents=True, exist_ok=True)
-        self.hashes = {'config': "", 'items': {}}
+        self.hashes = {'config': "", 'meta': None, 'items': {}}
 
     def get_hash(self, content: bytes) -> str:
         hasher = hashlib.new(self.HASH_ALGORITHM)
@@ -53,6 +54,18 @@ class CacheHandler:
 
     def get_cached_output(self, out_path: Path) -> str:
         return self.get_out_cache_path(out_path).read_text(encoding='utf-8')
+
+    def check_for_meta_change(nav_items: list[NavItem]):
+        # If the metadata for any item changes (such as the title), all pages may need to regenerated
+        hasher = hashlib.new(self.HASH_ALGORITHM)
+        for item in nav_items:
+            hasher.update(bytes(dumps(item.__dict__), 'utf-8'))
+        current_hash = hasher.hexdigest()
+        if self.hashes['meta'] is None:
+            self.hashes['meta'] = current_hash
+        elif self.hashes['meta'] != current_hash:
+            self.invalidate()
+            self.hashes['meta'] = current_hash
 
     def memo_output(self, rel_path: str, out_path: Path, hashed_content: str):
         self.hashes['items'][rel_path] = hashed_content
