@@ -9,9 +9,13 @@ from menagerie.Items.Pages.AbstractPage import AbstractPage
 
 __all__ = ('MDPage',)
 
+HEADER_BORDER_CLASSES = ' border-bottom border-{{ settings[\'themes\'][\'theme-opposite\'] }} pb-1 mb-1'
+
 ADDITIONAL_CLASSES: dict[str, str] = {
     'img': "img-fluid rounded mx-auto d-flex",
-    'table': "table table-striped"
+    'table': "table table-striped",
+    'h1': 'border-2' + HEADER_BORDER_CLASSES,
+    'h2': 'border-1' + HEADER_BORDER_CLASSES
 }
 
 

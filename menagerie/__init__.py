@@ -34,6 +34,6 @@ def execute_from_commandline(args: list[str] = None):
     else:
         parsed_args = parser.parse_args(args)
     if parsed_args.command == 'generate':
-        generate(Path(parsed_args.config))
+        generate(Path(parsed_args.config), parsed_args.clear_cache)
     elif parsed_args.command == 'new-project':
         new_project(parsed_args.name)
