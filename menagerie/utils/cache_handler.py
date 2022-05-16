@@ -4,7 +4,6 @@ from pathlib import Path
 from shutil import rmtree
 
 from menagerie.Items.AbstractItem import AbstractItem
-from menagerie.Items.Managers.PageManager import NavItem
 
 __all__ = ('CacheHandler',)
 
@@ -55,7 +54,7 @@ class CacheHandler:
     def get_cached_output(self, out_path: Path) -> str:
         return self.get_out_cache_path(out_path).read_text(encoding='utf-8')
 
-    def check_for_meta_change(nav_items: list[NavItem]):
+    def check_for_meta_change(nav_items: list):
         # If the metadata for any item changes (such as the title), all pages may need to regenerated
         hasher = hashlib.new(self.HASH_ALGORITHM)
         for item in nav_items:
