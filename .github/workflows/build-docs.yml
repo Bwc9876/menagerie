@@ -51,6 +51,8 @@ jobs:
         uses: VaultVulp/action-pipenv@v2.0.1
         with:
           command: run pip install --editable .
+          
+      - run: echo ::set-env name=GITHUB_LAST_RUN_NUMBER::$(($GITHUB_RUN_NUMBER-1))
 
       - name: Cache Output
         uses: actions/cache@v2
@@ -58,7 +60,7 @@ jobs:
           path: .m_cache
           key: docs-cache-${{ env.GITHUB_RUN_NUMBER }}
           restore-keys: |
-            docs-cache-${{ env.GITHUB_RUN_NUMBER - 1 }}
+            docs-cache-${{ env.GITHUB_LAST_RUN_NUMBER }}
 
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
