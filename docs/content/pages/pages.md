@@ -18,7 +18,7 @@ Menagerie will look for the following file extensions to generate from:
 + *.jinja2, *.html, *.htm -> HTML
 + *.json, *.jsonc -> JSON Schema
 + *.xsd, *.xml -> XML Schema
-- *.yml -> YAML Schema (Support coming soon)
+- *.yml -> YAML Schema
 ```
 
 ### A Note About Home
@@ -70,6 +70,17 @@ Create a top-level key named `$docs`. Then simply put in keys:
         "sort_priority": 100
     }
 }
+```
+
+### YAML Schema Metadata
+
+Create a top-level dictionary named `$docs`. Then simply put in the keys:
+
+```yaml
+$docs:
+  title: My Schema
+  description: My really cool schema
+  sort_priority: 100
 ```
 
 ### XML Schema Metadata

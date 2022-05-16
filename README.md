@@ -6,7 +6,7 @@ A static site generator that supports:
 - HTML
 - JSON Schemas (Limited)
 - XML Schemas
-- YAML Schemas (Coming soon)
+- YAML Schemas
 
 # Documentation
 

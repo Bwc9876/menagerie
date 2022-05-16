@@ -1,9 +1,11 @@
 from json import JSONDecoder, JSONDecodeError
 
+
 from json_schema_for_humans.generate import generate_schemas_doc
 from json_schema_for_humans.generation_configuration import GenerationConfiguration
 from json_schema_for_humans.schema.schema_to_render import SchemaToRender
 from json_schema_for_humans.template_renderer import TemplateRenderer
+from yaml import safe_load, YAMLError
 
 from menagerie.Items.Pages.AbstractPage import AbstractPage
 from menagerie.utils.logger import Logger
@@ -16,15 +18,23 @@ SCHEMA_SETTINGS.minify = False
 
 class JSONSchema(AbstractPage):
     base_template = 'schema_templates/schema_template.jinja2'
-    extensions = ('json', 'jsonc')
+    extensions = ('json', 'jsonc', 'yaml', 'yml')
     ignore_names = ['_folder']
 
     def load_metadata(self) -> None:
-        try:
-            decoded = JSONDecoder().decode(self.get_content())
-            self.meta.update({k.strip().lower(): v for k, v in decoded.get("$docs", {}).items()})
-        except JSONDecodeError as jde:
-            Logger.log_error(f"Couldn't parse json file: {self.in_path.name}: {str(jde)}")
+        if self.in_path.suffix == '.json' or self.in_path.suffix == '.jsonc':
+            try:
+                decoded = JSONDecoder().decode(self.get_content())
+                self.meta.update({k.strip().lower(): v for k, v in decoded.get("$docs", {}).items()})
+            except JSONDecodeError as jde:
+                Logger.log_error(f"Couldn't parse json file: {self.in_path.name}: {str(jde)}")
+        else:
+            try:
+                decoded = safe_load(self.get_content())
+                self.meta.update({k.strip().lower(): v for k, v in decoded.get("$docs", {}).items()})
+            except YAMLError as ymle:
+                Logger.log_error(f"Couldn't parse yaml file: {self.in_path.name}: {str(ymle)}")
+
 
     def inner_render(self, content: str) -> str:
         schema_renderer = TemplateRenderer(SCHEMA_SETTINGS)

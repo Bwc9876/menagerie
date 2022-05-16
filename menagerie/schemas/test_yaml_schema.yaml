@@ -1,0 +1,22 @@
+$schema: http://json-schema.org/draft-04/schema
+$docs:
+  title: Test YAML Schema
+  description: This schema serves no functional purpose and is only meant to show how menagerie can load YAML schemas
+
+description: This schema serves no functional purpose and is only meant to show how menagerie can load YAML schemas
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the person
+  age:
+    type: number
+    description: Age of the person
+  gender:
+    type: string
+    enum:
+      - Male
+      - Female
+      - Other
+      - Prefer not to Say
+    description: Gender of the person

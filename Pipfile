@@ -17,6 +17,7 @@ markdown = "*"
 ndicts = "*"
 json-minify = "*"
 beautifulsoup4 = "*"
+pyyaml = "*"
 
 [dev-packages]
 pipenv-setup = "*"
