@@ -56,7 +56,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: .m_cache
-          key: docs-cache
+          key: docs-cache-${{ github.event.base_ref }}
+          restore-keys: |
+            docs-cache-${{ github.event.before }}
 
       - name: Generate Docs
         uses: VaultVulp/action-pipenv@v2.0.1
