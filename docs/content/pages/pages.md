@@ -175,7 +175,7 @@ To create admonitions, use this syntax:
     Admonition Body Text
 ```
 
-You can replace the `info` with [any valid bootstrap alert type](https://getbootstrap.com/docs/5.0/components/alerts/#examples). (Or you could use your own fi you're compiling your own alert variants in SASS).
+You can replace the `info` with [any valid bootstrap alert type](https://getbootstrap.com/docs/5.0/components/alerts/#examples). Or you could use your own if you're compiling your own alert variants in SASS.
 
 ## Grouping Pages
 
