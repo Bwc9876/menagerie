@@ -61,7 +61,7 @@ class MDPage(AbstractPage):
     def __init__(self, manager, path: Path):
         super(MDPage, self).__init__(manager, path)
         md_settings = {
-            'extensions': ['extra', 'toc', 'meta', MenagerieMarkdownExtension(self)],
+            'extensions': ['extra', 'toc', 'meta', 'admonition', MenagerieMarkdownExtension(self)],
             'output-format': 'html5'
         }
         self.md = Markdown(**md_settings)
