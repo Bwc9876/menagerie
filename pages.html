@@ -35,7 +35,7 @@ Sort_Priority: 100
 }
 </code></pre><p>You can also specify one for schemas only.</p><h2 id="admonitions">Admonitions</h2><p>Menagerie also provides a way to make admonitions, which look like this:</p><div class="alert alert-danger"><p class="h4">Admonition Title</p><p>Admonition Body Text</p></div><p>To create admonitions, use this syntax:</p><pre><code class="language-md">!!! alert-info "Title"
     Admonition Body Text
-</code></pre><p>You can replace the <code>info</code> with <a href="https://getbootstrap.com/docs/5.0/components/alerts/#examples">any valid bootstrap alert type</a>. (Or you could use your own fi you're compiling your own alert variants in SASS).</p><h2 id="grouping-pages">Grouping Pages</h2><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-text">- index.md
+</code></pre><p>You can replace the <code>info</code> with <a href="https://getbootstrap.com/docs/5.0/components/alerts/#examples">any valid bootstrap alert type</a>. Or you could use your own if you're compiling your own alert variants in SASS.</p><h2 id="grouping-pages">Grouping Pages</h2><p>To create groups of pages (dropdowns in the navbar), create folders in the <code>pages</code> folder. For example if I want a dropdown for all of my schemas I might lay out my <code>pages</code> folder like so:</p><pre><code class="language-text">- index.md
 - schemas/
     - my_schema.json
     - my_other_schema.xsd
