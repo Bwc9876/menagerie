@@ -162,6 +162,21 @@ the `static` folder.
 
 You can also specify one for schemas only.
 
+## Admonitions
+
+Menagerie also provides a way to make admonitions, which look like this:
+!!! alert-danger "Admonition Title"
+    Admonition Body Text
+
+To create admonitions, use this syntax:
+
+```md
+!!! alert-info "Title"
+    Admonition Body Text
+```
+
+You can replace the `info` with [any valid bootstrap alert type](https://getbootstrap.com/docs/5.0/components/alerts/#examples). (Or you could use your own fi you're compiling your own alert variants in SASS).
+
 ## Grouping Pages
 
 To create groups of pages (dropdowns in the navbar), create folders in the `pages` folder. For example if I want a
