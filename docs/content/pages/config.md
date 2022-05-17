@@ -30,6 +30,27 @@ If you wish to clear the cache before running generate, you can use the `clear-c
 menagerie generate --clear-cache
 ```
 
+### Caching in GitHub Actions
+
+To setup caching in GitHub actions, use the pre-built cache action with some unorthadox keys:
+
+```yaml
+# ...
+- run: echo "GITHUB_PREVIOUS_RUN_NUMBER=$(($GITHUB_RUN_NUMBER-1))" >> $GITHUB_ENV
+
+- name: Cache Site
+  uses: actions/cache@v2
+  with:
+    path: ./.m_cache # (or whatever path you use)
+    key: docs-cache-${{ '{{' }} github.run_number {{ '}}' }}
+    restore-keys: |
+      docs-cache-${{ '{{' }} env.GITHUB_PREVIOUS_RUN_NUMBER {{ '}}' }}
+# ...
+```
+
+What this does is create a cache with the current run number as the key, and restores using the key of the last workflow run.  
+Note that this will only work if you're running this workflow on a machine that uses bash.
+
 ## Environment Variables
 
 The `URL_PREFIX` environment variable is used to prepend paths when calling `route` and `static`.  
