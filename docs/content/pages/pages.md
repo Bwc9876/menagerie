@@ -202,6 +202,9 @@ dropdown for all of my schemas I might lay out my `pages` folder like so:
 
 This will create a dropdown named "Schemas" on the navbar.
 
+!!! alert-warning "Nested Groups"
+    Please note that nested groups (folders within folders) are not supported
+
 ### Group Metadata
 
 Groups can also have metadata. To specify it, create a file called `_folder.json` in the folder. Then fill this out with
