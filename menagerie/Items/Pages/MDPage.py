@@ -2,7 +2,9 @@ import re
 from pathlib import Path
 
 from markdown import Markdown, Extension
+from markdown.extensions.attr_list import AttrListExtension, get_attrs
 from markdown.treeprocessors import Treeprocessor
+from markdown.extensions.fenced_code import FencedBlockPreprocessor
 from markdown.extensions.admonition import AdmonitionProcessor
 
 from menagerie.Items.Pages.AbstractPage import AbstractPage
@@ -37,6 +39,79 @@ class MenagerieAdmonitions(AdmonitionProcessor):
     CLASSNAME_TITLE = "h4"
 
 
+def _raise_serialization_error(text):  # pragma: no cover
+    raise TypeError(
+        "cannot serialize {!r} (type {})".format(text, type(text).__name__)
+        )
+
+
+def _escape_attrib_html(text):
+    # escape attribute value
+    try:
+        if "&" in text:
+            # Only replace & when not part of an entity
+            text = re.compile(r'&(?!(?:#\d+|#x[\da-f]+|[\da-z]+);)', re.I).sub('&amp;', text)
+        if "<" in text:
+            text = text.replace("<", "&lt;")
+        if ">" in text:
+            text = text.replace(">", "&gt;")
+        if "\"" in text:
+            text = text.replace("\"", "&quot;")
+        return text
+    except (TypeError, AttributeError):  # pragma: no cover
+        _raise_serialization_error(text)
+
+
+class MenagerieFencedCode(FencedBlockPreprocessor):
+
+    def run(self, lines):
+        if not self.checked_for_deps:
+            for ext in self.md.registeredExtensions:
+                if isinstance(ext, AttrListExtension):
+                    self.use_attr_list = True
+
+            self.checked_for_deps = True
+
+        text = "\n".join(lines)
+        while 1:
+            m = self.FENCED_BLOCK_RE.search(text)
+            if m:
+                lang, id, classes, config = None, '', [], {}
+                if m.group('attrs'):
+                    id, classes, config = self.handle_attrs(get_attrs(m.group('attrs')))
+                    if len(classes):
+                        lang = classes.pop(0)
+                else:
+                    if m.group('lang'):
+                        lang = m.group('lang')
+
+                id_attr = lang_attr = class_attr = kv_pairs = ''
+                if lang:
+                    prefix = self.config.get('lang_prefix', 'language-')
+                    lang_attr = f' class="{prefix}{_escape_attrib_html(lang)}"'
+                if classes:
+                    class_attr = f' class="{_escape_attrib_html(" ".join(classes))} position-relative"'
+                else:
+                    class_attr = f' class="position-relative"'
+                if id:
+                    id_attr = f' id="{_escape_attrib_html(id)}"'
+                if self.use_attr_list and config and not config.get('use_pygments', False):
+                    # Only assign key/value pairs to code element if attr_list ext is enabled, key/value pairs
+                    # were defined on the code block, and the `use_pygments` key was not set to True. The
+                    # `use_pygments` key could be either set to False or not defined. It is omitted from output.
+                    kv_pairs = ''.join(
+                        f' {k}="{_escape_attrib_html(v)}"' for k, v in config.items() if k != 'use_pygments'
+                    )
+                code = self._escape(m.group('code'))
+                code = f'<pre{id_attr}{class_attr}><button class="menagerie-copy-button btn btn-sm btn-outline-primary position-absolute" style="top: 5px; right: 5px;" aria-label="Copy"><i class="bi bi-clipboard2"></i></button><code{lang_attr}{kv_pairs}>{code}</code></pre>'
+
+                placeholder = self.md.htmlStash.store(code)
+                text = f'{text[:m.start()]}\n{placeholder}\n{text[m.end():]}'
+            else:
+                break
+        return text.split("\n")
+
+
 class MenagerieMarkdownExtension(Extension):
 
     def __init__(self, page, **kwargs):
@@ -50,7 +125,7 @@ class MenagerieMarkdownExtension(Extension):
         self.tree.config = self.getConfigs()
         md.treeprocessors.add('menagerie_tree', self.tree, '_end')
         md.parser.blockprocessors.register(MenagerieAdmonitions(md.parser), 'm-admonition', 105)
-
+        md.preprocessors.register(MenagerieFencedCode(md, {}), 'm-copy-button', 26)
 
 
 class MDPage(AbstractPage):
