@@ -2,7 +2,7 @@
 + *.jinja2, *.html, *.htm -&gt; HTML
 + *.json, *.jsonc -&gt; JSON Schema
 + *.xsd, *.xml -&gt; XML Schema
-+ *.yml -&gt; YAML Schema
++ *.yaml, *.yml -&gt; YAML Schema
 </code></pre><h3 id="a-note-about-home">A Note About Home</h3><p>When menagerie encounters a page titled 'home', special behaviour occurs:</p><ul><li>The title of the page is set to <em>just</em> the app name, and the "Home -" is omitted</li><li>The navbar icons and app name will lead to that page when clicked</li></ul><p>You want to set <code>Out_File</code> to <code>index</code> on this page so your webserver knows to use this page as the landing document.</p><h2 class="border-1 border-bottom border-dark pb-1 mb-1" id="page-metadata">Page Metadata</h2><p>Page metadata is data included in the file that tells menagerie how to generate a corresponding HTML document.<br> The way to describe metadata is different depending on what language you're using</p><h3 id="markdown-metadata">Markdown Metadata</h3><p>Uses the standard markdown metadata format, create a block at the very top of your document that looks like this:</p><pre class="position-relative"><button class="menagerie-copy-button btn btn-sm btn-outline-primary position-absolute" style="top: 5px; right: 5px;" aria-label="Copy"><i class="bi bi-clipboard2"></i></button><code class="language-md">---
 Title: My Page
 Sort_Priority: 100
