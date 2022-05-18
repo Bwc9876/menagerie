@@ -18,7 +18,7 @@ Menagerie will look for the following file extensions to generate from:
 + *.jinja2, *.html, *.htm -> HTML
 + *.json, *.jsonc -> JSON Schema
 + *.xsd, *.xml -> XML Schema
-+ *.yml -> YAML Schema
++ *.yaml, *.yml -> YAML Schema
 ```
 
 ### A Note About Home
