@@ -4,7 +4,7 @@
   "cache_enabled": true,
   "themes": {
     "highlight_js": "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-light.min.css",
-    "bootstrap": "styles/custom_bs.min.css"
+    "bootstrap": "/styles/custom_bs.min.css"
   },
   "brand": {
     "app_name": "Menagerie",
