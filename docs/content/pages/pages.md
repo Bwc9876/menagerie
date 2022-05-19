@@ -218,12 +218,13 @@ All rendered pages are minified to save on space and network load (this can be d
 
 In addition to [all the built-in jinja filters](https://jinja.palletsprojects.com/en/3.1.x/templates/#builtin-filters), menagerie provides some more:
 
-| **Name**    | **Description**                                                                               |
-|-------------|-----------------------------------------------------------------------------------------------|
-| `route`     | Route a page title to the output file path                                                    |
-| `static`    | Get a static file's path, replacing file extensions if necessary                              |
-| `full_url`  | Get the full URL of a file                                                                    |
-| `simple_md` | Render markdown in the string to HTML (Probably wanna pass the output of this through `safe`) |
+| **Name**             | **Description**                                                                               |
+|----------------------|-----------------------------------------------------------------------------------------------|
+| `route`              | Route a page title to the output file path                                                    |
+| `static`             | Get a static file's path, replacing file extensions if necessary                              |
+| `full_url`           | Get the full URL of a file                                                                    |
+| `simple_md`          | Render markdown in the string to HTML (Probably wanna pass the output of this through `safe`) |
+| `external_or_static` | Get a static file's path if it doesn't start with `http` or `file`                            |
 
 Also, you have access to the `settings` dictionary, which holds all options from your `config.json` and some more.  
 To view these properties, look at [Settings.py](https://github.com/Bwc9876/menagerie/blob/master/menagerie/Settings.py) in the source code.
