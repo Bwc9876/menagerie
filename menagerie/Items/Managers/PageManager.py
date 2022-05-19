@@ -123,6 +123,7 @@ class PageManager(AbstractManager):
         filters = {
             'route': self.route,
             'static': self.gen.shared_info['static_filter'],
+            'external_or_static': self.gen.shared_info['external_resolver_filter'],
             'upper_first': lambda x: x[0].upper() + x[1:],
             'simple_md': lambda md: self.filter_md.convert(md)
         }

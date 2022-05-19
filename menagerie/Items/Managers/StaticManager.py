@@ -19,6 +19,7 @@ class StaticManager(AbstractManager):
         self.gen.shared_info['static_map'] = {}
         self.gen.shared_info['image_sizes'] = {}
         self.gen.shared_info['static_filter'] = self.get_static
+        self.gen.shared_info['external_resolver_filter'] = self.external_or_static
 
     def initialize(self):
         for item in self.items:
@@ -31,6 +32,12 @@ class StaticManager(AbstractManager):
         self.gen.settings['out_dir'].mkdir(parents=True, exist_ok=True)
         for item in self.items:
             item.generate()
+
+    def external_or_static(self, link: str) -> str:
+        if link.startswith('http') or link.startswith('file'):
+            return link
+        else:
+            return self.gen.shared_info['static_filter'](link)
 
     def get_static(self, rel_path: str) -> str:
         path = rel_path
