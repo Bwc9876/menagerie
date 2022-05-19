@@ -6,6 +6,7 @@ from menagerie.Items.Static.StaticSCSS import StaticSCSS
 from menagerie.Items.Static.StaticImage import StaticImage
 from menagerie.Items.Static.StaticItem import StaticItem
 from menagerie.Items.Static.StaticJS import StaticJS
+from menagerie.utils.str_util import remove_preceding_slash
 
 
 class StaticManager(AbstractManager):
@@ -37,7 +38,7 @@ class StaticManager(AbstractManager):
         if link.startswith('http') or link.startswith('file'):
             return link
         else:
-            return self.gen.shared_info['static_filter'](link)
+            return self.gen.shared_info['static_filter'](remove_preceding_slash(link))
 
     def get_static(self, rel_path: str) -> str:
         path = rel_path
