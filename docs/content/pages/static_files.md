@@ -38,8 +38,8 @@ still works, however.
 
 ## Custom Bootrstrap Themes with SASS
 
-Menagerie supports the ability to build SASS files into CSS, it does this by looking or any file ending in `.scss` and `.sass`.  
-Using this you can create a custom bootstrap theme for your site:  
+Menagerie supports the ability to build SASS files into CSS, it does this by looking for any file ending in `.scss` and `.sass`.  
+Using this you can create a custom Bootstrap theme for your site:  
 
 1. [Get Bootstrap's source code](https://getbootstrap.com/docs/5.2/getting-started/download/#source-files) and copy the `scss` and `js` folders from it.
 2. Put these folders in a new folder at the root of your docs site (next to `config.json`, we don't want it in `content` because we don't want it to build on its own).
