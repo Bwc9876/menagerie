@@ -4,7 +4,7 @@ from pathlib import Path
 from menagerie.generate import generate
 from menagerie.new_project import new_project
 
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 
 
 def get_parser():
