@@ -2,6 +2,7 @@ from pathlib import Path
 
 from menagerie.Items.Managers.AbstractManager import AbstractManager
 from menagerie.Items.Static.StaticCSS import StaticCSS
+from menagerie.Items.Static.StaticSCSS import StaticSCSS
 from menagerie.Items.Static.StaticImage import StaticImage
 from menagerie.Items.Static.StaticItem import StaticItem
 from menagerie.Items.Static.StaticJS import StaticJS
@@ -10,7 +11,7 @@ from menagerie.Items.Static.StaticJS import StaticJS
 class StaticManager(AbstractManager):
     root_dir = 'static'
     changed_files: dict[str, str] = {}
-    item_types = (StaticJS, StaticCSS, StaticImage, StaticItem)
+    item_types = (StaticJS, StaticCSS, StaticSCSS, StaticImage, StaticItem)
 
     def __init__(self, site_info) -> None:
         super(StaticManager, self).__init__(site_info)

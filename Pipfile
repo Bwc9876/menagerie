@@ -18,6 +18,7 @@ ndicts = "*"
 json-minify = "*"
 beautifulsoup4 = "*"
 pyyaml = "*"
+libsass = {path = "./../sass_install/libsass-python"}
 
 [dev-packages]
 pipenv-setup = "*"
