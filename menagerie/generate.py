@@ -22,7 +22,7 @@ def generate(config_path: Path, clear_cache: bool = False):
     os.chdir(str(parent_folder))
     Logger.log_info("Setting Up")
     gen = SiteGen(config, managers)
-    if clear_cache:
+    if gen.settings['cache_enabled'] and clear_cache:
         gen.cache.invalidate()
     Logger.log_info("Beginning Generation")
     Logger.log_info("Finding Content")

@@ -3,6 +3,7 @@ from json import loads, dumps
 from pathlib import Path
 from shutil import rmtree
 
+import menagerie
 from menagerie.Items.AbstractItem import AbstractItem
 
 __all__ = ('CacheHandler',)
@@ -27,17 +28,19 @@ class CacheHandler:
         if self.hash_file.exists():
             self.hashes = loads(self.hash_file.read_text(encoding='utf-8'))
         else:
-            self.hashes = {'config': "", 'meta': None, 'items': {}}
+            self.hashes = {'version': menagerie.__version__, 'config': "", 'meta': None, 'items': {}}
 
         config_hash = self.get_hash(settings['config_path'].read_bytes())
         if self.hashes['config'] != config_hash:
             self.invalidate()
             self.hashes['config'] = config_hash
+        if self.hashes['version'] != menagerie.__version__:
+            self.invalidate()
 
     def invalidate(self):
         rmtree(self.out_cache)
         self.out_cache.mkdir(parents=True, exist_ok=True)
-        self.hashes = {'config': "", 'meta': None, 'items': {}}
+        self.hashes = {'version': menagerie.__version__, 'config': "", 'meta': None, 'items': {}}
 
     def get_hash(self, content: bytes) -> str:
         hasher = hashlib.new(self.HASH_ALGORITHM)
