@@ -36,7 +36,7 @@ JS and CSS files are minified automatically. (this can be disabled in `config.js
 changing references to these files to `.min.js` and `.min.css`, menagerie will automatically change it. Using `.min.*`
 still works, however.
 
-## Custom Bootrstrap Themes with SASS
+## Custom Bootstrap Themes
 
 Menagerie supports the ability to build SASS files into CSS, it does this by looking for any file ending in `.scss` and `.sass`.  
 Using this you can create a custom Bootstrap theme for your site:  
