@@ -36,9 +36,39 @@ JS and CSS files are minified automatically. (this can be disabled in `config.js
 changing references to these files to `.min.js` and `.min.css`, menagerie will automatically change it. Using `.min.*`
 still works, however.
 
+## Custom Bootrstrap Themes with SASS
+
+Menagerie supports the ability to build SASS files into CSS, it does this by looking or any file ending in `.scss` and `.sass`.  
+Using this you can create a custom bootstrap theme for your site:  
+
+1. [Get Bootstrap's source code](https://getbootstrap.com/docs/5.2/getting-started/download/#source-files) and copy the `scss` and `js` folders from it.
+2. Put these folders in a new folder at the root of your docs site (next to `config.json`, we don't want it in `content` because we don't want it to build on its own).
+3. Create a new static file that ends in `.scss`.
+4. In this file, [customize your bootstrap theme](https://getbootstrap.com/docs/5.2/customize/sass/)
+5. Import Bootstrap by referencing it (note that the path is relative to the root of your site, not the location of the file.)
+
+```scss
+$primary: #00ff00;
+
+@import "bootstrap/scss/bootstrap";
+```
+
+6. In your `config.json` set your Bootstrap theme to `/path/to/your/file.min.css`
+
+```json
+{
+    "themes": {
+        "bootstrap": "/styles/my_theme.min.css"
+    }
+}
+```
+
+7. Generate your site!
+
 ## Images
 
-It's recommended to use the `.webp` format for images.
+It's recommended to use the `.webp` format for images.  
+In Markdown, images will automatically get their `width` and `height` set. In HTML, you must do this yourself.
 
 ## Setting up Favicons
 
