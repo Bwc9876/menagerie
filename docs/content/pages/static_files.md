@@ -47,21 +47,21 @@ Using this you can create a custom bootstrap theme for your site:
 4. In this file, [customize your bootstrap theme](https://getbootstrap.com/docs/5.2/customize/sass/)
 5. Import Bootstrap by referencing it (note that the path is relative to the root of your site, not the location of the file.)
 
-```scss
-$primary: #00ff00;
+    ```scss
+    $primary: #00ff00;
 
-@import "bootstrap/scss/bootstrap";
-```
+    @import "bootstrap/scss/bootstrap";
+    ```
 
 6. In your `config.json` set your Bootstrap theme to `/path/to/your/file.min.css`
 
-```json
-{
-    "themes": {
-        "bootstrap": "/styles/my_theme.min.css"
+    ```json
+    {
+        "themes": {
+            "bootstrap": "/styles/my_theme.min.css"
+        }
     }
-}
-```
+    ```
 
 7. Generate your site!
 
