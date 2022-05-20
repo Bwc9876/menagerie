@@ -15,7 +15,7 @@
 {% endif %}
 {% set desc=page.meta['description']|default(settings['brand']['meta']['description']) %}
 {% set img=settings['brand']['meta']['image']|static|full_url(False) %}
-{% set canonical=page.meta['title']|route|full_url %}
+{% set canonical=page.meta['title']|route|full_url(False) %}
 {% set theme_color=settings['brand']['meta']['theme_color'] %}
 
 {# Meta Info #}
