@@ -82,7 +82,7 @@
                     <form action="https://google.com/search" method="get" class="d-flex me-3">
                         <input class="d-none" type="hidden" name="q" value="site:{{ settings['search']['site'] }}">
                         <input class="form-control me-2" type="search" placeholder="Search This Site..." name="q" aria-label="Search">
-                        <button class="btn btn-outline-{{ settings['themes']['theme-opposite'] }}" type="submit">Search</button>
+			<button aria-label="Search" class="btn btn-outline-{{ settings['themes']['theme-opposite'] }}" type="submit"><i class="bi bi-search"></i></button>
                     </form>
                 {% endif %}
                 {% if settings['brand']['socials']|length != 0 %}
