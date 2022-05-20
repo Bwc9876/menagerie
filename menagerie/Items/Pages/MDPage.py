@@ -143,6 +143,11 @@ class MDPage(AbstractPage):
                 size = self.manager.gen.shared_info['image_sizes'].get(str(Path(image_path).as_posix()), (100, 100))
                 node.set('width', str(size[0]))
                 node.set('height', str(size[1]))
+        elif node.tag == 'a':
+            url = node.get('href')
+            if url.startswith('http') and (url.startswith(self.manager.gen.settings['base_url']) is False):
+                node.set('target', "_blank")
+                node.set('rel', "noopener")
         for child in node:
             self.process_node(child)
 
