@@ -38,8 +38,7 @@ class AbstractManager(ABC):
         })
 
     def full_url(self, relative: str, add_prefix: bool = True) -> str:
-        path = relative if remove_preceding_slash(relative) != "index.html" else ""
-        return self.gen.settings['base_url'] + (remove_preceding_slash(self.gen.settings['url_prefix']) if add_prefix else "") + remove_preceding_slash(path)
+        return self.gen.settings['base_url'] + (remove_preceding_slash(self.gen.settings['url_prefix']) if add_prefix else "") + remove_preceding_slash(relative)
 
 
     def find(self):
