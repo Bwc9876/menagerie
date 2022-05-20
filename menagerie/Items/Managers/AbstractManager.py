@@ -34,8 +34,13 @@ class AbstractManager(ABC):
             'gen_time': datetime.now().strftime("%d/%m/%Y")
         })
         self.base_env.filters.update({
-            'full_url': lambda relative, add_prefix=True: self.gen.settings['base_url'] + (remove_preceding_slash(self.gen.settings['url_prefix']) if add_prefix else "") + remove_preceding_slash(relative)
+            'full_url': self.full_url
         })
+
+    def full_url(self, relative: str, add_prefix: bool = True) -> str:
+        path = relative if remove_preceding_slash(relative) != "index.html" else ""
+        return self.gen.settings['base_url'] + (remove_preceding_slash(self.gen.settings['url_prefix']) if add_prefix else "") + remove_preceding_slash(path)
+
 
     def find(self):
         matches = []
