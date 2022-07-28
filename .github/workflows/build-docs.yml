@@ -68,12 +68,12 @@ jobs:
           command: run python -m menagerie generate
 
       - name: Upload Artifact
-        if: success() && github.ref == 'refs/heads/main'
+        if: success() && github.ref == 'refs/heads/master'
         uses: actions/upload-pages-artifact@v1
         with:
           path: out/
 
       - name: Deploy To Pages
-        if: success() && github.ref == 'refs/heads/main'
+        if: success() && github.ref == 'refs/heads/master'
         uses: actions/deploy-pages@v1
       
