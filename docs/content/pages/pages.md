@@ -13,12 +13,12 @@ a [markdown page](https://github.com/Bwc9876/menagerie/blob/master/docs/content/
 To create new pages, simply add them to the `pages` folder in `content`.  
 Menagerie will look for the following file extensions to generate from:
 
-```diff
-+ *.md -> Markdown
-+ *.jinja2, *.html, *.htm -> HTML
-+ *.json, *.jsonc -> JSON Schema
-+ *.xsd, *.xml -> XML Schema
-+ *.yaml, *.yml -> YAML Schema
+```
+*.md -> Markdown
+*.jinja2, *.html, *.htm -> HTML
+*.json, *.jsonc -> JSON Schema
+*.xsd, *.xml -> XML Schema
+*.yaml, *.yml -> YAML Schema
 ```
 
 ### A Note About Home
