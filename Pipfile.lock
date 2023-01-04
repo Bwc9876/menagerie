@@ -216,11 +216,11 @@
         },
         "ndicts": {
             "hashes": [
-                "sha256:5053fc5ca7b8a281081274702ebf1584e341f40a68e6ab8f6b4b79f4b3fdf18e",
-                "sha256:8e8226f15c0b25565aa391797963b78c95930e12efc40e905153130783e766be"
+                "sha256:04797657ba23e8ed9d3afe8e86da68d58f5ebc170d58238b81d7aef91274245e",
+                "sha256:692c43c3a574430da2061dd732e29ca6f34388006491969664eb97f465e9628d"
             ],
             "index": "pypi",
-            "version": "==0.1.0"
+            "version": "==0.2.1"
         },
         "packaging": {
             "hashes": [
@@ -792,11 +792,11 @@
         },
         "pkginfo": {
             "hashes": [
-                "sha256:ac03e37e4d601aaee40f8087f63fc4a2a6c9814dda2c8fa6aab1b1829653bdfa",
-                "sha256:d580059503f2f4549ad6e4c106d7437356dbd430e2c7df99ee1efe03d75f691e"
+                "sha256:37e77722f0e16758e5f360098ced6bc5cfc19e5d3d410507a0c3a5d648df5b7c",
+                "sha256:76eac3a1c370e1505a771ed98a7e33b4546fe3650fd719e6c57ebb4393c20768"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==1.9.2"
+            "version": "==1.9.3"
         },
         "platformdirs": {
             "hashes": [
