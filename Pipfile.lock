@@ -207,6 +207,14 @@
             ],
             "version": "==1.5.1"
         },
+        "more-itertools": {
+            "hashes": [
+                "sha256:250e83d7e81d0c87ca6bd942e6aeab8cc9daa6096d12c5308f3f92fa5e5c1f41",
+                "sha256:5a6257e40878ef0520b1803990e3e22303a41b5714006c32a3fd8304b26ea1ab"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==9.0.0"
+        },
         "mypy-extensions": {
             "hashes": [
                 "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d",
@@ -216,11 +224,11 @@
         },
         "ndicts": {
             "hashes": [
-                "sha256:04797657ba23e8ed9d3afe8e86da68d58f5ebc170d58238b81d7aef91274245e",
-                "sha256:692c43c3a574430da2061dd732e29ca6f34388006491969664eb97f465e9628d"
+                "sha256:010b0c94180fe89e7e0d5fa89909c4bd7784c52d56908d4d776337c9358378e9",
+                "sha256:1a1f31cdb770c037c9cc9bc27a8493e43bfe035a606d3630c2e3d14eabe7bfbf"
             ],
             "index": "pypi",
-            "version": "==0.2.1"
+            "version": "==0.3.0"
         },
         "packaging": {
             "hashes": [
