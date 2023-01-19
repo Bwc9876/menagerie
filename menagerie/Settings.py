@@ -6,7 +6,7 @@ from pathlib import Path
 
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
-from ndicts.ndicts import NestedDict
+from ndicts import NestedDict
 
 from menagerie import schemas
 from menagerie.utils.logger import Logger
