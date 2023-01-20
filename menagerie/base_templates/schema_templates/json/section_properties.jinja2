@@ -1,5 +1,5 @@
 {% from "schema_templates/schema_macros.jinja2" import badge %}
-{% set html_id = sub_property.html_id %}
+{% set html_id = sub_property.html_id|replace_dollar %}
 <div class="row my-2">
     <div class="col">
         <div class="accordion" id="accordion{{ html_id }}">
