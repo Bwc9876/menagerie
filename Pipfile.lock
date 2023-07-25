@@ -176,11 +176,11 @@
         },
         "json-schema-for-humans": {
             "hashes": [
-                "sha256:82094b524f13256d6ca285c8ea00f8133fd10fbf4869c69b7c0aec1ad0f685b7",
-                "sha256:f8d882a07ad79c2cae34568fd617cb6859515ba4e19c1b086554374cf32ebc43"
+                "sha256:369aacf0a69925e24e6c43bf7145927d7f9668b508f87f773b38d1f9799516e1",
+                "sha256:372fc45e2e01a33cd58a36ffecb593250e591443871a41ca25b9542f1e3615b2"
             ],
             "index": "pypi",
-            "version": "==0.44.6"
+            "version": "==0.45.1"
         },
         "jsonschema": {
             "hashes": [
