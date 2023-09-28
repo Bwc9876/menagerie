@@ -178,12 +178,12 @@
         },
         "json-schema-for-humans": {
             "hashes": [
-                "sha256:33168475cb1a8db03e60c44cc6f5cab04250779316726738b26c10059f37428c",
-                "sha256:63e325fdc85814d94e6128084e545e19c3409c0ebbb1aa48170020b4067128b6"
+                "sha256:577767d763d69836c42170655b978894e682aaf3cce9b303b5d254b1c11ce6a5",
+                "sha256:a0dbb506e138b1a4fe72282abfffa63609bf21a2368d079b174dda3fa6951165"
             ],
             "index": "pypi",
             "markers": "python_version >= '3.7' and python_version < '4.0'",
-            "version": "==0.45.2"
+            "version": "==0.45.3"
         },
         "jsonschema": {
             "hashes": [
