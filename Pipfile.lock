@@ -763,12 +763,12 @@
         },
         "xmlschema": {
             "hashes": [
-                "sha256:276a03e0fd3c94c148d528bff4d9482f9b99bf8c7b4056a2e8e703d28149d454",
-                "sha256:f2b29c45485fac414cc1fdb38d18a220c5987d7d3aa996e6df6ff35ee94d5a63"
+                "sha256:116243b2ad38cd2df9ee0606d4e4e898a6f156736b39ab0017e6f49862c0809e",
+                "sha256:bb24a5f4738e49d85d9eb03a2b5af26bbbbfdb055517ad953d98925094b8c026"
             ],
             "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==2.5.0"
+            "markers": "python_version >= '3.8'",
+            "version": "==3.0.1"
         }
     },
     "develop": {
